@@ -44,6 +44,10 @@ class User < ActiveRecord::Base
     username == 'davidcelis'
   end
 
+  def to_param
+    username.parameterize
+  end
+
   private
     def generate_token(column)
       begin

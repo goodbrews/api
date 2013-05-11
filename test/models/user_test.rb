@@ -179,4 +179,9 @@ describe User do
     user.username = 'davidcelis'
     user.must_be :admin?
   end
+
+  it 'parameterizes its username as a to_param override' do
+    user = Factory.build(:user)
+    user.to_param.must_equal user.username.parameterize
+  end
 end
