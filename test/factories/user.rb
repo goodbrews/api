@@ -1,8 +1,8 @@
 require 'miniskirt'
 
 Factory.define :user do |f|
-  f.email { Faker::Internet.email }
-  f.username { Faker::Internet.user_name }
+  f.email 'user.%d@goodbre.ws'
+  f.username 'user_%d'
   f.password f.password_confirmation 'supersecret'
 
   f.name { Faker::Name.name }

@@ -11,6 +11,25 @@ class User < ActiveRecord::Base
 
   validates :password_confirmation, presence: { if: -> { password_digest_changed? }}
 
+  validates :username, exclusion: {
+                         in: %w(admin goodbrews guest),
+                         message: 'is reserved'
+                       },
+                       format: {
+                         with: /\A\w+\z/,
+                         message: "can only contain letters, numbers, or '_'.",
+                         allow_blank: true
+                       },
+                       uniqueness: {
+                         case_sensitive: false,
+                         message: 'has already been taken'
+                       },
+                       length: {
+                         within: 1..40,
+                         allow_blank: true
+                       },
+                       presence: true
+
   private
     def generate_token(column)
       begin
