@@ -7,7 +7,7 @@ Factory.define :user do |f|
 
   f.name { Faker::Name.name }
   f.city { Faker::Address.city }
-  f.region { Faker::Address.us_state }
+  f.region { Faker::AddressUS.state_abbr }
   f.country 'USA'
   f.latitude { Faker::Geolocation.lat }
   f.longitude { Faker::Geolocation.lng }
