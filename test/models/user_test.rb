@@ -171,4 +171,12 @@ describe User do
       another_user.errors[:email].must_include 'is already in use'
     end
   end
+
+  it 'is an admin if "davidcelis" is its username' do
+    user = Factory.build(:user)
+    user.wont_be :admin?
+
+    user.username = 'davidcelis'
+    user.must_be :admin?
+  end
 end

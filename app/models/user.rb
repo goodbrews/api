@@ -40,6 +40,10 @@ class User < ActiveRecord::Base
                     },
                     presence: true
 
+  def admin?
+    username == 'davidcelis'
+  end
+
   private
     def generate_token(column)
       begin
