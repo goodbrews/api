@@ -30,6 +30,16 @@ class User < ActiveRecord::Base
                        },
                        presence: true
 
+  validates :email, format: {
+                      with: /.+@.+/,
+                      allow_blank: true
+                     },
+                    uniqueness: {
+                      case_sensitive: false,
+                      message: 'is already in use'
+                    },
+                    presence: true
+
   private
     def generate_token(column)
       begin

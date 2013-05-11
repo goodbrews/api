@@ -72,7 +72,10 @@ describe User do
       @user = Factory.build(:user, username: '')
     end
 
-    it 'cannot be nil' do
+    it 'cannot be blank' do
+      @user.wont_be :valid?
+      @user.errors[:username].must_include "can't be blank"
+
       @user.username = nil
       @user.wont_be :valid?
       @user.errors[:username].must_include "can't be blank"
@@ -125,6 +128,47 @@ describe User do
       another_user.username = 'SNOWFLAKE'
       another_user.wont_be :valid?
       another_user.errors[:username].must_include 'has already been taken'
+    end
+  end
+
+  context 'validating an email address' do
+    before :each do
+      @user = Factory.build(:user, email: '')
+    end
+
+    it 'cannot be blank' do
+      @user.wont_be :valid?
+      @user.errors[:email].must_include "can't be blank"
+
+      @user.email = nil
+      @user.wont_be :valid?
+      @user.errors[:email].must_include "can't be blank"
+    end
+
+    it 'must have an @ symbol and some other stuff' do
+      @user.email = '@'
+      @user.wont_be :valid?
+      @user.errors[:email].must_include 'is invalid'
+
+      @user.email = 'user@'
+      @user.wont_be :valid?
+      @user.errors[:email].must_include 'is invalid'
+
+      @user.email = 'user@localhost'
+      @user.must_be :valid?
+    end
+
+    it 'must be unique' do
+      @user.email = 'user@goodbre.ws'
+      @user.save
+
+      another_user = Factory.build(:user, email: 'user@goodbre.ws')
+      another_user.wont_be :valid?
+      another_user.errors[:email].must_include 'is already in use'
+
+      another_user.email = 'USER@GOODBRE.WS'
+      another_user.wont_be :valid?
+      another_user.errors[:email].must_include 'is already in use'
     end
   end
 end
