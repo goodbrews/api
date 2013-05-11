@@ -22,9 +22,12 @@ gem 'capistrano', group: :development
 
 # Gems not necessary for production
 group :development, :test do
-  gem 'minitest-rails'
-  gem 'miniskirt'
-
   gem 'pry-rails'
   gem 'pry-coolline'
+end
+
+group :test do
+  gem 'minitest-rails'
+  gem 'miniskirt'
+  gem 'ffaker'
 end

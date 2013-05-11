@@ -49,6 +49,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    ffaker (1.16.1)
     highline (1.6.18)
     hike (1.2.2)
     i18n (0.6.4)
@@ -147,6 +148,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   capistrano
   coffee-rails (~> 4.0.0)
+  ffaker
   jquery-rails
   miniskirt
   minitest-rails
