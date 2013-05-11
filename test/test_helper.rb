@@ -10,9 +10,8 @@ require "minitest/rails"
 # Uncomment for awesome colorful output
 require "minitest/pride"
 
+# Require miniskirt factories
+Dir[Rails.root.join('test', 'factories', '**', '*.rb')].each { |f| require f }
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
-  fixtures :all
-
   # Add more helper methods to be used by all tests here...
 end
