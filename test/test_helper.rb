@@ -13,5 +13,7 @@ require "minitest/pride"
 # Require miniskirt factories
 Dir[Rails.root.join('test', 'factories', '**', '*.rb')].each { |f| require f }
 class ActiveSupport::TestCase
-  # Add more helper methods to be used by all tests here...
+  class << self
+    alias :context :describe
+  end
 end
