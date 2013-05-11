@@ -5,7 +5,7 @@ describe Brewery do
     @brewery = Brewery.new
   end
 
-  it "must be valid" do
-    @brewery.valid?.must_equal true
+  it "must be permalinkable" do
+    Brewery.ancestors.must_include Permalinkable
   end
 end

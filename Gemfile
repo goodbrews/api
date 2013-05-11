@@ -24,6 +24,7 @@ gem 'capistrano', group: :development
 group :development, :test do
   gem 'minitest-rails'
   gem 'miniskirt'
+  gem 'temping'
   gem 'ffaker'
 
   gem 'pry-rails'

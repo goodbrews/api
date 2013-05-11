@@ -12,6 +12,8 @@ require "minitest/pride"
 
 # Require miniskirt factories
 Dir[Rails.root.join('test', 'factories', '**', '*.rb')].each { |f| require f }
+
+# Allow RSpec-style context blocks
 class ActiveSupport::TestCase
   class << self
     alias :context :describe

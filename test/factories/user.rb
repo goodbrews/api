@@ -3,7 +3,7 @@ require 'miniskirt'
 Factory.define :user do |f|
   f.email 'user.%d@goodbre.ws'
   f.username 'user_%d'
-  f.password f.password_confirmation 'supersecret'
+  f.password f.password_confirmation('supersecret')
 
   f.name { Faker::Name.name }
   f.city { Faker::Address.city }

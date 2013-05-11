@@ -125,6 +125,11 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    sqlite3 (1.3.7)
+    temping (3.2.0)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      sqlite3 (~> 1.3.7)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -158,6 +163,7 @@ DEPENDENCIES
   puma (~> 2.0.0)
   rails (= 4.0.0.rc1)
   sass-rails (~> 4.0.0.rc1)
+  temping
   therubyracer
   therubyrhino
   uglifier (>= 1.3.0)

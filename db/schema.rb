@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130511025923) do
+ActiveRecord::Schema.define(version: 20130511194333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "breweries", force: true do |t|
+    t.string   "name"
+    t.string   "alternate_names",           array: true
+    t.text     "description"
+    t.string   "website"
+    t.boolean  "organic"
+    t.integer  "established"
+    t.string   "permalink"
+    t.string   "image_id",        limit: 6
+    t.string   "brewerydb_id",    limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "breweries", ["brewerydb_id"], name: "index_breweries_on_brewerydb_id", unique: true, using: :btree
+  add_index "breweries", ["permalink"], name: "index_breweries_on_permalink", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                        null: false
