@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130512212342) do
+ActiveRecord::Schema.define(version: 20130512213125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,18 @@ ActiveRecord::Schema.define(version: 20130512212342) do
 
   add_index "locations", ["brewery_id"], name: "index_locations_on_brewery_id", using: :btree
   add_index "locations", ["brewerydb_id"], name: "index_locations_on_brewerydb_id", unique: true, using: :btree
+
+  create_table "social_media_accounts", force: true do |t|
+    t.string   "website"
+    t.string   "handle"
+    t.integer  "socialable_id"
+    t.string   "socialable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "social_media_accounts", ["socialable_id", "socialable_type", "website"], name: "index_unique_social_media_accounts", unique: true, using: :btree
+  add_index "social_media_accounts", ["socialable_id", "socialable_type"], name: "index_social_media_accounts_on_id_and_type", using: :btree
 
   create_table "styles", force: true do |t|
     t.string   "name"
