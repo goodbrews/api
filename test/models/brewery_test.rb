@@ -36,6 +36,19 @@ describe Brewery do
       event.breweries.wont_include(@brewery)
     end
 
+    it 'must clear Guild join records' do
+      guild = Factory(:guild)
+      guild.breweries << @brewery
+
+      guild.reload and @brewery.reload
+
+      @brewery.destroy
+      guild.reload
+
+      guild.id.wont_be_nil
+      guild.breweries.wont_include(@brewery)
+    end
+
     it 'must destroy locations' do
       location = Factory(:location, brewery: @brewery)
       @brewery.destroy

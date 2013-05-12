@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130512210345) do
+ActiveRecord::Schema.define(version: 20130512212342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,13 @@ ActiveRecord::Schema.define(version: 20130512210345) do
 
   add_index "breweries_events", ["brewery_id", "event_id"], name: "index_breweries_events_on_brewery_id_and_event_id", unique: true, using: :btree
 
+  create_table "breweries_guilds", id: false, force: true do |t|
+    t.integer "brewery_id", null: false
+    t.integer "guild_id",   null: false
+  end
+
+  add_index "breweries_guilds", ["brewery_id", "guild_id"], name: "index_breweries_guilds_on_brewery_id_and_guild_id", unique: true, using: :btree
+
   create_table "events", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -111,6 +118,19 @@ ActiveRecord::Schema.define(version: 20130512210345) do
   end
 
   add_index "events", ["brewerydb_id"], name: "index_events_on_brewerydb_id", unique: true, using: :btree
+
+  create_table "guilds", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "website"
+    t.string   "image_id",     limit: 6
+    t.string   "brewerydb_id", limit: 6
+    t.integer  "established"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "guilds", ["brewerydb_id"], name: "index_guilds_on_brewerydb_id", unique: true, using: :btree
 
   create_table "ingredients", force: true do |t|
     t.string   "name"
