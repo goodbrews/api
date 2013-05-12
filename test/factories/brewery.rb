@@ -7,4 +7,7 @@ Factory.define :brewery do |f|
   f.website { Faker::Internet.uri(:http) }
   f.organic { [true, false].sample }
   f.established { rand(1040..Date.today.year) }
+
+  f.brewerydb_id { SecureRandom.hex(3).upcase }
+  f.image_id { SecureRandom.hex(3).upcase }
 end

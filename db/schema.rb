@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130512201635) do
+ActiveRecord::Schema.define(version: 20130512202551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,33 @@ ActiveRecord::Schema.define(version: 20130512201635) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.boolean  "primary"
+    t.boolean  "in_planning"
+    t.boolean  "public"
+    t.boolean  "closed"
+    t.string   "street"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "region"
+    t.string   "postal_code"
+    t.string   "country"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.text     "hours"
+    t.string   "website"
+    t.string   "phone"
+    t.integer  "brewery_id"
+    t.string   "brewerydb_id", limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locations", ["brewery_id"], name: "index_locations_on_brewery_id", using: :btree
+  add_index "locations", ["brewerydb_id"], name: "index_locations_on_brewerydb_id", unique: true, using: :btree
 
   create_table "styles", force: true do |t|
     t.string   "name"
