@@ -8,11 +8,11 @@ class CreateBreweries < ActiveRecord::Migration
       t.boolean :organic
       t.integer :established
 
-      t.string  :permalink
+      t.string  :slug
       t.string  :image_id,     limit: 6
       t.string  :brewerydb_id, limit: 6
 
-      t.index   :permalink,    unique: true
+      t.index   :slug,         unique: true
       t.index   :brewerydb_id, unique: true
 
       t.timestamps

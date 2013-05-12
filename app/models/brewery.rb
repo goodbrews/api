@@ -1,5 +1,5 @@
 class Brewery < ActiveRecord::Base
-  include Permalinkable
+  include Sluggable
 
   has_and_belongs_to_many :beers
 

@@ -13,7 +13,7 @@ class CreateBeers < ActiveRecord::Migration
       t.float   :original_gravity
       t.float   :serving_temperature
 
-      t.string  :permalink
+      t.string  :slug
 
       t.string  :brewerydb_id, limit: 6
       t.string  :image_id,     limit: 6
@@ -21,7 +21,7 @@ class CreateBeers < ActiveRecord::Migration
       t.references :style,     index: true
 
       t.index :brewerydb_id,   unique: true
-      t.index :permalink,      unique: true
+      t.index :slug,           unique: true
       t.index :organic
 
       t.timestamps

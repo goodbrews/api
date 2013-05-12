@@ -1,11 +1,11 @@
-require "test_helper"
+require 'test_helper'
 
 describe Beer do
   before do
     @beer = Beer.new
   end
 
-  it "must be valid" do
-    @beer.valid?.must_equal true
+  it 'must be sluggable' do
+    Beer.ancestors.must_include Sluggable
   end
 end

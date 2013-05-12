@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20130511213658) do
     t.integer  "ibu"
     t.float    "original_gravity"
     t.float    "serving_temperature"
-    t.string   "permalink"
+    t.string   "slug"
     t.string   "brewerydb_id",        limit: 6
     t.string   "image_id",            limit: 6
     t.integer  "style_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20130511213658) do
 
   add_index "beers", ["brewerydb_id"], name: "index_beers_on_brewerydb_id", unique: true, using: :btree
   add_index "beers", ["organic"], name: "index_beers_on_organic", using: :btree
-  add_index "beers", ["permalink"], name: "index_beers_on_permalink", unique: true, using: :btree
+  add_index "beers", ["slug"], name: "index_beers_on_slug", unique: true, using: :btree
   add_index "beers", ["style_id"], name: "index_beers_on_style_id", using: :btree
 
   create_table "beers_breweries", id: false, force: true do |t|
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20130511213658) do
     t.string   "website"
     t.boolean  "organic"
     t.integer  "established"
-    t.string   "permalink"
+    t.string   "slug"
     t.string   "image_id",        limit: 6
     t.string   "brewerydb_id",    limit: 6
     t.datetime "created_at"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20130511213658) do
   end
 
   add_index "breweries", ["brewerydb_id"], name: "index_breweries_on_brewerydb_id", unique: true, using: :btree
-  add_index "breweries", ["permalink"], name: "index_breweries_on_permalink", unique: true, using: :btree
+  add_index "breweries", ["slug"], name: "index_breweries_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                        null: false
