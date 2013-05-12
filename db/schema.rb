@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130512194034) do
+ActiveRecord::Schema.define(version: 20130512201635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(version: 20130512194034) do
 
   add_index "beers_breweries", ["beer_id", "brewery_id"], name: "index_beers_breweries_on_beer_id_and_brewery_id", unique: true, using: :btree
 
+  create_table "beers_ingredients", id: false, force: true do |t|
+    t.integer "beer_id",       null: false
+    t.integer "ingredient_id", null: false
+  end
+
+  add_index "beers_ingredients", ["beer_id", "ingredient_id"], name: "index_beers_ingredients_on_beer_id_and_ingredient_id", unique: true, using: :btree
+
   create_table "breweries", force: true do |t|
     t.string   "name"
     t.string   "alternate_names",           array: true
@@ -62,6 +69,13 @@ ActiveRecord::Schema.define(version: 20130512194034) do
 
   add_index "breweries", ["brewerydb_id"], name: "index_breweries_on_brewerydb_id", unique: true, using: :btree
   add_index "breweries", ["slug"], name: "index_breweries_on_slug", unique: true, using: :btree
+
+  create_table "ingredients", force: true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "styles", force: true do |t|
     t.string   "name"
