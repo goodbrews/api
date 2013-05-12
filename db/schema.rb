@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 20130512213125) do
 
   create_table "beers", force: true do |t|
     t.string   "name"
+    t.float    "abv"
+    t.integer  "ibu"
     t.text     "description"
     t.string   "availability"
     t.string   "glassware"
     t.boolean  "organic"
-    t.float    "abv"
-    t.integer  "ibu"
     t.float    "original_gravity"
     t.float    "serving_temperature"
     t.string   "slug"
@@ -199,20 +199,20 @@ ActiveRecord::Schema.define(version: 20130512213125) do
   add_index "styles", ["slug"], name: "index_styles_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                        null: false
-    t.string   "username",                     null: false
-    t.string   "password_digest",              null: false
-    t.string   "auth_token",                   null: false
+    t.string   "email",                  null: false
+    t.string   "username",               null: false
+    t.string   "password_digest",        null: false
+    t.string   "auth_token",             null: false
     t.string   "password_reset_token"
-    t.datetime "password_reset_token_sent_at"
+    t.datetime "password_reset_sent_at"
     t.string   "name"
     t.string   "city"
     t.string   "region"
     t.string   "country"
-    t.float    "latitude"
-    t.float    "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
