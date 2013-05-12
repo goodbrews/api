@@ -1,3 +1,5 @@
+require 'miniskirt'
+
 Factory.define :location do |f|
   f.brewery { Factory(:brewery) }
 

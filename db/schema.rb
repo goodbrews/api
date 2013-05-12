@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130512202551) do
+ActiveRecord::Schema.define(version: 20130512210345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,13 @@ ActiveRecord::Schema.define(version: 20130512202551) do
 
   add_index "beers_breweries", ["beer_id", "brewery_id"], name: "index_beers_breweries_on_beer_id_and_brewery_id", unique: true, using: :btree
 
+  create_table "beers_events", id: false, force: true do |t|
+    t.integer "beer_id",  null: false
+    t.integer "event_id", null: false
+  end
+
+  add_index "beers_events", ["beer_id", "event_id"], name: "index_beers_events_on_beer_id_and_event_id", unique: true, using: :btree
+
   create_table "beers_ingredients", id: false, force: true do |t|
     t.integer "beer_id",       null: false
     t.integer "ingredient_id", null: false
@@ -69,6 +76,41 @@ ActiveRecord::Schema.define(version: 20130512202551) do
 
   add_index "breweries", ["brewerydb_id"], name: "index_breweries_on_brewerydb_id", unique: true, using: :btree
   add_index "breweries", ["slug"], name: "index_breweries_on_slug", unique: true, using: :btree
+
+  create_table "breweries_events", id: false, force: true do |t|
+    t.integer "brewery_id", null: false
+    t.integer "event_id",   null: false
+  end
+
+  add_index "breweries_events", ["brewery_id", "event_id"], name: "index_breweries_events_on_brewery_id_and_event_id", unique: true, using: :btree
+
+  create_table "events", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "category"
+    t.integer  "year"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "hours"
+    t.string   "price"
+    t.string   "venue"
+    t.string   "street"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "region"
+    t.string   "postal_code"
+    t.string   "country"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "website"
+    t.string   "phone"
+    t.string   "image_id",     limit: 6
+    t.string   "brewerydb_id", limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "events", ["brewerydb_id"], name: "index_events_on_brewerydb_id", unique: true, using: :btree
 
   create_table "ingredients", force: true do |t|
     t.string   "name"

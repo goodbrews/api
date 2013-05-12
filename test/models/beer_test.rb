@@ -35,5 +35,18 @@ describe Beer do
       ingredient.id.wont_be_nil
       ingredient.beers.wont_include(@beer)
     end
+
+    it 'must clear Event join records' do
+      event = Factory(:event)
+      event.beers << @beer
+
+      @beer.reload and event.reload
+
+      @beer.destroy
+      event.reload
+
+      event.id.wont_be_nil
+      event.beers.wont_include(@beer)
+    end
   end
 end
