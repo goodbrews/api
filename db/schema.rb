@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130511213658) do
+ActiveRecord::Schema.define(version: 20130512194034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,26 @@ ActiveRecord::Schema.define(version: 20130511213658) do
 
   add_index "breweries", ["brewerydb_id"], name: "index_breweries_on_brewerydb_id", unique: true, using: :btree
   add_index "breweries", ["slug"], name: "index_breweries_on_slug", unique: true, using: :btree
+
+  create_table "styles", force: true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.text     "description"
+    t.float    "min_abv"
+    t.float    "max_abv"
+    t.integer  "min_ibu"
+    t.integer  "max_ibu"
+    t.integer  "min_original_gravity"
+    t.integer  "max_original_gravity"
+    t.integer  "min_final_gravity"
+    t.integer  "max_final_gravity"
+    t.string   "slug"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "styles", ["category"], name: "index_styles_on_category", using: :btree
+  add_index "styles", ["slug"], name: "index_styles_on_slug", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                        null: false
