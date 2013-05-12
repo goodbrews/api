@@ -5,6 +5,10 @@ describe Brewery do
     Brewery.ancestors.must_include Sluggable
   end
 
+  it 'must be socialable' do
+    Brewery.ancestors.must_include Socialable
+  end
+
   context 'before destruction' do
     before :each do
       @brewery = Factory(:brewery)
