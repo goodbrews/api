@@ -24,7 +24,6 @@ gem 'capistrano', group: :development
 group :development, :test do
   gem 'minitest-rails'
   gem 'miniskirt'
-  gem 'webmock'
   gem 'temping'
   gem 'ffaker'
   gem 'mocha', require: false
@@ -32,3 +31,5 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-coolline'
 end
+
+gem 'webmock', group: :test
