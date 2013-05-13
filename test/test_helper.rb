@@ -8,6 +8,9 @@ require 'webmock/minitest'
 # to the test group in the Gemfile and uncomment the following:
 # require 'minitest/rails/capybara'
 
+# Use Mocha for mocking/stubbing
+require 'mocha/setup'
+
 # Uncomment for awesome colorful output
 require 'minitest/pride'
 

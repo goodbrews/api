@@ -27,6 +27,7 @@ group :development, :test do
   gem 'webmock'
   gem 'temping'
   gem 'ffaker'
+  gem 'mocha', require: false
 
   gem 'pry-rails'
   gem 'pry-coolline'
