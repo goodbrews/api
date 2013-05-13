@@ -24,6 +24,7 @@ gem 'capistrano', group: :development
 group :development, :test do
   gem 'minitest-rails'
   gem 'miniskirt'
+  gem 'webmock'
   gem 'temping'
   gem 'ffaker'
 
