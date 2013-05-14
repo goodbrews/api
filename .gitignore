@@ -15,7 +15,10 @@
 /log/*.log
 /tmp
 
+# Ignore Coveralls reports.
+/coverage
+
 # Ignore sensitive files.
-config/auth.yml
-config/database.yml
-config/initializers/secret_token.rb
+/config/auth.yml
+/config/database.yml
+/config/initializers/secret_token.rb

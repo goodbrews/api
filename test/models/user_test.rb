@@ -85,29 +85,23 @@ describe User do
       @user.wont_be :valid?
       @user.errors[:username].must_include "can't be blank"
 
-      @user.username = 'a'
+      @user.username = 'd'
       @user.must_be :valid?
 
-      @user.username = 'davidcelisdavidcelisdavidcelisdavidcelis'
+      @user.username += 'avidcelisdavidcelisdavidcelisdavidcelis'
       @user.must_be :valid?
 
-      @user.username = 'davidcelisdavidcelisdavidcelisdavidcelisd'
+      @user.username += 'd'
       @user.wont_be :valid?
       @user.errors[:username].must_include 'is too long (maximum is 40 characters)'
     end
 
     it 'cannot be admin, goodbrews, or guest' do
-      @user.username = 'admin'
-      @user.wont_be :valid?
-      @user.errors[:username].must_include 'is reserved'
-
-      @user.username = 'goodbrews'
-      @user.wont_be :valid?
-      @user.errors[:username].must_include 'is reserved'
-
-      @user.username = 'guest'
-      @user.wont_be :valid?
-      @user.errors[:username].must_include 'is reserved'
+      %w[admin goodbrews guest].each do |forbidden|
+        @user.username = forbidden
+        @user.wont_be :valid?
+        @user.errors[:username].must_include 'is reserved'
+      end
     end
 
     it 'must only contain letters, numbers, underscores, periods, hyphens, or apostrophes' do
