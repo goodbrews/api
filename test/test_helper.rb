@@ -14,6 +14,10 @@ require 'mocha/setup'
 # Uncomment for awesome colorful output
 require 'minitest/pride'
 
+# Measure test coverage
+require 'coveralls'
+Coveralls.wear!
+
 # Require miniskirt factories
 Dir[Rails.root.join('test', 'factories', '**', '*.rb')].each { |f| require f }
 
