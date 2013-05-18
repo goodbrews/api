@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
+  recommends :beers
+
 
   before_create { generate_token(:auth_token) }
 

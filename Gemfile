@@ -3,7 +3,7 @@ ruby '2.0.0'
 
 gem 'rails-api'
 gem 'rails', '4.0.0.rc1'
-gem 'api-versions'
+gem 'api-versions', github: 'erichmenge/api-versions'
 
 gem 'puma', '~> 2.0.0'
 gem 'pg'
@@ -30,6 +30,7 @@ group :development, :test do
 
   gem 'pry-rails'
   gem 'pry-coolline'
+  gem 'better_errors'
 end
 
 gem 'webmock', group: :test

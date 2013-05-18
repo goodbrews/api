@@ -1,0 +1,100 @@
+{
+  "data": {
+    "id": "cBLTUw",
+    "name": "\"18\" Imperial IPA",
+    "description": "Hop Heads this one's for you!  Checking in with 143 IBU's this ale punches you in the mouth with extreme bitterness then rounds out with toffee flavors and finishes with a citrus aroma.  Made with tons of US 2 Row Barley to get this to ABV 11.1%",
+    "abv": "11.1",
+    "glasswareId": 5,
+    "availableId": 1,
+    "styleId": 43,
+    "isOrganic": "N",
+    "status": "verified",
+    "statusDisplay": "Verified",
+    "createDate": "2013-01-20 21:38:15",
+    "updateDate": "2013-01-20 21:38:15",
+    "glass": {
+      "id": 5,
+      "name": "Pint",
+      "createDate": "2012-01-03 02:41:33"
+    },
+    "available": {
+      "id": 1,
+      "name": "Year Round",
+      "description": "Available year round as a staple beer."
+    },
+    "style": {
+      "id": 43,
+      "categoryId": 3,
+      "category": {
+        "id": 3,
+        "name": "North American Origin Ales",
+        "createDate": "2012-03-21 20:06:45"
+      },
+      "name": "American-Style Imperial Stout",
+      "description": "Black in color, American-style imperial stouts typically have a high alcohol content. Generally characterized as very robust. The extremely rich malty flavor and aroma are balanced with assertive hopping and fruity-ester characteristics. Bitterness should be moderately high to very high and balanced with full sweet malt character. Roasted malt astringency and bitterness can be moderately perceived but should not overwhelm the overall character. Hop aroma is usually moderately-high to overwhelmingly hop-floral, -citrus or -herbal. Diacetyl (butterscotch) levels should be absent.",
+      "ibuMin": "50",
+      "ibuMax": "80",
+      "abvMin": "7",
+      "abvMax": "12",
+      "srmMin": "40",
+      "srmMax": "40",
+      "ogMin": "1.08",
+      "fgMin": "1.02",
+      "fgMax": "1.03",
+      "createDate": "2012-03-21 20:06:46"
+    },
+    "breweries": [
+      {
+        "id": "qa1QZU",
+        "name": "Ship Bottom Brewery",
+        "description": "Our humble beginnings started in the Summer of 1995 in Ship Bottom, NJ. Back then we made our first batch of beer using a home brew kit that consisted of a plastic bucket, large spoon, bottling bucket and some bottle caps. We hardly knew what what would be ahead of us 16 years later! We learned a lot over the last 16 years and feel that we really refined our craft. We are a small (Nano) brewer...See More",
+        "website": "http:\/\/www.shipbottombrewery.com\/",
+        "established": "2011",
+        "isOrganic": "N",
+        "images": {
+          "icon": "https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/qa1QZU\/upload_jkQTrD-icon.png",
+          "medium": "https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/qa1QZU\/upload_jkQTrD-medium.png",
+          "large": "https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/qa1QZU\/upload_jkQTrD-large.png"
+        },
+        "status": "verified",
+        "statusDisplay": "Verified",
+        "createDate": "2013-01-20 21:32:30",
+        "updateDate": "2013-01-20 21:34:35",
+        "locations": [
+          {
+            "id": "mvsNhg",
+            "name": "Main Brewery",
+            "locality": "Wallingford",
+            "region": "Pennsylvania",
+            "postalCode": "19086",
+            "website": "http:\/\/www.shipbottombrewery.com\/",
+            "latitude": 39.8909454,
+            "longitude": -75.3629687,
+            "isPrimary": "Y",
+            "inPlanning": "N",
+            "isClosed": "N",
+            "openToPublic": "Y",
+            "locationType": "micro",
+            "locationTypeDisplay": "Micro Brewery",
+            "countryIsoCode": "US",
+            "yearOpened": "2011",
+            "status": "verified",
+            "statusDisplay": "Verified",
+            "createDate": "2013-01-20 21:33:44",
+            "updateDate": "2013-01-20 21:33:44",
+            "country": {
+              "isoCode": "US",
+              "name": "UNITED STATES",
+              "displayName": "United States",
+              "isoThree": "USA",
+              "numberCode": 840,
+              "urlTitle": "united-states",
+              "createDate": "2012-01-03 02:41:33"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "status": "success"
+}

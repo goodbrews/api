@@ -3,6 +3,7 @@ rvm:
   - 2.0.0
 before_script:
   - cp config/database.yml.sample config/database.yml
+  - cp config/auth.yml.sample config/auth.yml
   - psql -c 'create database goodbrews_test;' -U postgres
   - bundle exec rake db:migrate
 services:

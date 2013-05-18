@@ -1,0 +1,55 @@
+{
+  "data": {
+    "id":"C7u6RO",
+    "name":"7th Street Brew House",
+    "streetAddress":"855 SW 7th Street",
+    "locality":"Redmond",
+    "region":"Oregon",
+    "postalCode":"97756",
+    "phone":"541-923-1795",
+    "website":"http:\/\/www.cascadelakes.com\/pubs\/7th-street\/",
+    "hoursOfOperation":"Open Monday \u2013 Thursday 11:30 am \u2013 11:00 pm\r\nFriday- Saturday 11:30 am \u2013 12:00 am\r\nSunday 12:00 pm \u2013 9:00 pm",
+    "latitude":44.269176,
+    "longitude":-121.175387,
+    "isPrimary":"N",
+    "inPlanning":"N",
+    "isClosed":"N",
+    "openToPublic":"Y",
+    "locationType":"restaurant",
+    "locationTypeDisplay":"Restaurant\/Ale House",
+    "countryIsoCode":"US",
+    "yearOpened":"1996",
+    "status":"verified",
+    "statusDisplay":"Verified",
+    "createDate":"2012-10-23 14:05:35",
+    "updateDate":"2012-10-23 14:06:50",
+    "breweryId":"sIBGId",
+    "brewery":{
+      "id":"sIBGId",
+      "name":"Cascade Lakes Brewing Company",
+      "description":"Cascade Lakes Brewing Company started in 1994 by three enthusiastic brothers looking for an exciting business in beautiful, sunny Central Oregon.  They spent many long nights building most of the current brewing equipment by hand and coming up with tasty recipies.  More than ten years later, the long nights and quest for great beer has continued on a much larger scale.  In the winter of 2000, Cascade Lakes Brewing Company was purchased by Rick Orazetti and Doug Kutella.  Recently, Ron Kutella and Chris Justema joined the parternship and what started as one brewing facility in an airport industrial zone has turned into 7th Street Brew House, Tumalo Tavern, Cascade West Grub and Alehouse, and our flagship restaurant in Bend, Cascade Lakes Lodge.",
+      "website":"http:\/\/cascadelakes.com\/",
+      "established":"1994",
+      "isOrganic":"N",
+      "images":{
+        "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/sIBGId\/upload_qhACFI-icon.png",
+        "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/sIBGId\/upload_qhACFI-medium.png",
+        "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/sIBGId\/upload_qhACFI-large.png"
+      },
+      "status":"verified",
+      "statusDisplay":"Verified",
+      "createDate":"2012-01-03 02:41:50",
+      "updateDate":"2012-10-23 14:12:33"
+    },
+    "country":{
+      "isoCode":"US",
+      "name":"UNITED STATES",
+      "displayName":"United States",
+      "isoThree":"USA",
+      "numberCode":840,
+      "urlTitle":"united-states",
+      "createDate":"2012-01-03 02:41:33"
+    }
+  },
+  "status":"success"
+}

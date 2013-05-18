@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/erichmenge/api-versions.git
+  revision: 069d9d24d621e6a11df557a1fcc7b9b63ee69659
+  specs:
+    api-versions (1.2.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -28,12 +36,12 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.4)
-    api-versions (1.1.0)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
     arel (4.0.0)
     atomic (1.1.9)
     bcrypt-ruby (3.0.1)
+    better_errors (0.8.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
     builder (3.1.4)
     capistrano (2.15.4)
       highline
@@ -174,8 +182,9 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.7.0)
-  api-versions
+  api-versions!
   bcrypt-ruby (~> 3.0.0)
+  better_errors
   capistrano
   coveralls
   ffaker

@@ -6,10 +6,10 @@ class ClientTest < ActiveSupport::TestCase
   end
 
   it 'must parse a JSON response from BreweryDB' do
-    json = File.read(Rails.root.join('test', 'modules', 'brewery_db', 'fixtures', 'breweries.json'))
+    json = File.read(Rails.root.join('test', 'modules', 'brewery_db', 'fixtures', 'brewery.json'))
     stub_request(:get, /.*api.brewerydb.com.*/).to_return(body: json)
 
-    response = @client.get('/breweries')
+    response = @client.get('/brewery/Klgom2')
     response.body.must_equal JSON.parse(json)
   end
 

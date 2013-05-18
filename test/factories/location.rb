@@ -21,7 +21,7 @@ Factory.define :location do |f|
   f.latitude  { Faker::Geolocation.lat }
   f.longitude { Faker::Geolocation.lng }
 
-  f.hours   <<-HOURS
+  f.hours   <<-HOURS.strip_heredoc
               Monday - Thursday 11:30 am - 11:00 pm
               Friday - Saturday 11:30 am - 12:00 am
               Sunday 12:00 pm - 9:00 pm

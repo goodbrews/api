@@ -38,9 +38,6 @@ module BreweryDB
     PORT = 80
 
     def initialize()
-      auth = YAML.load_file(Rails.root.join('config', 'auth.yml'))
-      @api_key = auth['brewery_db']['api_key']
-    rescue Errno::ENOENT
       @api_key = ENV['BREWERY_DB_API_KEY']
     end
 
