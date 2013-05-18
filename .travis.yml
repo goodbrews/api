@@ -4,6 +4,7 @@ rvm:
 before_script:
   - cp config/database.yml.sample config/database.yml
   - cp config/auth.yml.sample config/auth.yml
+  - cp config/initializers/secret_token.rb.sample config/initializers/secret_token.rb
   - psql -c 'create database goodbrews_test;' -U postgres
   - bundle exec rake db:migrate
 services:
