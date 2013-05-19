@@ -1,11 +1,6 @@
 module BreweryDB
   module Webhooks
     class Location < Base
-      def initialize(options)
-        super(options)
-        @attributes = options[:attributes]
-      end
-
       def process
         self.send(@action)
       end
@@ -41,7 +36,7 @@ module BreweryDB
             updated_at:  @attributes['updateDate']
           })
 
-          location.brewery = ::Brewery.find_by_brewerydb_id(@attributes['breweryId'])
+          location.brewery = ::Brewery.find_by(brewerydb_id: @attributes['breweryId'])
           location.save! and return location
         end
         alias :insert :edit
