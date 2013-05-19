@@ -1,3 +1,7 @@
+# Measure test coverage
+require 'coveralls'
+Coveralls.wear_merged!
+
 ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
@@ -13,10 +17,6 @@ require 'mocha/setup'
 
 # Uncomment for awesome colorful output
 require 'minitest/pride'
-
-# Measure test coverage
-require 'coveralls'
-Coveralls.wear!
 
 # Require miniskirt factories
 Dir[Rails.root.join('test', 'factories', '**', '*.rb')].each { |f| require f }
