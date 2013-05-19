@@ -9,3 +9,18 @@ before_script:
   - bundle exec rake db:migrate
 services:
   - redis-server
+notifications:
+  email:
+    recipients:
+      - david@davidcelis.com
+    on_success: change
+    on_failure: always
+  irc:
+    channels:
+      - "irc.freenode.org#goodbrews"
+    on_success: always
+    on_failure: always
+    template:
+      - "%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}"
+      - "Diff: %{compare_url}"
+      - "Build details: %{build_url}"
