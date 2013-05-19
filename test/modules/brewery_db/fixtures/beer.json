@@ -4,10 +4,12 @@
     "name": "\"18\" Imperial IPA",
     "description": "Hop Heads this one's for you!  Checking in with 143 IBU's this ale punches you in the mouth with extreme bitterness then rounds out with toffee flavors and finishes with a citrus aroma.  Made with tons of US 2 Row Barley to get this to ABV 11.1%",
     "abv": "11.1",
+    "ibu": 68,
+    "originalGravity": "6.5",
     "glasswareId": 5,
     "availableId": 1,
     "styleId": 43,
-    "isOrganic": "N",
+    "isOrganic": "Y",
     "status": "verified",
     "statusDisplay": "Verified",
     "createDate": "2013-01-20 21:38:15",
@@ -94,7 +96,47 @@
           }
         ]
       }
-    ]
+    ],
+    "socialAccounts": [
+      {
+        "id": 1585,
+        "socialMediaId": 4,
+        "socialMedia": {
+          "id": 4,
+          "name": "Untappd",
+          "website": "http:\/\/www.untappd.com",
+          "createDate": "2012-01-03 02:41:41"
+        },
+        "handle":"62061",
+        "createDate":"2012-12-21 17:16:23"
+      }
+    ],
+    "ingredients": {
+      "hops": [
+        {
+          "id": 98,
+          "name": "Perle",
+          "category": "hop",
+          "categoryDisplay": "Hops",
+          "createDate": "2012-01-03 02:41:34",
+          "updateDate": "2012-04-16 19:01:21"
+        }
+      ],
+      "malt": [
+        {
+          "id": 1947,
+          "name": "Barley - Malted",
+          "category": "malt",
+          "categoryDisplay": "Malts, Grains & Fermentables",
+          "createDate": "2012-06-03 23:48:35"
+        }
+      ]
+    },
+    "labels": {
+      "icon": "https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/tmEthz\/upload_G6lABu-icon.png",
+      "medium": "https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/tmEthz\/upload_G6lABu-medium.png",
+      "large": "https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/tmEthz\/upload_G6lABu-large.png"
+    }
   },
   "status": "success"
 }

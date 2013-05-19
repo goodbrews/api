@@ -1,6 +1,6 @@
 require 'test_helper'
 
-describe Api::V1::BreweryDb::WebhooksController do
+describe Api::V1::BreweryDB::WebhooksController do
   %w[beer brewery location guild event].each do |action|
     describe "##{action}" do
       before :each do
@@ -8,7 +8,7 @@ describe Api::V1::BreweryDb::WebhooksController do
         nonce = SecureRandom.base64
         key = Digest::SHA1.hexdigest("#{ENV['BREWERY_DB_API_KEY']}#{nonce}")
         body =  { action: 'insert', attributeId: 'hELlo', subAction: 'something-insert' }.to_json
-        options = { action: 'insert', id: 'hELlo', sub_action: 'something-insert' }
+        options = { action: 'insert', id: 'hELlo', sub_action: 'something_insert' }
 
         # Stub out the HTTP request and Webhook processing functionality
         stub_request(:get, /.*api.brewerydb.com.*/)

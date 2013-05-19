@@ -1,4 +1,4 @@
-class Api::V1::BreweryDb::WebhooksController < ApplicationController
+class Api::V1::BreweryDB::WebhooksController < ApplicationController
   before_filter :verify_nonce!
 
   # POST /brewery_db/webhooks/{beer,brewery,location,guild,event}
@@ -8,7 +8,7 @@ class Api::V1::BreweryDb::WebhooksController < ApplicationController
       options = {
         action:     body['action'],
         id:         body['attributeId'],
-        sub_action: body['subAction']
+        sub_action: body['subAction'].underscore
       }
 
       webhook = ::BreweryDB::Webhooks.const_get(type.classify).new(options)

@@ -1,0 +1,18 @@
+{
+  "data":[
+    {
+      "id":1585,
+      "socialMediaId":4,
+      "socialMedia":{
+        "id":4,
+        "name":"Untappd",
+        "website":"http:\/\/www.untappd.com",
+        "createDate":"2012-01-03 02:41:41"
+      },
+      "handle":"62061",
+      "createDate":"2012-12-21 17:16:23",
+      "beerId":"siOerX"
+    }
+  ],
+  "status":"success"
+}

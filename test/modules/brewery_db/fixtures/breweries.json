@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "id": "Klgom2",
+      "name": "'t Hofbrouwerijke",
+      "website": "http:\/\/www.thofbrouwerijke.be\/",
+      "isOrganic": "N",
+      "images": {
+        "icon": "https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/Klgom2\/upload_Ks8JQY-icon.png",
+        "medium": "https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/Klgom2\/upload_Ks8JQY-medium.png",
+        "large": "https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/Klgom2\/upload_Ks8JQY-large.png"
+      },
+      "status": "verified",
+      "statusDisplay": "Verified",
+      "createDate": "2012-01-03 02:41:43",
+      "updateDate": "2012-03-21 19:06:19"
+    }
+  ],
+  "status": "success"
+}
