@@ -63,7 +63,7 @@ class BeerWebhookTest < ActiveSupport::TestCase
         stub_request(:get, /.*api.brewerydb.com.*/).to_return(body: json)
 
         webhook = BreweryDB::Webhooks::Beer.new({
-          id: attributes['id'],
+          id: beer.brewerydb_id,
           action: 'edit'
         })
 

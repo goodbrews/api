@@ -1,0 +1,16 @@
+{
+  "data":[
+    {
+      "id":"zFi0EM",
+      "name":"Blondelle",
+      "description":"Non filtered, non pasteurised beer with secondary fermentation in the bottle. A spirited and spicy blonde with a full-mouthed malty taste and a light scent of flowers.",
+      "abv":"7",
+      "isOrganic":"N",
+      "status":"verified",
+      "statusDisplay":"Verified",
+      "createDate":"2012-01-03 02:42:52",
+      "updateDate":"2012-03-22 13:05:29"
+    }
+  ],
+  "status":"success"
+}

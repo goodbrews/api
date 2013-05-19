@@ -115,7 +115,8 @@ module BreweryDB
             social_account = @beer.social_media_accounts.find_or_initialize_by(website: account['socialMedia']['name'])
             social_account.assign_attributes(
               handle:     account['handle'],
-              created_at: account['createDate']
+              created_at: account['createDate'],
+              updated_at: account['updateDate']
             )
 
             social_account.save!

@@ -3,7 +3,7 @@
     "id": "Klgom2",
     "name": "'t Hofbrouwerijke",
     "website": "http:\/\/www.thofbrouwerijke.be\/",
-    "isOrganic": "N",
+    "isOrganic": "Y",
     "images": {
       "icon": "https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/Klgom2\/upload_Ks8JQY-icon.png",
       "medium": "https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/Klgom2\/upload_Ks8JQY-medium.png",
@@ -12,7 +12,47 @@
     "status": "verified",
     "statusDisplay": "Verified",
     "createDate": "2012-01-03 02:41:43",
-    "updateDate": "2012-03-21 19:06:19"
+    "updateDate": "2012-03-21 19:06:19",
+    "socialAccounts": [
+      {
+        "id": 1585,
+        "socialMediaId": 4,
+        "socialMedia": {
+          "id": 4,
+          "name": "Untappd",
+          "website": "http:\/\/www.untappd.com",
+          "createDate": "2012-01-03 02:41:41"
+        },
+        "handle":"62061",
+        "createDate":"2012-12-21 17:16:23"
+      }
+    ],
+    "guilds": [
+      {
+        "id":"cJio9R",
+        "name":"Brewers Association",
+        "description":"The Brewers Association is an organization of brewers, for brewers and by brewers. More than 1,300 US brewery members and 27,000 members of the American Homebrewers Association are joined by members of the allied trade, beer wholesalers, individuals, other associate members and the Brewers Association staff to make up the Brewers Association.",
+        "established":"2005",
+        "website":"http:\/\/www.brewersassociation.org\/",
+        "images":{
+          "icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-icon.png",
+          "medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-medium.png",
+          "large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-large.png"
+        },
+        "status":"verified",
+        "statusDisplay":"Verified",
+        "createDate":"2012-01-03 02:41:33",
+        "updateDate":"2013-02-08 11:36:02"
+      }
+    ],
+    "alternateNames":[
+      {
+        "id":68,
+        "altName":"Five Points Brewing Company",
+        "createDate":"2012-10-23 13:24:52",
+        "breweryId":"xXnhis"
+      }
+    ]
   },
   "status": "success"
 }
