@@ -6,6 +6,10 @@ describe Event do
       @event = Factory(:event)
     end
 
+    it 'must be socialable' do
+      Event.ancestors.must_include Socialable
+    end
+
     it 'must clear Beer join records' do
       beer = Factory(:beer)
       beer.events << @event

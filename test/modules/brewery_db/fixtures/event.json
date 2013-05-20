@@ -1,0 +1,42 @@
+{
+  "data": {
+    "id":"cJio9R",
+    "year":"2008",
+    "name":"2008 Hickory Hops \/ Carolina Championship of ",
+    "description":"This year's Hickory Hops, Hickory's 6th annual outdoor beer festival, offers plenty for everyone, from inexperienced beer novices to hardened beer fest veterans anxious for some unusual. Mark your calendar, April 12 is the date. Rain or shine, under then tents, from 1:00 until 7:00. No one under 21 will be allowed to enter including non-drinkers\/designated drivers and no pets please.\r\n\r\nThe Cask-Conditioned Ale Tent is a special booth set aside for beer made in a centuries old style. Back before the days of pressurized carbon dioxide containers and refrigeration, all beer was cask-conditioned. That means that the yeast is still present in the stainless steel or wooden cask from which it is served, although it has settled to the bottom and is not poured into the glass.\r\n\r\nPracticed today mostly by small English breweries and creative American craft brewers, this traditional style - in which the beer is fermented, conditioned and served from the same vessel - results in a remarkable different mouthfeel and flavor profile for most beer. Served warmer, usually at cellar temperatures of about 55\u00b0F, and possessing noticeably less carbonation, cask-conditioned ales typically are smoother in texture and more prominent in flavor than their force-carbonated counterparts. Proper care is essential to ensure cask-conditioned ale's drinkability. The effort provides a fresh and natural taste that is unforgettable. OHB brewer Steven Lyerly organized the Cask-Conditional Ale Tent.\r\n\r\nThe Carolinas Championship of Beer introduces its third rendition this year. Several weeks before the fest, most of the festival breweries were submitted beer for a blind-judged competition. In mid-April, over 120 beers spanning 85 different beer styles will be analyzed by a panel of certified judges, brewers and experienced judges. Gold, silver and bronze medals will be presented to winning brewers at a private brewers' dinner prior to the fest. During Hickory Hops, following the first band, plaques will be awarded to three Best of Show winners. \r\n\r\nEnjoy the music. Be responsible. Enjoy the beer.",
+    "type":"festival_competition",
+    "typeDisplay":"Combo Festival\/Competition",
+    "startDate":"2008-04-12",
+    "endDate":"2008-04-12",
+    "time":"1pm - 7pm",
+    "venueName":"Union Square in Downtown Hickory",
+    "streetAddress":"222 Union Square",
+    "locality":"Hickory",
+    "region":"NC",
+    "postalCode":"28602",
+    "countryIsoCode":"US",
+    "latitude":35.732019,
+    "longitude":-81.340443,
+    "website":"http:\/\/www.hickoryhops.com\/",
+    "phone":"(828) 322-1121",
+    "status":"verified",
+    "statusDisplay":"Verified",
+    "createDate":"2012-01-03 20:01:37",
+    "updateDate":"2012-03-16 14:40:18",
+    "country":{
+      "isoCode":"US",
+      "name":"UNITED STATES",
+      "displayName":"United States",
+      "isoThree":"USA",
+      "numberCode":840,
+      "urlTitle":"united-states",
+      "createDate":"2012-01-03 02:41:33"
+    },
+    "images": {
+      "icon": "https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/tmEthz\/upload_G6lABu-icon.png",
+      "medium": "https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/tmEthz\/upload_G6lABu-medium.png",
+      "large": "https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/tmEthz\/upload_G6lABu-large.png"
+    }
+  },
+  "status":"success"
+}
