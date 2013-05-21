@@ -1,6 +1,10 @@
 require 'test_helper'
 
 describe Guild do
+  it 'must be socialable' do
+    Guild.ancestors.must_include Socialable
+  end
+
   context 'before destruction' do
     before do
       @guild = Factory(:guild)

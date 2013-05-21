@@ -38,6 +38,7 @@ module BreweryDB
             guild_insert(Array(attributes['guilds']))
             socialaccount_insert(Array(attributes['socialAccounts']))
             alternatename_insert(attributes['alternateNames'] || [])
+            # beer_insert
           end
         end
 
