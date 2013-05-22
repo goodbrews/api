@@ -1,16 +1,15 @@
 # Measure test coverage
+require 'simplecov'
 require 'coveralls'
-Coveralls.wear_merged!
+
+SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+SimpleCov.start
 
 ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/rails'
 require 'webmock/minitest'
-
-# To add Capybara feature tests add `gem 'minitest-rails-capybara'`
-# to the test group in the Gemfile and uncomment the following:
-# require 'minitest/rails/capybara'
 
 # Use Mocha for mocking/stubbing
 require 'mocha/setup'

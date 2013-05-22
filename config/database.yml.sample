@@ -1,24 +1,17 @@
 defaults: &defaults
-  adapter: postgresql
-  encoding: unicode
+  adapter: jdbcpostgresql
+  username: postgres
+  password:
+  pool: 5
 
 development:
   <<: *defaults
   database: goodbrews_development
-  pool: 5
-  username: postgres
-  password:
 
 test:
   <<: *defaults
   database: goodbrews_test
-  pool: 5
-  username: postgres
-  password:
 
 production:
   <<: *defaults
   database: goodbrews_production
-  pool: 25
-  username: postgres
-  password:

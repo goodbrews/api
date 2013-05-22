@@ -1,12 +1,24 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+
+if defined?(JRUBY_VERSION)
+  ruby '1.9.3' # There are still Rails 4 bugs with JRuby in 2.0 mode.
+else
+  ruby '2.0.0'
+end
 
 gem 'rails-api'
 gem 'rails', '4.0.0.rc1'
 gem 'api-versions', github: 'erichmenge/api-versions'
 
 gem 'puma', '~> 2.0.0'
-gem 'pg'
+
+platforms :ruby do
+  gem 'pg'
+end
+
+platforms :jruby do
+  gem 'activerecord-jdbcpostgresql-adapter', '1.3.0.beta1'
+end
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'active_model_serializers', '~> 0.7.0'
@@ -23,13 +35,13 @@ gem 'capistrano', group: :development
 group :development, :test do
   gem 'minitest-rails'
   gem 'miniskirt'
-  gem 'temping'
+  gem 'temping', github: 'davidcelis/temping'
   gem 'ffaker'
   gem 'mocha', require: false
   gem 'coveralls', require: false
 
   gem 'pry-rails'
-  gem 'pry-coolline'
+  gem 'pry-coolline' unless defined?(JRUBY_VERSION)
   gem 'better_errors'
 end
 
