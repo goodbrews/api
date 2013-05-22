@@ -11,13 +11,9 @@ class Api::V1::BreweryDB::WebhooksController < ApplicationController
         sub_action: body['subAction'].underscore
       }
 
-      webhook = ::BreweryDB::Webhooks.const_get(type.classify).new(options)
+      WebhookWorker.new.perform_async(type, options)
 
-      if webhook.process
-        head :ok
-      else
-        head :unprocessable_entity
-      end
+      head :ok
     end
   end
 

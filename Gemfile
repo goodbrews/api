@@ -11,8 +11,8 @@ gem 'pg'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'active_model_serializers', '~> 0.7.0'
 
-gem 'sidekiq', '~> 2.7.0'
-gem 'sidekiq-unique-jobs', '~> 2.3.0'
+gem 'sidekiq', '~> 2.12.0'
+gem 'sidekiq-unique-jobs', '~> 2.6.0'
 
 gem 'recommendable'
 

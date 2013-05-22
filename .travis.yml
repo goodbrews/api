@@ -2,8 +2,9 @@ language: ruby
 rvm:
   - 2.0.0
 before_script:
-  - cp config/database.yml.sample config/database.yml
   - cp config/auth.yml.sample config/auth.yml
+  - cp config/database.yml.sample config/database.yml
+  - cp config/redis.yml.sample config/redis.yml
   - cp config/initializers/secret_token.rb.sample config/initializers/secret_token.rb
   - psql -c 'create database goodbrews_test;' -U postgres
   - bundle exec rake db:migrate
