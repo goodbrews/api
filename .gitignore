@@ -1,4 +1,7 @@
-# Ignore bundler-related configuration
+# Ignore bundler-related configuration.
 .bundle
 bin/
 vendor/bundle
+
+# Ignore sensitive files.
+config/database.yml
