@@ -4,8 +4,8 @@ module Grape
       @env ||= ActiveSupport::StringInquirer.new(ENV['GRAPE_ENV'])
     end
 
-    def root(*path)
-      (@root ||= Pathname.new(ENV['GRAPE_ROOT']).join(*path)
+    def root(*paths)
+      (@root ||= Pathname.new(ENV['GRAPE_ROOT'])).join(*paths)
     end
   end
 end
