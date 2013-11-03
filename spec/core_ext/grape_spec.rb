@@ -21,12 +21,8 @@ describe Grape do
   end
 
   describe '.root' do
-    it 'should be set to Dir.pwd' do
+    it 'should be a Pathname set to Dir.pwd' do
       Grape.root.should eq(Pathname.new(Dir.pwd))
-    end
-
-    it 'should join any paths passed to it' do
-      Grape.root('app', 'apis').to_s.should eq("#{Dir.pwd}/app/apis")
     end
   end
 end

@@ -6,7 +6,7 @@ ENV['GRAPE_ENV'] ||= 'test'
 require File.expand_path("../../config/application", __FILE__)
 
 # Require support files, including Factories.
-Dir[Grape.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+Dir[Grape.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Don't be slow, BCrypt. Not here. Not now.
 ActiveModel::SecurePassword.min_cost = true

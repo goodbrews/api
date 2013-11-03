@@ -5,7 +5,7 @@ require File.expand_path('../boot', __FILE__)
 Bundler.require(:default, ENV['GRAPE_ENV'])
 
 # Require extensions to Grape
-require File.join(ENV['GRAPE_ROOT'], 'lib', 'core_ext', 'grape')
+require File.join(ENV['GRAPE_ROOT'], 'lib/core_ext/grape')
 
 module Goodbrews
   class Application < Configurable
@@ -15,5 +15,5 @@ module Goodbrews
   end
 end
 
-# Load initializers
-Dir[Grape.root.join('config', 'initializers', '**', '*.rb')].each { |f| require f }
+# Load initializers.
+Dir[Grape.root.join('config/initializers/**/*.rb')].each { |f| require f }

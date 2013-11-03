@@ -1,5 +1,5 @@
 require 'spec_helper'
-require Grape.root.join('app', 'models', 'user')
+require Grape.root.join('app/models/user')
 
 describe User do
   describe 'username' do
