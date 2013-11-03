@@ -10,3 +10,7 @@ gem 'app'
 # Data storage.
 gem 'activerecord', '~> 4.0.0', require: 'active_record'
 gem 'pg'
+
+group :development, :test do
+  gem 'pry'
+end

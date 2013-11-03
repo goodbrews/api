@@ -1,6 +1,3 @@
-ENV['GRAPE_ENV']  ||= ENV['RACK_ENV'] ||= 'development'
-ENV['GRAPE_ROOT'] ||= Dir.pwd
-
 require File.expand_path('../boot', __FILE__)
 
 # Require the gems listed in Gemfile, including any gems
