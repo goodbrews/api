@@ -12,5 +12,13 @@ gem 'activerecord', '~> 4.0.0', require: 'active_record'
 gem 'pg'
 
 group :development, :test do
+  gem 'rspec'
+  gem 'rack-test'
+  gem 'database_cleaner'
+
+  gem 'miniskirt'
+  gem 'ffaker'
+
   gem 'pry'
+  gem 'coveralls', require: false
 end
