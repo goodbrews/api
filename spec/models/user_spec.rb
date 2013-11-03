@@ -2,6 +2,11 @@ require 'spec_helper'
 require Grape.root.join('app/models/user')
 
 describe User do
+  it 'is recommended beers' do
+    Recommendable.config.ratable_classes.should include(Beer)
+    Recommendable.config.user_class.should eq(User)
+  end
+
   describe 'username' do
     let(:user) { Factory.build(:user, username: nil) }
 

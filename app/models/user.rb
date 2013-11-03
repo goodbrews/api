@@ -1,9 +1,11 @@
 require Grape.root.join('app/models/concerns/authenticatable')
+require Grape.root.join('app/models/beer')
 
 class User < ActiveRecord::Base
   include Authenticatable
 
   before_create { generate_token(:auth_token) }
+  recommends :beers
 
   validates :username, exclusion: {
                          in: %w(admin goodbrews),

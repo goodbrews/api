@@ -9,6 +9,7 @@ gem 'app'
 
 # Data storage.
 gem 'activerecord', '~> 4.0.0', require: 'active_record'
+gem 'recommendable', github: 'davidcelis/recommendable'
 gem 'pg'
 
 # Utilities.

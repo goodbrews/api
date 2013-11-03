@@ -5,6 +5,7 @@ vendor/bundle/
 
 # Ignore sensitive files.
 config/database.yml
+config/redis.yml
 
 # Ignore Coveralls.
 coverage/
