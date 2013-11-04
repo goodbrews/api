@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'lib/core_ext/grape'
 
 describe Grape do
   describe '.env' do

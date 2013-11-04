@@ -16,4 +16,4 @@ module Goodbrews
 end
 
 # Load initializers.
-Dir[Grape.root.join('config/initializers/**/*.rb')].each { |f| require f }
+Dir['config/initializers/**/*'].each { |f| require f }

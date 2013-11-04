@@ -1,5 +1,5 @@
 require 'spec_helper'
-require Grape.root.join('app/models/user')
+require 'app/models/user'
 
 describe User do
   it 'is recommended beers' do

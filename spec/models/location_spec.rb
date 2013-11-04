@@ -1,5 +1,5 @@
 require 'spec_helper'
-require Grape.root.join('app/models/location')
+require 'app/models/location'
 
 describe Location do
   it 'must belong to a brewery' do

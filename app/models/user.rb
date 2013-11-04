@@ -1,5 +1,5 @@
-require Grape.root.join('app/models/concerns/authenticatable')
-require Grape.root.join('app/models/beer')
+require 'app/models/concerns/authenticatable'
+require 'app/models/beer'
 
 class User < ActiveRecord::Base
   include Authenticatable

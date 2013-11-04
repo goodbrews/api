@@ -1,3 +1,5 @@
+require 'grape'
+
 module Grape
   class << self
     def env

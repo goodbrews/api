@@ -1,5 +1,5 @@
-require Grape.root.join('app/models/brewery')
-require Grape.root.join('app/models/style')
+require 'app/models/brewery'
+require 'app/models/style'
 
 class Beer < ActiveRecord::Base
   has_and_belongs_to_many :breweries

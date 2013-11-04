@@ -1,4 +1,4 @@
-config = Grape.root.join('config/redis.yml')
+config = 'config/redis.yml'
 redis  = YAML.load(ERB.new(File.new(config).read).result)[Grape.env]
 
 Recommendable.configure do |config|

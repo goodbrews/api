@@ -1,6 +1,7 @@
 # Convenience Rails-style ENV variables.
 ENV['GRAPE_ENV']  ||= ENV['RACK_ENV'] ||= 'development'
 ENV['GRAPE_ROOT'] ||= Dir.pwd
+$LOAD_PATH.unshift ENV['GRAPE_ROOT']
 
 # Set up gems listed in the Gemfile.
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
