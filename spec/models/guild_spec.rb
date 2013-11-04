@@ -1,7 +1,9 @@
 require 'spec_helper'
-require 'app/models/ingredient'
+require 'app/models/guild'
 require 'models/shared_examples/join_records'
+require 'models/shared_examples/socialable'
 
-describe Ingredient do
+describe Guild do
+  it_behaves_like 'a socialable'
   it_behaves_like 'something that has join records'
 end
