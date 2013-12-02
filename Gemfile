@@ -12,10 +12,15 @@ gem 'activerecord', '~> 4.0.0', require: 'active_record'
 gem 'recommendable', github: 'davidcelis/recommendable'
 gem 'pg'
 
+# Email/Notifications.
+gem 'mail'
+
 # Utilities.
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'pry', group: [:development, :test]
+gem 'log4r'
 
-group :development, :test do
+group :test do
   gem 'rspec'
   gem 'rack-test'
   gem 'database_cleaner'
@@ -23,6 +28,8 @@ group :development, :test do
   gem 'miniskirt'
   gem 'ffaker'
 
-  gem 'pry'
+  gem 'webmock'
+  gem 'vcr'
+
   gem 'coveralls', require: false
 end

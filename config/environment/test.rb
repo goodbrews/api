@@ -1,3 +1,5 @@
 Goodbrews::Application.configure do
-  # Place configuration specific to the test environment here
+  Mail.defaults do
+    delivery_method :test
+  end
 end

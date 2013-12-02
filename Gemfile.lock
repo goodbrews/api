@@ -25,6 +25,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    addressable (2.3.5)
     app (1.0.3)
     arel (4.0.1)
     atomic (1.1.14)
@@ -44,6 +45,8 @@ GEM
       simplecov (>= 0.7)
       term-ansicolor
       thor
+    crack (0.4.1)
+      safe_yaml (~> 0.9.0)
     database_cleaner (1.2.0)
     descendants_tracker (0.0.3)
     diff-lcs (1.2.4)
@@ -63,6 +66,11 @@ GEM
     hooks (0.3.1)
     i18n (0.6.5)
     ice_nine (0.10.0)
+    log4r (1.1.10)
+    mail (2.2.7)
+      activesupport (>= 2.3.6)
+      mime-types
+      treetop (>= 1.4.5)
     method_source (0.8.2)
     mime-types (2.0)
     miniskirt (1.2.1)
@@ -71,6 +79,7 @@ GEM
     multi_json (1.8.2)
     multi_xml (0.5.5)
     pg (0.17.0)
+    polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -96,6 +105,7 @@ GEM
     rspec-expectations (2.14.3)
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.4)
+    safe_yaml (0.9.7)
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
@@ -107,12 +117,19 @@ GEM
     thread_safe (0.1.3)
       atomic
     tins (0.12.0)
+    treetop (1.4.15)
+      polyglot
+      polyglot (>= 0.3.1)
     tzinfo (0.3.38)
+    vcr (2.8.0)
     virtus (1.0.0)
       axiom-types (~> 0.0.5)
       coercible (~> 0.2)
       descendants_tracker (~> 0.0.1)
       equalizer (~> 0.0.7)
+    webmock (1.16.0)
+      addressable (>= 2.2.7)
+      crack (>= 0.3.2)
 
 PLATFORMS
   ruby
@@ -125,6 +142,8 @@ DEPENDENCIES
   database_cleaner
   ffaker
   grape
+  log4r
+  mail
   miniskirt
   pg
   pry
@@ -133,3 +152,5 @@ DEPENDENCIES
   rake
   recommendable!
   rspec
+  vcr
+  webmock

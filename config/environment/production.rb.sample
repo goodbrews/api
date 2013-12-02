@@ -1,0 +1,12 @@
+Goodbrews::Application.configure do
+  ENV['BREWERY_DB_API_KEY'] ||= 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+  Mail.defaults do
+    delivery_method :smtp, {
+      address: 'smtp.google.com',
+      port: 465,
+      user_name: 'example@gmail.com',
+      password: 'supersecret'
+    }
+  end
+end
