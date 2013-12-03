@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130512213125) do
+ActiveRecord::Schema.define(version: 20131202113823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20130512213125) do
 
   create_table "breweries", force: true do |t|
     t.string   "name"
-    t.string   "alternate_names",           array: true
+    t.string   "alternate_names",           default: [], array: true
     t.text     "description"
     t.string   "website"
     t.boolean  "organic"

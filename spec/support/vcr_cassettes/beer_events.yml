@@ -21,7 +21,7 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 02 Dec 2013 16:46:46 GMT
+      - Tue, 03 Dec 2013 15:58:27 GMT
       Server:
       - Apache/2.2.25 (Amazon)
       Vary:
@@ -33,15 +33,90 @@ http_interactions:
       X-Ratelimit-Remaining:
       - Unlimited
       Content-Length:
-      - '81'
+      - '3338'
       Connection:
       - keep-alive
     body:
       encoding: UTF-8
-      string: '{"message":"READ ONLY MODE: Request Successful","status":"success","data":[{"id":"huKquc","year":"2012","name":"American
-        Craft Beer Fest (ACBF)","description":"The 5th annual American Craft Beer
-        Fest (ACBF) is the east coasts largest celebration of American beer,
-        featuring over 100 American brewers and over 500 beers!","type":"festival","typeDisplay":"Beer Festival","startDate":"2012-06-01","endDate":"2012-06-02","venueName":"Seaport World Trade Center Boston","streetAddress":"200 Seaport Blvd","locality":"Boston","region":"Massachusetts","postalCode":"02210","countryIsoCode":"US","latitude":42.350041,"longitude":-71.041741,"website":"http:\/\/beeradvocate.com\/acbf\/","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/huKquc\/upload_iykplk-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/huKquc\/upload_iykplk-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/huKquc\/upload_iykplk-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-27 20:32:46","updateDate":"2012-01-27 20:32:49","country":{"isoCode":"US","name":"UNITED STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03 02:41:33"}}]}'
+      string: '{"message":"READ ONLY MODE: Request Successful","data":[{"id":1,"eventId":"cJio9R","beerId":"TACnR2","awardCategoryId":2,"awardPlaceId":1,"isPouring":"N","createDate":"2012-01-03
+        20:05:27","beer":{"id":"TACnR2","name":"Ninja Porter","description":"Everyone
+        loves a good ninja, and we''re no exception.  This beer has chopped, flipped
+        and posed its way to its pedestal as one of our most popular and asked-about
+        offerings.  \"How?\" you may ask.  Part of it is pure stealth power and part
+        of it is pure secret, and we''d hve to kill you.  But the other part is the
+        rich, satisfying body and hard-hitting chocolate finish with notes of coffee
+        and caramel.  Carefully measured quantities of Mt. Hood, Northern Brewer,
+        and Cascade hops added with masterful precision balance it all out.  Of course,
+        winning a gold medal in the porter category at the 2008 Carolina Championship
+        of Beer festival doesn''t hurt one''s killer reputation either.","abv":"5.3","ibu":"26.2","glasswareId":5,"srmId":26,"availableId":1,"styleId":18,"isOrganic":"N","labels":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/TACnR2\/upload_Lw45E0-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/TACnR2\/upload_Lw45E0-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/TACnR2\/upload_Lw45E0-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:43:46","updateDate":"2012-09-08 19:45:35","glass":{"id":5,"name":"Pint","createDate":"2012-01-03
+        02:41:33"},"srm":{"id":26,"name":"26","hex":"771900"},"available":{"id":1,"name":"Year
+        Round","description":"Available year round as a staple beer."},"style":{"id":18,"categoryId":1,"category":{"id":1,"name":"British
+        Origin Ales","createDate":"2012-03-21 20:06:45"},"name":"Brown Porter","description":"Brown
+        porters are mid to dark brown (may have red tint) in color. No roast barley
+        or strong burnt\/black malt character should be perceived. Low to medium malt
+        sweetness, caramel and chocolate is acceptable along with medium hop bitterness.
+        This is a lightto medium-bodied beer. Fruity esters are acceptable. Hop flavor
+        and aroma may vary from being negligible to medium in character.","ibuMin":"20","ibuMax":"30","abvMin":"4.5","abvMax":"6","srmMin":"20","srmMax":"35","ogMin":"1.04","fgMin":"1.006","fgMax":"1.014","createDate":"2012-03-21
+        20:06:45"},"breweries":[{"id":"WDrFlD","name":"Asheville Brewing Company","description":"A
+        gem to the Asheville micro-brewing scene, Asheville Brewing creates it''s
+        own unique draw for the locals and visitors alike!! Along with our well known
+        craft brews... SHIVA IPA, HOUDINI ESP, NINJA PORTER, ROCKET GIRL ALE, SCOTTISH
+        BROWN, ROLANDS E.S.B, as well as limited addition Ales.... we also offer a
+        full liqour bar at our Coxe Ave location, with daily drink specials!! \r\n\r\nWe
+        offer a full, fantastic food menu, including our \"famous\" pizza buffet during
+        the week 11-3.\r\n\r\nOur Coxe Ave location offers a \"Beer Infuser Creation\"
+        every Thursday at 5:30!!","website":"http:\/\/www.ashevillebrewing.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/WDrFlD\/upload_oQY41D-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/WDrFlD\/upload_oQY41D-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/WDrFlD\/upload_oQY41D-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:44","updateDate":"2012-05-30 23:33:40","locations":[{"id":"JDYdnx","name":"North
+        Asheville","streetAddress":"675 Merrimon Avenue","locality":"Asheville","region":"North
+        Carolina","postalCode":"28804","phone":"828-254-1281","website":"http:\/\/www.ashevillebrewing.com\/","hoursOfOperation":"Open
+        7 Days a week 11am until Midnight","latitude":35.622131,"longitude":-82.553603,"isPrimary":"Y","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"brewpub","locationTypeDisplay":"Brewpub","countryIsoCode":"US","yearOpened":"1995","status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:44","updateDate":"2012-03-21 20:05:24","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},{"id":"IwcIL8","name":"Downtown Asheville","streetAddress":"77
+        Coxe Avenue","locality":"Asheville","region":"North Carolina","postalCode":"28804","phone":"828-255-4077","website":"http:\/\/ashevillebrewing.com\/","hoursOfOperation":"Monday
+        - Thursday 11am until Midnight\r\nFriday 11am until 2am\r\nSaturday Noon until
+        2am, Sunday Noon until Midnight","latitude":35.592393,"longitude":-82.554997,"isPrimary":"N","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"brewpub","locationTypeDisplay":"Brewpub","countryIsoCode":"US","yearOpened":"1995","status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        19:29:20","updateDate":"2013-08-04 11:54:31","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}}]}]},"event":{"id":"cJio9R","year":"2008","name":"2008 Hickory
+        Hops \/ Carolina Championship of ","description":"This year''s Hickory Hops,
+        Hickory''s 6th annual outdoor beer festival, offers plenty for everyone, from
+        inexperienced beer novices to hardened beer fest veterans anxious for some
+        unusual. Mark your calendar, April 12 is the date. Rain or shine, under then
+        tents, from 1:00 until 7:00. No one under 21 will be allowed to enter including
+        non-drinkers\/designated drivers and no pets please.\r\n\r\nThe Cask-Conditioned
+        Ale Tent is a special booth set aside for beer made in a centuries old style.
+        Back before the days of pressurized carbon dioxide containers and refrigeration,
+        all beer was cask-conditioned. That means that the yeast is still present
+        in the stainless steel or wooden cask from which it is served, although it
+        has settled to the bottom and is not poured into the glass.\r\n\r\nPracticed
+        today mostly by small English breweries and creative American craft brewers,
+        this traditional style - in which the beer is fermented, conditioned and served
+        from the same vessel - results in a remarkable different mouthfeel and flavor
+        profile for most beer. Served warmer, usually at cellar temperatures of about
+        55\u00b0F, and possessing noticeably less carbonation, cask-conditioned ales
+        typically are smoother in texture and more prominent in flavor than their
+        force-carbonated counterparts. Proper care is essential to ensure cask-conditioned
+        ale''s drinkability. The effort provides a fresh and natural taste that is
+        unforgettable. OHB brewer Steven Lyerly organized the Cask-Conditional Ale
+        Tent.\r\n\r\nThe Carolinas Championship of Beer introduces its third rendition
+        this year. Several weeks before the fest, most of the festival breweries were
+        submitted beer for a blind-judged competition. In mid-April, over 120 beers
+        spanning 85 different beer styles will be analyzed by a panel of certified
+        judges, brewers and experienced judges. Gold, silver and bronze medals will
+        be presented to winning brewers at a private brewers'' dinner prior to the
+        fest. During Hickory Hops, following the first band, plaques will be awarded
+        to three Best of Show winners. \r\n\r\nEnjoy the music. Be responsible. Enjoy
+        the beer.","type":"festival_competition","typeDisplay":"Combo Festival\/Competition","startDate":"2008-04-12","endDate":"2008-04-12","time":"1pm
+        - 7pm","venueName":"Union Square in Downtown Hickory","streetAddress":"222
+        Union Square","locality":"Hickory","region":"NC","postalCode":"28602","countryIsoCode":"US","latitude":35.732019,"longitude":-81.340443,"website":"http:\/\/www.hickoryhops.com\/","phone":"(828)
+        322-1121","status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        20:01:37","updateDate":"2012-03-16 14:40:18","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},"awardCategory":{"id":2,"eventId":"cJio9R","name":"Brown Porter","createDate":"2012-01-03
+        20:04:47"},"awardPlace":{"id":1,"eventId":"cJio9R","name":"Gold","createDate":"2012-01-03
+        20:02:55"}}],"status":"success"}'
     http_version:
-  recorded_at: Mon, 02 Dec 2013 16:46:46 GMT
+  recorded_at: Tue, 03 Dec 2013 15:58:28 GMT
 recorded_with: VCR 2.8.0

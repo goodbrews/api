@@ -1,0 +1,131 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/brewery/g0jHqt?key=secret_api_key&withAlternateNames=Y&withGuilds=Y&withLocations=Y&withSocialAccounts=Y
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 02 Dec 2013 17:32:56 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '2617'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38","locations":[{"id":"Mq24sa","name":"Main
+        Brewery","streetAddress":"6 Cannery Village Center","locality":"Milton","region":"Delaware","postalCode":"19968","phone":"302-684-1000","website":"http:\/\/www.dogfish.com\/","latitude":38.770622,"longitude":-75.310893,"isPrimary":"Y","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"micro","locationTypeDisplay":"Micro
+        Brewery","countryIsoCode":"US","yearOpened":"1995","status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2012-03-21 20:05:25","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},{"id":"57kBD4","name":"Dogfish Head Brewings & Eats","streetAddress":"320
+        Rehoboth Avenue","locality":"Rehoboth Beach","region":"Delaware","postalCode":"19971","phone":"302-226-2739","website":"http:\/\/www.dogfish.com\/","hoursOfOperation":"Open
+        7 Days, Year Round! Open at noon for LUNCH everyday, & we serve DINNER every
+        night!","latitude":38.715362,"longitude":-75.086898,"isPrimary":"N","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"brewpub","locationTypeDisplay":"Brewpub","countryIsoCode":"US","yearOpened":"1995","status":"verified","statusDisplay":"Verified","createDate":"2012-01-24
+        14:58:17","updateDate":"2012-03-21 20:05:25","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},{"id":"hRSzMV","name":"DFH Alehouse, Gaithersburg","streetAddress":"800
+        West Diamond Ave.","locality":"Gaithersburg","region":"Maryland","postalCode":"20878","phone":"301-963-4847","website":"http:\/\/www.dogfishalehouse.com\/dogfish-head-alehouse-gaithersburg.html","hoursOfOperation":"Monday
+        - Wednesday: 11:30am to 11:00pm\r\nThursday: 11:00am to 11:00pm\r\nFriday-Saturday:
+        11:00am to 12:00am\r\nSunday: 11:30am to 10:00pm","latitude":39.142971,"longitude":-77.215924,"isPrimary":"N","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"restaurant","locationTypeDisplay":"Restaurant\/Ale
+        House","countryIsoCode":"US","yearOpened":"1995","status":"verified","statusDisplay":"Verified","createDate":"2012-01-24
+        15:01:34","updateDate":"2012-03-21 20:05:25","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},{"id":"JlBnVw","name":"DFH Alehouse, Falls Church","streetAddress":"6220
+        Leesburg Pike","extendedAddress":"Seven Corners Shopping Center","locality":"Falls
+        Church","region":"Virginia","postalCode":"22044","phone":"703-534-3342","website":"http:\/\/www.dogfishalehouse.com\/dfh-alehouse-falls-church.html","hoursOfOperation":"Monday
+        - Thursday: 11:30am to 11:00pm\r\nFriday - Saturday: 11:30am to 12:00am\r\nSunday:
+        11:30 am to 10:00pm","latitude":38.870041,"longitude":-77.151446,"isPrimary":"N","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"restaurant","locationTypeDisplay":"Restaurant\/Ale
+        House","countryIsoCode":"US","yearOpened":"1995","status":"verified","statusDisplay":"Verified","createDate":"2012-01-24
+        15:03:04","updateDate":"2012-03-21 20:05:25","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},{"id":"w4ubfN","name":"DFH Alehouse, Fairfax","streetAddress":"13041
+        Lee Jackson Memorial Hwy","locality":"Fairfax","region":"Virginia","postalCode":"22033","phone":"703-961-1140","website":"http:\/\/www.dogfishalehouse.com\/dfh-alehouse-fairfax.html","hoursOfOperation":"Monday
+        - Thursday: 11:30am to 11:00pm\r\nFriday - Saturday: 11:30am to 12:00am\r\nSunday:
+        11:30am to 10:00pm","latitude":38.880695,"longitude":-77.397333,"isPrimary":"N","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"restaurant","locationTypeDisplay":"Restaurant\/Ale
+        House","countryIsoCode":"US","yearOpened":"1995","status":"verified","statusDisplay":"Verified","createDate":"2012-01-24
+        15:04:07","updateDate":"2012-03-21 20:05:25","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}}],"socialAccounts":[{"id":48,"socialMediaId":8,"socialMedia":{"id":8,"name":"Google
+        Plus","website":"https:\/\/plus.google.com\/u\/0\/","createDate":"2012-01-04
+        13:49:32"},"handle":"103716027002377119046","createDate":"2012-01-04 13:50:05","link":"https:\/\/plus.google.com\/u\/0\/103716027002377119046"},{"id":238,"socialMediaId":4,"socialMedia":{"id":4,"name":"Untappd","website":"http:\/\/www.untappd.com","createDate":"2012-01-03
+        02:41:41"},"handle":"459","createDate":"2012-01-23 22:55:52","link":"http:\/\/untappd.com\/brewery\/459"},{"id":291,"socialMediaId":1,"socialMedia":{"id":1,"name":"Facebook
+        Fan Page","website":"http:\/\/www.facebook.com","createDate":"2012-01-03 02:41:41","updateDate":"2012-01-05
+        18:36:11"},"handle":"dogfishheadbeer","createDate":"2012-02-08 17:18:49","link":"http:\/\/facebook.com\/dogfishheadbeer"},{"id":292,"locationId":"Mq24sa","location":{"id":"Mq24sa","name":"Main
+        Brewery","streetAddress":"6 Cannery Village Center","locality":"Milton","region":"Delaware","postalCode":"19968","phone":"302-684-1000","website":"http:\/\/www.dogfish.com\/","latitude":38.770622,"longitude":-75.310893,"isPrimary":"Y","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"micro","locationTypeDisplay":"Micro
+        Brewery","countryIsoCode":"US","yearOpened":"1995","status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2012-03-21 20:05:25","breweryId":"g0jHqt","brewery":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38"},"country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},"socialMediaId":3,"socialMedia":{"id":3,"name":"Foursquare","website":"http:\/\/www.foursquare.com","createDate":"2012-01-03
+        02:41:41"},"handle":"4b27f6f9f964a520f58c24e3","createDate":"2012-02-08 17:19:35","link":"https:\/\/foursquare.com\/v\/4b27f6f9f964a520f58c24e3"},{"id":767,"socialMediaId":2,"socialMedia":{"id":2,"name":"Twitter","website":"http:\/\/www.twitter.com","createDate":"2012-01-03
+        02:41:41"},"handle":"dogfishbeer","createDate":"2012-04-21 12:34:30","link":"http:\/\/twitter.com\/dogfishbeer"},{"id":3505,"socialMediaId":17,"socialMedia":{"id":17,"name":"LinkedIn","website":"http:\/\/www.linkedin.com","handleDescription":"The
+        company''s id (numeric)","createDate":"2013-05-09 20:49:38"},"handle":"596853","createDate":"2013-05-10
+        18:10:42","link":"http:\/\/linkedin.com\/company\/596853"}],"alternateNames":[],"guilds":[{"id":"cJio9R","name":"Brewers
+        Association","description":"The Brewers Association is an organization of
+        brewers, for brewers and by brewers. More than 1,300 US brewery members and
+        27,000 members of the American Homebrewers Association are joined by members
+        of the allied trade, beer wholesalers, individuals, other associate members
+        and the Brewers Association staff to make up the Brewers Association.","established":"2005","website":"http:\/\/www.brewersassociation.org\/","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:33","updateDate":"2013-11-16 23:40:00","discount":"Pub Discount: 15%
+        off Beverage, Food & Merchandise. (Does not apply to Beer Dinners or Mug Club
+        Membership.)"},{"id":"L2dAEr","name":"Delaware Brewers Guild","description":"The
+        place where brewers come together in the 1st State.","website":"http:\/\/www.delawarebrewersguild.org\/","status":"verified","statusDisplay":"Verified","createDate":"2012-04-21
+        12:36:31","updateDate":"2012-04-21 12:36:32"}]},"status":"success"}'
+    http_version:
+  recorded_at: Mon, 02 Dec 2013 17:32:57 GMT
+recorded_with: VCR 2.8.0

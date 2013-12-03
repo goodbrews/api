@@ -1,0 +1,163 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/brewery/g0jHqt/socialaccounts?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 03 Dec 2013 16:02:21 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '1700'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":[{"id":48,"socialMediaId":8,"socialMedia":{"id":8,"name":"Google
+        Plus","website":"https:\/\/plus.google.com\/u\/0\/","createDate":"2012-01-04
+        13:49:32"},"handle":"103716027002377119046","createDate":"2012-01-04 13:50:05","link":"https:\/\/plus.google.com\/u\/0\/103716027002377119046","breweryId":"g0jHqt","brewery":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38"}},{"id":238,"socialMediaId":4,"socialMedia":{"id":4,"name":"Untappd","website":"http:\/\/www.untappd.com","createDate":"2012-01-03
+        02:41:41"},"handle":"459","createDate":"2012-01-23 22:55:52","link":"http:\/\/untappd.com\/brewery\/459","breweryId":"g0jHqt","brewery":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38"}},{"id":291,"socialMediaId":1,"socialMedia":{"id":1,"name":"Facebook
+        Fan Page","website":"http:\/\/www.facebook.com","createDate":"2012-01-03 02:41:41","updateDate":"2012-01-05
+        18:36:11"},"handle":"dogfishheadbeer","createDate":"2012-02-08 17:18:49","link":"http:\/\/facebook.com\/dogfishheadbeer","breweryId":"g0jHqt","brewery":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38"}},{"id":292,"locationId":"Mq24sa","location":{"id":"Mq24sa","name":"Main
+        Brewery","streetAddress":"6 Cannery Village Center","locality":"Milton","region":"Delaware","postalCode":"19968","phone":"302-684-1000","website":"http:\/\/www.dogfish.com\/","latitude":38.770622,"longitude":-75.310893,"isPrimary":"Y","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"micro","locationTypeDisplay":"Micro
+        Brewery","countryIsoCode":"US","yearOpened":"1995","status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2012-03-21 20:05:25","breweryId":"g0jHqt","brewery":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38"},"country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},"socialMediaId":3,"socialMedia":{"id":3,"name":"Foursquare","website":"http:\/\/www.foursquare.com","createDate":"2012-01-03
+        02:41:41"},"handle":"4b27f6f9f964a520f58c24e3","createDate":"2012-02-08 17:19:35","link":"https:\/\/foursquare.com\/v\/4b27f6f9f964a520f58c24e3","breweryId":"g0jHqt","brewery":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38"}},{"id":767,"socialMediaId":2,"socialMedia":{"id":2,"name":"Twitter","website":"http:\/\/www.twitter.com","createDate":"2012-01-03
+        02:41:41"},"handle":"dogfishbeer","createDate":"2012-04-21 12:34:30","link":"http:\/\/twitter.com\/dogfishbeer","breweryId":"g0jHqt","brewery":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38"}},{"id":3505,"socialMediaId":17,"socialMedia":{"id":17,"name":"LinkedIn","website":"http:\/\/www.linkedin.com","handleDescription":"The
+        company''s id (numeric)","createDate":"2013-05-09 20:49:38"},"handle":"596853","createDate":"2013-05-10
+        18:10:42","link":"http:\/\/linkedin.com\/company\/596853","breweryId":"g0jHqt","brewery":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38"}}],"status":"success"}'
+    http_version: 
+  recorded_at: Tue, 03 Dec 2013 16:02:21 GMT
+recorded_with: VCR 2.8.0

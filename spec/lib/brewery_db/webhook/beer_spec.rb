@@ -126,7 +126,7 @@ describe BreweryDB::Webhook::Beer do
       end
 
       it 'assigns events if we have them' do
-        response.each { |b| Factory(:event, brewerydb_id: b['id']) }
+        response.each { |e| Factory(:event, brewerydb_id: e['eventId']) }
         VCR.use_cassette(cassette) { webhook.process }
 
         beer.events.count.should eq(response.count)
@@ -139,7 +139,7 @@ describe BreweryDB::Webhook::Beer do
 
       it 'removes events from an association' do
         event = Factory(:event)
-        events = response.map { |b| Factory(:event, brewerydb_id: b['id']) }
+        events = response.map { |e| Factory(:event, brewerydb_id: e['eventId']) }
         events << event
         beer.events = events
 

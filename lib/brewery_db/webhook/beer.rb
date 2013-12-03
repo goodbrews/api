@@ -71,7 +71,7 @@ module BreweryDB
           if breweries.count == brewery_ids.count
             @beer.breweries = breweries
           else
-            raise OrderingError, 'Received a new beer before we had its breweries!'
+            raise OrderingError, 'Received an event insertion before we had the events!'
           end
         end
         alias :brewery_delete :brewery_insert
@@ -83,6 +83,7 @@ module BreweryDB
 
         def event_insert(events = nil)
           events  ||= @client.get("/beer/#{@brewerydb_id}/events").body['data']
+          events    = Array(events).map { |e| e['event'] }
           event_ids = Array(events).map { |e| e['id'] }
           events    = ::Event.where(brewerydb_id: event_ids)
 

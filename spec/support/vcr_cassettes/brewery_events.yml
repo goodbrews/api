@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/brewery/g0jHqt/events?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 03 Dec 2013 15:46:21 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '2174'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":[{"id":118,"eventId":"TGtEbk","event":{"id":"TGtEbk","year":"2011","name":"Great
+        American Beer Festival","description":"The Great American Beer Festival (GABF)
+        is a three-day annual event hosted by the Brewers Association, held in Denver,
+        Colorado.  The festival runs from 29 September through 1 October. The GABF
+        brings visitors from around the world to sample more than 2,000 different
+        American beers. Over 100 beer judges from the United States and abroad evaluate
+        beer in the associated competition, ultimately judging 3,300 beers entered
+        by almost 500 domestic breweries. Gold, silver and bronze medals in 83 beer-style
+        categories are awarded, though not every medal is necessarily awarded in each
+        category.","type":"festival_competition","typeDisplay":"Combo Festival\/Competition","startDate":"2011-09-29","endDate":"2011-10-01","time":"Thu,
+        Fri, & Sat: 5:30PM - 10:00PM","price":"$60 ($20 for Designated Driver Tickets)","venueName":"Colorado
+        Convention Center","streetAddress":"700 14th Street","extendedAddress":"Hall
+        F","locality":"Denver","region":"Colorado","postalCode":"80202","countryIsoCode":"US","latitude":39.743365,"longitude":-104.994721,"website":"http:\/\/www.greatamericanbeerfestival.com\/","phone":"303-447-0816","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-04
+        18:53:01","updateDate":"2012-03-08 20:08:41","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},"breweryId":"g0jHqt","brewery":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38"},"createDate":"2012-01-04 19:37:01"},{"id":460,"eventId":"5ac2lB","event":{"id":"5ac2lB","year":"2012","name":"SAVOR","description":"American
+        Craft Brewers Harmonize Craft Beer With Food\r\nA must-attend for craft beer
+        aficionados and foodies alike, SAVOR offers a memorable craft beer and food
+        experience to a limited number of attendees in Washington, D.C.\u2019s beautiful
+        National Building Museum. Event tickets have consistently sold out in a matter
+        of days, so don\u2019t wait to purchase yours!\r\n\r\nGuests enjoy a reception-style
+        sampling of sweet and savory appetizers and craft beers from 75 breweries.
+        They will also have the unique opportunity to converse with the luminaries
+        of the craft beer industry\u2014brewery owners, brewers and representatives
+        will be on hand personally serving their beer.","type":"festival","typeDisplay":"Beer
+        Festival","startDate":"2012-06-08","endDate":"2012-06-09","price":"$110.00","venueName":"National
+        Building Museum","streetAddress":"401 F Street Northwest","locality":"Washington","region":"District
+        of Columbia","postalCode":"20001","countryIsoCode":"US","latitude":38.89734,"longitude":-77.016411,"website":"http:\/\/www.savorcraftbeer.com\/","phone":"303-447-0816
+        x125","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/5ac2lB\/upload_ZfiHfo-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/5ac2lB\/upload_ZfiHfo-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/5ac2lB\/upload_ZfiHfo-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-24
+        17:40:45","updateDate":"2012-02-02 22:55:55","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},"breweryId":"g0jHqt","brewery":{"id":"g0jHqt","name":"Dogfish
+        Head Craft Brewery","description":"The story of Dogfish Head began in June
+        of 1995 when we opened Dogfish Head Brewings & Eats, the first state''s first
+        brewpub opened in the resort beach community of Rehoboth Beach, Delaware.
+        The plan was to bring original beer, original food, and original music to
+        the area.\r\n\r\nNot only was Dogfish Head Delaware''s first brewpub, it was
+        the smallest commercial brewery in America. Our very first batch, Shelter
+        Pale Ale, was brewed on a system which essentially was three little kegs with
+        propane burners underneath. Brewing 12 gallon batches of beer for a whole
+        restaurant proved to be more than a full time job. When the doors to the pub
+        first opened, we brewed three times a day, five days a week! The one benefit
+        to brewing on such a small system was the ability to try out a myriad of different
+        recipes. We quickly got bored brewing the same things over and over that''s
+        when we started adding all sorts of weird ingredients and getting kind of
+        crazy with the beers!","website":"http:\/\/www.dogfish.com\/","established":"1995","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/g0jHqt\/upload_WaJNQt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:53","updateDate":"2013-08-24 13:07:38"},"createDate":"2012-01-27 12:40:33"}],"status":"success"}'
+    http_version: 
+  recorded_at: Tue, 03 Dec 2013 15:46:21 GMT
+recorded_with: VCR 2.8.0

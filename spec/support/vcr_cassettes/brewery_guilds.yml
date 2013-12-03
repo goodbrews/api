@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/brewery/g0jHqt/guilds?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 02 Dec 2013 18:20:03 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '97'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":[{"id":"cJio9R","name":"Brewers Association","description":"The Brewers Association is an organization of brewers, for brewers and by brewers. More than 1,300 US brewery members and 27,000 members of the American Homebrewers Association are joined by members of the allied trade, beer wholesalers, individuals, other associate members and the Brewers Association staff to make up the Brewers Association.","established":"2005","website":"http:\/\/www.brewersassociation.org\/","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03 02:41:33","updateDate":"2013-11-16 23:40:00","discount":"Pub Discount: 15% off Beverage, Food & Merchandise. (Does not apply to Beer Dinners or Mug Club Membership.)"},{"id":"L2dAEr","name":"Delaware Brewers Guild","description":"The place where brewers come together in the 1st State.","website":"http:\/\/www.delawarebrewersguild.org\/","status":"verified","statusDisplay":"Verified","createDate":"2012-04-21 12:36:31","updateDate":"2012-04-21 12:36:32"}],"status":"success"}'
+    http_version:
+  recorded_at: Mon, 02 Dec 2013 18:20:04 GMT
+recorded_with: VCR 2.8.0
