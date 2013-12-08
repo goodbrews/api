@@ -1,13 +1,16 @@
 require 'brewery_db/webhook/base'
+require 'brewery_db/webhook/concerns/events'
+require 'brewery_db/webhook/concerns/social_accounts'
 require 'app/models/beer'
 
 module BreweryDB
   module Webhook
     class Beer < Base
-      class OrderingError < StandardError; end
+      include SocialAccounts
+      include Events
 
       def process
-        @beer = ::Beer.find_or_initialize_by(brewerydb_id: @brewerydb_id)
+        @model = ::Beer.find_or_initialize_by(brewerydb_id: @brewerydb_id)
         self.send(@action)
       end
 
@@ -22,7 +25,7 @@ module BreweryDB
 
           attributes ||= @client.get("/beer/#{@brewerydb_id}", params).body['data']
 
-          @beer.assign_attributes(
+          @model.assign_attributes(
             name:                attributes['name'],
             description:         attributes['description'],
             abv:                 attributes['abv'],
@@ -39,13 +42,13 @@ module BreweryDB
 
           # Handle images
           if attributes['labels']
-            @beer.image_id = attributes['labels']['icon'].match(/upload_(\w+)-icon/)[1]
+            @model.image_id = attributes['labels']['icon'].match(/upload_(\w+)-icon/)[1]
           end
 
           # Assign Style
-          @beer.style = ::Style.find(attributes['styleId']) if attributes['styleId']
+          @model.style = ::Style.find(attributes['styleId']) if attributes['styleId']
 
-          @beer.save!
+          @model.save!
 
           # Handle associations
           unless @action == 'edit'
@@ -60,7 +63,7 @@ module BreweryDB
         end
 
         def delete
-          @beer.destroy!
+          @model.destroy!
         end
 
         def brewery_insert(breweries = nil)
@@ -69,7 +72,7 @@ module BreweryDB
           breweries   = ::Brewery.where(brewerydb_id: brewery_ids)
 
           if breweries.count == brewery_ids.count
-            @beer.breweries = breweries
+            @model.breweries = breweries
           else
             raise OrderingError, 'Received an event insertion before we had the events!'
           end
@@ -78,25 +81,6 @@ module BreweryDB
 
         # This is a no-op; we get the same information in a Brewery hook.
         def brewery_edit
-          true
-        end
-
-        def event_insert(events = nil)
-          events  ||= @client.get("/beer/#{@brewerydb_id}/events").body['data']
-          events    = Array(events).map { |e| e['event'] }
-          event_ids = Array(events).map { |e| e['id'] }
-          events    = ::Event.where(brewerydb_id: event_ids)
-
-          if events.count == event_ids.count
-            @beer.events = events
-          else
-            raise OrderingError, 'Received a new beer before we had its events!'
-          end
-        end
-        alias :event_delete :event_insert
-
-        # This is a no-op; we get the same information in an Event hook.
-        def event_edit
           true
         end
 
@@ -120,31 +104,9 @@ module BreweryDB
             ingredient
           end
 
-          @beer.ingredients = ingredients
+          @model.ingredients = ingredients
         end
         alias :ingredient_delete :ingredient_insert
-
-        def socialaccount_insert(attributes = nil)
-          attributes ||= @client.get("/beer/#{@brewerydb_id}/socialaccounts").body['data']
-
-          Array(attributes).each do |account|
-            social_account = @beer.social_media_accounts.find_or_initialize_by(website: account['socialMedia']['name'])
-            social_account.assign_attributes(
-              handle:     account['handle'],
-              created_at: account['createDate'],
-              updated_at: account['updateDate']
-            )
-            social_account.save!
-          end
-        end
-        alias :socialaccount_edit :socialaccount_insert
-
-        def socialaccount_delete(attributes = nil)
-          attributes ||= @client.get("/beer/#{@brewerydb_id}/socialaccounts").body['data']
-          websites = attributes.map { |a| a['socialMedia']['name'] }
-
-          @beer.social_media_accounts.where.not(website: websites).destroy_all
-        end
 
         # We don't care about this.
         def upc_insert

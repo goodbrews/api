@@ -1,13 +1,16 @@
 require 'brewery_db/webhook/base'
+require 'brewery_db/webhook/concerns/events'
+require 'brewery_db/webhook/concerns/social_accounts'
 require 'app/models/brewery'
 
 module BreweryDB
   module Webhook
     class Brewery < Base
-      class OrderingError < StandardError; end
+      include Events
+      include SocialAccounts
 
       def process
-        @brewery = ::Brewery.find_or_initialize_by(brewerydb_id: @brewerydb_id)
+        @model = ::Brewery.find_or_initialize_by(brewerydb_id: @brewerydb_id)
         self.send(@action)
       end
 
@@ -21,7 +24,7 @@ module BreweryDB
           }
           attributes ||= @client.get("/brewery/#{@brewerydb_id}", params).body['data']
 
-          @brewery.assign_attributes({
+          @model.assign_attributes({
             name:        attributes['name'],
             website:     attributes['website'],
             description: attributes['description'],
@@ -33,10 +36,10 @@ module BreweryDB
           })
 
           if attributes['images']
-            @brewery.image_id = attributes['images']['icon'].match(/upload_(\w+)-icon/)[1]
+            @model.image_id = attributes['images']['icon'].match(/upload_(\w+)-icon/)[1]
           end
 
-          @brewery.save!
+          @model.save!
 
           # Handle associations and alternate names
           unless @action == 'edit'
@@ -55,46 +58,27 @@ module BreweryDB
         end
 
         def delete
-          @brewery.destroy!
+          @model.destroy!
         end
 
         def alternatename_insert(attributes = nil)
           attributes ||= @client.get("/brewery/#{@brewerydb_id}/alternatenames").body['data']
           return if attributes.empty?
 
-          @brewery.alternate_names = attributes.map { |alt| alt['altName'] }
-          @brewery.save!
+          @model.alternate_names = attributes.map { |alt| alt['altName'] }
+          @model.save!
         end
         alias :alternatename_delete :alternatename_insert
 
         def beer_insert(attributes = nil)
           beers  ||= @client.get("/brewery/#{@brewerydb_id}/beers").body['data']
           beer_ids = Array(beers).map { |b| b['id'] }
-          @brewery.beers = ::Beer.where(brewerydb_id: beer_ids)
+          @model.beers = ::Beer.where(brewerydb_id: beer_ids)
         end
         alias :beer_delete :beer_insert
 
         # This is a no-op; we get the same information in a Beer hook.
         def beer_edit(attributes = nil)
-          true
-        end
-
-        def event_insert(attributes = nil)
-          events  ||= @client.get("/brewery/#{@brewerydb_id}/events").body['data']
-          events    = Array(events).map { |e| e['event'] }
-          event_ids = Array(events).map { |e| e['id'] }
-          events    = ::Event.where(brewerydb_id: event_ids)
-
-          if events.count == event_ids.count
-            @brewery.events = events
-          else
-            raise OrderingError, 'Received an event insertion before we had the events!'
-          end
-        end
-        alias :event_delete :event_insert
-
-        # This is a no-op; we get the same information in an Event hook.
-        def event_edit(attributes = nil)
           true
         end
 
@@ -104,7 +88,7 @@ module BreweryDB
           guilds       = ::Guild.where(brewerydb_id: guild_ids)
 
           if guilds.count == guild_ids.count
-            @brewery.guilds = guilds
+            @model.guilds = guilds
           else
             raise OrderingError, 'Received a new brewery before we had its guilds!'
           end
@@ -116,33 +100,12 @@ module BreweryDB
           true
         end
 
-        def socialaccount_insert(attributes = nil)
-          attributes ||= @client.get("/brewery/#{@brewerydb_id}/socialaccounts").body['data']
-          Array(attributes).each do |account|
-            social_account = @brewery.social_media_accounts.find_or_initialize_by(website: account['socialMedia']['name'])
-            social_account.assign_attributes(
-              handle:     account['handle'],
-              created_at: account['createDate'],
-              updated_at: account['updateDate']
-            )
-
-            social_account.save!
-          end
-        end
-        alias :socialaccount_edit :socialaccount_insert
-
-        def socialaccount_delete(attributes = nil)
-          attributes ||= @client.get("/brewery/#{@brewerydb_id}/socialaccounts").body['data']
-          websites = attributes.map { |a| a['socialMedia']['name'] }
-          @brewery.social_media_accounts.where.not(website: websites).destroy_all
-        end
-
         # These are no-ops; we get the same information in a Location hook
-        %w[insert delete edit].each do |action|
-          define_method "location_#{action}" do
-            true
-          end
+        def location_insert
+          true
         end
+        alias :location_delete :location_insert
+        alias :location_edit :location_insert
     end
   end
 end

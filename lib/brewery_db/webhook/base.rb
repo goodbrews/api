@@ -1,5 +1,7 @@
 module BreweryDB
   module Webhook
+    class OrderingError < StandardError; end
+
     class Base
       def initialize(options)
         @client       = BreweryDB::Client.new
