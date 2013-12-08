@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/guild/cJio9R/socialaccounts?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 08 Dec 2013 23:15:52 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '636'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":[{"id":4,"socialMediaId":2,"socialMedia":{"id":2,"name":"Twitter","website":"http:\/\/www.twitter.com","createDate":"2012-01-03
+        02:41:41"},"handle":"BrewersAssoc","createDate":"2012-01-03 17:02:03","link":"http:\/\/twitter.com\/BrewersAssoc","guildId":"cJio9R","guild":{"id":"cJio9R","name":"Brewers
+        Association","description":"The Brewers Association is an organization of
+        brewers, for brewers and by brewers. More than 1,300 US brewery members and
+        27,000 members of the American Homebrewers Association are joined by members
+        of the allied trade, beer wholesalers, individuals, other associate members
+        and the Brewers Association staff to make up the Brewers Association.","established":"2005","website":"http:\/\/www.brewersassociation.org\/","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:33","updateDate":"2013-11-16 23:40:00"}},{"id":38,"socialMediaId":10,"socialMedia":{"id":10,"name":"YouTube","website":"http:\/\/www.youtube.com","createDate":"2012-01-08
+        18:04:04"},"handle":"BrewersAssociation","createDate":"2012-05-24 18:30:19","link":"http:\/\/www.youtube.com\/BrewersAssociation","guildId":"cJio9R","guild":{"id":"cJio9R","name":"Brewers
+        Association","description":"The Brewers Association is an organization of
+        brewers, for brewers and by brewers. More than 1,300 US brewery members and
+        27,000 members of the American Homebrewers Association are joined by members
+        of the allied trade, beer wholesalers, individuals, other associate members
+        and the Brewers Association staff to make up the Brewers Association.","established":"2005","website":"http:\/\/www.brewersassociation.org\/","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:33","updateDate":"2013-11-16 23:40:00"}}],"status":"success"}'
+    http_version: 
+  recorded_at: Sun, 08 Dec 2013 23:15:52 GMT
+recorded_with: VCR 2.8.0

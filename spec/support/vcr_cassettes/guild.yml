@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/guild/cJio9R?key=secret_api_key&withSocialAccounts=Y
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 08 Dec 2013 23:15:02 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '618'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":{"id":"cJio9R","name":"Brewers
+        Association","description":"The Brewers Association is an organization of
+        brewers, for brewers and by brewers. More than 1,300 US brewery members and
+        27,000 members of the American Homebrewers Association are joined by members
+        of the allied trade, beer wholesalers, individuals, other associate members
+        and the Brewers Association staff to make up the Brewers Association.","established":"2005","website":"http:\/\/www.brewersassociation.org\/","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/guild\/cJio9R\/upload_ps6gVw-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:33","updateDate":"2013-11-16 23:40:00","socialAccounts":[{"id":4,"socialMediaId":2,"socialMedia":{"id":2,"name":"Twitter","website":"http:\/\/www.twitter.com","createDate":"2012-01-03
+        02:41:41"},"handle":"BrewersAssoc","createDate":"2012-01-03 17:02:03","link":"http:\/\/twitter.com\/BrewersAssoc"}]},"status":"success"}'
+    http_version:
+  recorded_at: Sun, 08 Dec 2013 23:15:02 GMT
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/guild/cJio9R/breweries?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 08 Dec 2013 23:15:02 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":[{"id":"S2n5TB","name":"Blind
+        Bat Brewery","description":"A one-man, part-time, 3 barrel brewery. The brewery
+        is young, the brewer ain''t!","website":"http:\/\/www.blindbatbrewery.com\/","established":"2008","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/S2n5TB\/upload_3fvAhA-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/S2n5TB\/upload_3fvAhA-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/S2n5TB\/upload_3fvAhA-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:46","updateDate":"2013-05-10 02:03:46"}],"status":"success"}'
+    http_version:
+  recorded_at: Sun, 08 Dec 2013 23:15:05 GMT
+recorded_with: VCR 2.8.0
