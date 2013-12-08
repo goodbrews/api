@@ -1,0 +1,264 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/event/TGtEbk?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 08 Dec 2013 22:39:18 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '964'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":{"id":"TGtEbk","year":"2011","name":"Great
+        American Beer Festival","description":"The Great American Beer Festival (GABF)
+        is a three-day annual event hosted by the Brewers Association, held in Denver,
+        Colorado.  The festival runs from 29 September through 1 October. The GABF
+        brings visitors from around the world to sample more than 2,000 different
+        American beers. Over 100 beer judges from the United States and abroad evaluate
+        beer in the associated competition, ultimately judging 3,300 beers entered
+        by almost 500 domestic breweries. Gold, silver and bronze medals in 83 beer-style
+        categories are awarded, though not every medal is necessarily awarded in each
+        category.","type":"festival_competition","typeDisplay":"Combo Festival\/Competition","startDate":"2011-09-29","endDate":"2011-10-01","time":"Thu,
+        Fri, & Sat: 5:30PM - 10:00PM","price":"$60 ($20 for Designated Driver Tickets)","venueName":"Colorado
+        Convention Center","streetAddress":"700 14th Street","extendedAddress":"Hall
+        F","locality":"Denver","region":"Colorado","postalCode":"80202","countryIsoCode":"US","latitude":39.743365,"longitude":-104.994721,"website":"http:\/\/www.greatamericanbeerfestival.com\/","phone":"303-447-0816","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-04
+        18:53:01","updateDate":"2012-03-08 20:08:41","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},"status":"success"}'
+    http_version:
+  recorded_at: Sun, 08 Dec 2013 22:39:18 GMT
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/event/TGtEbk/breweries?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 08 Dec 2013 22:39:19 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '20032'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"currentPage":1,"numberOfPages":9,"totalResults":425,"data":[{"eventId":"TGtEbk","event":{"id":"TGtEbk","year":"2011","name":"Great
+        American Beer Festival","description":"The Great American Beer Festival (GABF)
+        is a three-day annual event hosted by the Brewers Association, held in Denver,
+        Colorado.  The festival runs from 29 September through 1 October. The GABF
+        brings visitors from around the world to sample more than 2,000 different
+        American beers. Over 100 beer judges from the United States and abroad evaluate
+        beer in the associated competition, ultimately judging 3,300 beers entered
+        by almost 500 domestic breweries. Gold, silver and bronze medals in 83 beer-style
+        categories are awarded, though not every medal is necessarily awarded in each
+        category.","type":"festival_competition","typeDisplay":"Combo Festival\/Competition","startDate":"2011-09-29","endDate":"2011-10-01","time":"Thu,
+        Fri, & Sat: 5:30PM - 10:00PM","price":"$60 ($20 for Designated Driver Tickets)","venueName":"Colorado
+        Convention Center","streetAddress":"700 14th Street","extendedAddress":"Hall
+        F","locality":"Denver","region":"Colorado","postalCode":"80202","countryIsoCode":"US","latitude":39.743365,"longitude":-104.994721,"website":"http:\/\/www.greatamericanbeerfestival.com\/","phone":"303-447-0816","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-04
+        18:53:01","updateDate":"2012-03-08 20:08:41","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},"breweryId":"cJio9R","brewery":{"id":"cJio9R","name":"(512) Brewing
+        Company","description":"(512) Brewing Company is a microbrewery located in
+        the heart of Austin, brewing for the community using as many local, domestic
+        and organic ingredients as possible. The original practice of small breweries
+        supplying their immediate community has been nearly lost, and with it, the
+        quality that is possible from small handcrafted batches. Our beers are built
+        on old world English and Belgian recipes, but enhanced to celebrate bold domestic
+        ingredients. Made with Austin\u2019s mineral rich water, the (512) beers taste
+        like none other.","website":"http:\/\/www.512brewing.com\/","established":"2008","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/cJio9R\/upload_knal4J-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/cJio9R\/upload_knal4J-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/cJio9R\/upload_knal4J-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:43","updateDate":"2012-09-29 12:20:39"},"createDate":"2012-01-04 19:00:09"}],"status":"success"}'
+    http_version:
+  recorded_at: Sun, 08 Dec 2013 22:39:20 GMT
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/event/TGtEbk/beers?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 08 Dec 2013 22:39:21 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '7260'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"currentPage":1,"numberOfPages":1,"totalResults":7,"data":[{"eventId":"TGtEbk","beerId":"ezGh5N","isPouring":"Y","createDate":"2012-01-13
+        20:14:00","beer":{"id":"ezGh5N","name":"(512) IPA","description":"(512) India
+        Pale Ale is a big, aggressively dry-hopped American IPA with smooth bitterness
+        (~65 IBU) balanced by medium maltiness. Organic 2-row malted barley, loads
+        of hops, and great Austin water create an ale with apricot and vanilla aromatics
+        that lure you in for more.","abv":"7.2","ibu":"65","glasswareId":5,"availableId":1,"styleId":30,"isOrganic":"N","labels":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/ezGh5N\/upload_xgJp8I-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/ezGh5N\/upload_xgJp8I-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/ezGh5N\/upload_xgJp8I-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:42:36","updateDate":"2013-10-08 11:11:49","glass":{"id":5,"name":"Pint","createDate":"2012-01-03
+        02:41:33"},"available":{"id":1,"name":"Year Round","description":"Available
+        year round as a staple beer."},"style":{"id":30,"categoryId":3,"category":{"id":3,"name":"North
+        American Origin Ales","createDate":"2012-03-21 20:06:45"},"name":"American-Style
+        India Pale Ale","description":"American-style India pale ales are perceived
+        to have medium-high to intense hop bitterness, flavor and aroma with medium-high
+        alcohol content. The style is further characterized by floral, fruity, citrus-like,
+        piney, resinous, or sulfur-like American-variety hop character. Note that
+        one or more of these American-variety hop characters is the perceived end,
+        but the hop characters may be a result of the skillful use of hops of other
+        national origins. The use of water with high mineral content results in a
+        crisp, dry beer. This pale gold to deep copper-colored ale has a full, flowery
+        hop aroma and may have a strong hop flavor (in addition to the perception
+        of hop bitterness). India pale ales possess medium maltiness which contributes
+        to a medium body. Fruity-ester flavors and aromas are moderate to very strong.
+        Diacetyl can be absent or may be perceived at very low levels. Chill and\/or
+        hop haze is allowable at cold temperatures. (English and citrus-like American
+        hops are considered enough of a distinction justifying separate American-style
+        IPA and English-style IPA categories or subcategories. Hops of other origins
+        may be used for bitterness or approximating traditional American or English
+        character. See English-style India Pale Ale","ibuMin":"50","ibuMax":"70","abvMin":"6.3","abvMax":"7.5","srmMin":"6","srmMax":"14","ogMin":"1.06","fgMin":"1.012","fgMax":"1.018","createDate":"2012-03-21
+        20:06:45"},"breweries":[{"id":"cJio9R","name":"(512) Brewing Company","description":"(512)
+        Brewing Company is a microbrewery located in the heart of Austin, brewing
+        for the community using as many local, domestic and organic ingredients as
+        possible. The original practice of small breweries supplying their immediate
+        community has been nearly lost, and with it, the quality that is possible
+        from small handcrafted batches. Our beers are built on old world English and
+        Belgian recipes, but enhanced to celebrate bold domestic ingredients. Made
+        with Austin\u2019s mineral rich water, the (512) beers taste like none other.","website":"http:\/\/www.512brewing.com\/","established":"2008","isOrganic":"N","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/cJio9R\/upload_knal4J-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/cJio9R\/upload_knal4J-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/brewery\/cJio9R\/upload_knal4J-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:43","updateDate":"2012-09-29 12:20:39","locations":[{"id":"qxAQSJ","name":"Main
+        Brewery","streetAddress":"407 Radam","extendedAddress":"F200","locality":"Austin","region":"Texas","postalCode":"78745","phone":"512-707-2337","website":"http:\/\/www.512brewing.com\/","hoursOfOperation":"Visit
+        website for tours and hours.","latitude":30.223213,"longitude":-97.768695,"isPrimary":"Y","inPlanning":"N","isClosed":"N","openToPublic":"Y","locationType":"micro","locationTypeDisplay":"Micro
+        Brewery","countryIsoCode":"US","yearOpened":"2008","status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:41:43","updateDate":"2012-03-21 20:05:24","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}}]}]}}],"status":"success"}'
+    http_version:
+  recorded_at: Sun, 08 Dec 2013 22:39:21 GMT
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/event/TGtEbk/socialaccounts?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 08 Dec 2013 22:39:22 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '1146'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":[{"id":1,"eventId":"TGtEbk","event":{"id":"TGtEbk","year":"2011","name":"Great
+        American Beer Festival","description":"The Great American Beer Festival (GABF)
+        is a three-day annual event hosted by the Brewers Association, held in Denver,
+        Colorado.  The festival runs from 29 September through 1 October. The GABF
+        brings visitors from around the world to sample more than 2,000 different
+        American beers. Over 100 beer judges from the United States and abroad evaluate
+        beer in the associated competition, ultimately judging 3,300 beers entered
+        by almost 500 domestic breweries. Gold, silver and bronze medals in 83 beer-style
+        categories are awarded, though not every medal is necessarily awarded in each
+        category.","type":"festival_competition","typeDisplay":"Combo Festival\/Competition","startDate":"2011-09-29","endDate":"2011-10-01","time":"Thu,
+        Fri, & Sat: 5:30PM - 10:00PM","price":"$60 ($20 for Designated Driver Tickets)","venueName":"Colorado
+        Convention Center","streetAddress":"700 14th Street","extendedAddress":"Hall
+        F","locality":"Denver","region":"Colorado","postalCode":"80202","countryIsoCode":"US","latitude":39.743365,"longitude":-104.994721,"website":"http:\/\/www.greatamericanbeerfestival.com\/","phone":"303-447-0816","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-04
+        18:53:01","updateDate":"2012-03-08 20:08:41","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},"socialMediaId":1,"socialMedia":{"id":1,"name":"Facebook Fan Page","website":"http:\/\/www.facebook.com","createDate":"2012-01-03
+        02:41:41","updateDate":"2012-01-05 18:36:11"},"handle":"77791416708","createDate":"2012-01-04
+        18:55:49","link":"http:\/\/facebook.com\/77791416708"}],"status":"success"}'
+    http_version:
+  recorded_at: Sun, 08 Dec 2013 22:39:22 GMT
+recorded_with: VCR 2.8.0

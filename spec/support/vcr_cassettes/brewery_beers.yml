@@ -1,0 +1,67 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/brewery/g0jHqt/beers?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 08 Dec 2013 22:17:43 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '31362'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":[{"id":"EWlB8A","name":"120
+        Minute IPA","description":"Too extreme to be called beer? Brewed to a colossal
+        45-degree plato, boiled for a full 2 hours while being continuously hopped
+        with high-alpha American hops, then dry-hopped daily in the fermenter for
+        a month & aged for another month on whole-leaf hops!!!\r\n\r\nOur 120 Minute
+        I.P.A. is by far the biggest I.P.A. ever brewed! At about 18% abv and 120
+        ibus you can see why we call this beer THE HOLY GRAIL for hopheads!\r\n\r\nWe
+        brew 120 Minute IPA three times a year, but it goes fast. If you find some
+        grab a few bottles, some to enjoy and some to age.","abv":"18","ibu":"120","glasswareId":5,"availableId":2,"styleId":31,"isOrganic":"N","labels":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/EWlB8A\/upload_uCW7Rt-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/EWlB8A\/upload_uCW7Rt-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/beer\/EWlB8A\/upload_uCW7Rt-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-03
+        02:42:36","updateDate":"2013-06-03 18:31:47","glass":{"id":5,"name":"Pint","createDate":"2012-01-03
+        02:41:33"},"available":{"id":2,"name":"Limited","description":"Limited availability."},"style":{"id":31,"categoryId":3,"category":{"id":3,"name":"North
+        American Origin Ales","createDate":"2012-03-21 20:06:45"},"name":"Imperial
+        or Double India Pale Ale","description":"Imperial or Double India Pale Ales
+        have intense hop bitterness, flavor and aroma. Alcohol content is medium-high
+        to high and notably evident. They range from deep golden to medium copper
+        in color. The style may use any variety of hops. Though the hop character
+        is intense it''s balanced with complex alcohol flavors, moderate to high fruity
+        esters and medium to high malt character. Hop character should be fresh and
+        lively and should not be harsh in quality. The use of large amounts of hops
+        may cause a degree of appropriate hop haze. Imperial or Double India Pale
+        Ales have medium-high to full body. Diacetyl should not be perceived. The
+        intention of this style of beer is to exhibit the fresh and bright character
+        of hops. Oxidative character and aged character should not be present.","ibuMin":"65","ibuMax":"100","abvMin":"7.5","abvMax":"10.5","srmMin":"5","srmMax":"13","ogMin":"1.075","fgMin":"1.012","fgMax":"1.02","createDate":"2012-03-21
+        20:06:45"}}],"status":"success"}'
+    http_version:
+  recorded_at: Sun, 08 Dec 2013 22:17:44 GMT
+recorded_with: VCR 2.8.0

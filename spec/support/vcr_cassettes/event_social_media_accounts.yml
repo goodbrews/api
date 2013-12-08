@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.brewerydb.com/v2/event/TGtEbk/socialaccounts?key=secret_api_key
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 08 Dec 2013 22:37:44 GMT
+      Server:
+      - Apache/2.2.25 (Amazon)
+      Vary:
+      - Accept-Encoding
+      X-Powered-By:
+      - PHP/5.3.27
+      X-Ratelimit-Limit:
+      - Unlimited
+      X-Ratelimit-Remaining:
+      - Unlimited
+      Content-Length:
+      - '1146'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"message":"READ ONLY MODE: Request Successful","data":[{"id":1,"eventId":"TGtEbk","event":{"id":"TGtEbk","year":"2011","name":"Great
+        American Beer Festival","description":"The Great American Beer Festival (GABF)
+        is a three-day annual event hosted by the Brewers Association, held in Denver,
+        Colorado.  The festival runs from 29 September through 1 October. The GABF
+        brings visitors from around the world to sample more than 2,000 different
+        American beers. Over 100 beer judges from the United States and abroad evaluate
+        beer in the associated competition, ultimately judging 3,300 beers entered
+        by almost 500 domestic breweries. Gold, silver and bronze medals in 83 beer-style
+        categories are awarded, though not every medal is necessarily awarded in each
+        category.","type":"festival_competition","typeDisplay":"Combo Festival\/Competition","startDate":"2011-09-29","endDate":"2011-10-01","time":"Thu,
+        Fri, & Sat: 5:30PM - 10:00PM","price":"$60 ($20 for Designated Driver Tickets)","venueName":"Colorado
+        Convention Center","streetAddress":"700 14th Street","extendedAddress":"Hall
+        F","locality":"Denver","region":"Colorado","postalCode":"80202","countryIsoCode":"US","latitude":39.743365,"longitude":-104.994721,"website":"http:\/\/www.greatamericanbeerfestival.com\/","phone":"303-447-0816","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-04
+        18:53:01","updateDate":"2012-03-08 20:08:41","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},"socialMediaId":1,"socialMedia":{"id":1,"name":"Facebook Fan Page","website":"http:\/\/www.facebook.com","createDate":"2012-01-03
+        02:41:41","updateDate":"2012-01-05 18:36:11"},"handle":"77791416708","createDate":"2012-01-04
+        18:55:49","link":"http:\/\/facebook.com\/77791416708"},{"id":2,"eventId":"TGtEbk","event":{"id":"TGtEbk","year":"2011","name":"Great
+        American Beer Festival","description":"The Great American Beer Festival (GABF)
+        is a three-day annual event hosted by the Brewers Association, held in Denver,
+        Colorado.  The festival runs from 29 September through 1 October. The GABF
+        brings visitors from around the world to sample more than 2,000 different
+        American beers. Over 100 beer judges from the United States and abroad evaluate
+        beer in the associated competition, ultimately judging 3,300 beers entered
+        by almost 500 domestic breweries. Gold, silver and bronze medals in 83 beer-style
+        categories are awarded, though not every medal is necessarily awarded in each
+        category.","type":"festival_competition","typeDisplay":"Combo Festival\/Competition","startDate":"2011-09-29","endDate":"2011-10-01","time":"Thu,
+        Fri, & Sat: 5:30PM - 10:00PM","price":"$60 ($20 for Designated Driver Tickets)","venueName":"Colorado
+        Convention Center","streetAddress":"700 14th Street","extendedAddress":"Hall
+        F","locality":"Denver","region":"Colorado","postalCode":"80202","countryIsoCode":"US","latitude":39.743365,"longitude":-104.994721,"website":"http:\/\/www.greatamericanbeerfestival.com\/","phone":"303-447-0816","images":{"icon":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-icon.png","medium":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-medium.png","large":"https:\/\/s3.amazonaws.com\/brewerydbapi\/event\/TGtEbk\/upload_Eh49UQ-large.png"},"status":"verified","statusDisplay":"Verified","createDate":"2012-01-04
+        18:53:01","updateDate":"2012-03-08 20:08:41","country":{"isoCode":"US","name":"UNITED
+        STATES","displayName":"United States","isoThree":"USA","numberCode":840,"createDate":"2012-01-03
+        02:41:33"}},"socialMediaId":2,"socialMedia":{"id":2,"name":"Twitter","website":"http:\/\/www.twitter.com","createDate":"2012-01-03
+        02:41:41"},"handle":"GABF","createDate":"2012-01-04 18:56:07","link":"http:\/\/twitter.com\/GABF"}],"status":"success"}'
+    http_version: 
+  recorded_at: Sun, 08 Dec 2013 22:37:44 GMT
+recorded_with: VCR 2.8.0

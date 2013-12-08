@@ -1,3 +1,5 @@
+require 'brewery_db/client'
+
 module BreweryDB
   module Webhook
     class OrderingError < StandardError; end
