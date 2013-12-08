@@ -115,6 +115,50 @@ describe BreweryDB::Webhook::Brewery do
       end
     end
 
+    context '#beer_insert' do
+      let(:cassette) { 'brewery_beers' }
+      let(:webhook) { BreweryDB::Webhook::Brewery.new(id: model_id, action: 'edit', sub_action: 'beer_insert') }
+
+      it 'raises an OrderingError if we do not have the beers yet' do
+        VCR.use_cassette(cassette) do
+          expect { webhook.process }.to raise_error(BreweryDB::Webhook::OrderingError)
+        end
+      end
+
+      it 'assigns beers if we have them' do
+        response.each { |b| Factory(:beer, brewerydb_id: b['id']) }
+        VCR.use_cassette(cassette) { webhook.process }
+
+        brewery.beers.count.should eq(response.count)
+      end
+    end
+
+    context '#beer_delete' do
+      let(:cassette) { 'brewery_beers' }
+      let(:webhook) { BreweryDB::Webhook::Brewery.new(id: model_id, action: 'edit', sub_action: 'beer_delete') }
+
+      it 'removes beers from an association' do
+        beer = Factory(:beer)
+        beers = response.map { |b| Factory(:beer, brewerydb_id: b['id']) }
+        beers << beer
+        brewery.beers = beers
+
+        VCR.use_cassette(cassette) { webhook.process }
+        brewery.reload
+
+        brewery.beers.count.should eq(response.count)
+        brewery.beers.should_not include(beer)
+      end
+    end
+
+    context '#beer_edit' do
+      let(:webhook) { BreweryDB::Webhook::Brewery.new(id: model_id, action: 'edit', sub_action: 'beer_edit') }
+
+      it 'acts as a noop, returning true' do
+        webhook.process.should be_true
+      end
+    end
+
     %w[insert delete edit].each do |action|
       let(:webhook) { BreweryDB::Webhook::Brewery.new(id: model_id, action: 'edit', sub_action: "location_#{action}") }
 

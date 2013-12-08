@@ -71,9 +71,15 @@ module BreweryDB
         alias :alternatename_delete :alternatename_insert
 
         def beer_insert(attributes = nil)
-          beers  ||= @client.get("/brewery/#{@brewerydb_id}/beers").body['data']
-          beer_ids = Array(beers).map { |b| b['id'] }
-          @model.beers = ::Beer.where(brewerydb_id: beer_ids)
+          beers      ||= @client.get("/brewery/#{@brewerydb_id}/beers").body['data']
+          beer_ids     = Array(beers).map { |b| b['id'] }
+          beers        = ::Beer.where(brewerydb_id: beer_ids)
+
+          if beers.count == beer_ids.count
+            @model.beers = beers
+          else
+            raise OrderingError, 'Received a brewery before we had its beers!'
+          end
         end
         alias :beer_delete :beer_insert
 
@@ -90,7 +96,7 @@ module BreweryDB
           if guilds.count == guild_ids.count
             @model.guilds = guilds
           else
-            raise OrderingError, 'Received a new brewery before we had its guilds!'
+            raise OrderingError, 'Received a brewery before we had its guilds!'
           end
         end
         alias :guild_delete :guild_insert
