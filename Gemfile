@@ -12,13 +12,22 @@ gem 'activerecord', '~> 4.0.0', require: 'active_record'
 gem 'recommendable', github: 'davidcelis/recommendable'
 gem 'pg'
 
+# Background processing.
+gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
+
 # Email/Notifications.
 gem 'mail'
 
 # Utilities.
 gem 'bcrypt-ruby', '~> 3.1.2'
-gem 'pry', group: [:development, :test]
 gem 'log4r'
+
+group :development, :test do
+  gem 'guard'
+  gem 'guard-puma'
+  gem 'pry'
+end
 
 group :test do
   gem 'rspec'
