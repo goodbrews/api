@@ -1,0 +1,24 @@
+language: ruby
+rvm:
+  - 2.0.0
+before_script:
+  - mv config/database.yml.sample config/database.yml
+  - mv config/redis.yml.sample config/redis.yml
+  - psql -c 'create database goodbrews_test;' -U postgres
+  - bundle exec rake db:migrate
+script: bundle exec rspec
+services:
+  - postgresql
+  - redis-server
+notifications:
+  email:
+    recipients:
+      - travis-ci@davidcel.is
+    on_success: change
+    on_failure: always
+  webhooks:
+    urls:
+      - "http://goodbrews-brewbot.herokuapp.com/hubot/travis?room=%23goodbrews"
+    on_success: always
+    on_failure: always
+    on_start: true

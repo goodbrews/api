@@ -1,4 +1,4 @@
-ENV['GRAPE_ENV']  ||= 'development'
+ENV['GRAPE_ENV']  ||= ENV['RACK_ENV'] ||= 'development'
 ENV['GRAPE_ROOT'] ||= Dir.pwd
 
 # Active Record rake tasks
