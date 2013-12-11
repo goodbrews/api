@@ -103,6 +103,7 @@ GEM
     mock_redis (0.10.0)
     multi_json (1.8.2)
     multi_xml (0.5.5)
+    newrelic_rpm (3.7.0.177)
     pg (0.17.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
@@ -187,6 +188,7 @@ DEPENDENCIES
   log4r
   mail
   miniskirt
+  newrelic_rpm
   pg
   pry
   puma

@@ -36,7 +36,5 @@ RSpec.configure do |config|
 
   config.order = 'random'
 
-  def app
-    let(:app) { Goodbrews::API }
-  end
+  def app() Goodbrews::API end
 end

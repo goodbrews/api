@@ -20,6 +20,7 @@ gem 'sidekiq-unique-jobs'
 gem 'mail'
 
 # Utilities.
+gem 'newrelic_rpm'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'log4r'
 
