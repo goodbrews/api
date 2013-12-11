@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'lib/brewery_db/webhook/shared_examples/social_accounts'
-require 'brewery_db/webhook/guild'
+require 'lib/brewery_db/webhooks/shared_examples/social_accounts'
+require 'brewery_db/webhooks/guild'
 
-describe BreweryDB::Webhook::Guild do
+describe BreweryDB::Webhooks::Guild do
   let(:model_id)  { 'cJio9R' }
   let(:cassette) { 'guild' }
   let(:yaml) { YAML.load_file("spec/support/vcr_cassettes/#{cassette}.yml") }
@@ -12,12 +12,12 @@ describe BreweryDB::Webhook::Guild do
   it_behaves_like 'a webhook that updates social accounts'
 
   context '#insert' do
-    let(:webhook) { BreweryDB::Webhook::Guild.new(id: model_id, action: 'insert') }
+    let(:webhook) { BreweryDB::Webhooks::Guild.new(id: model_id, action: 'insert') }
 
     context 'before we have breweries' do
       it 'raises an OrderingError' do
         VCR.use_cassette(cassette) do
-          expect { webhook.process }.to raise_error(BreweryDB::Webhook::OrderingError)
+          expect { webhook.process }.to raise_error(BreweryDB::Webhooks::OrderingError)
         end
       end
     end
@@ -48,7 +48,7 @@ describe BreweryDB::Webhook::Guild do
     let!(:guild)  { Factory(:guild, brewerydb_id: model_id) }
 
     context '#edit' do
-      let(:webhook) { BreweryDB::Webhook::Guild.new(id: model_id, action: 'edit') }
+      let(:webhook) { BreweryDB::Webhooks::Guild.new(id: model_id, action: 'edit') }
 
       before { VCR.use_cassette(cassette) { webhook.process } }
 
@@ -58,11 +58,11 @@ describe BreweryDB::Webhook::Guild do
     end
 
     context '#brewery_insert' do
-      let(:webhook) { BreweryDB::Webhook::Guild.new(id: model_id, action: 'edit', sub_action: 'brewery_insert') }
+      let(:webhook) { BreweryDB::Webhooks::Guild.new(id: model_id, action: 'edit', sub_action: 'brewery_insert') }
 
       it 'raises an OrderingError if we do not have the breweries yet' do
         VCR.use_cassette(cassette) do
-          expect { webhook.process }.to raise_error(BreweryDB::Webhook::OrderingError)
+          expect { webhook.process }.to raise_error(BreweryDB::Webhooks::OrderingError)
         end
       end
 
@@ -75,7 +75,7 @@ describe BreweryDB::Webhook::Guild do
     end
 
     context '#brewery_delete' do
-      let(:webhook) { BreweryDB::Webhook::Guild.new(id: model_id, action: 'edit', sub_action: 'brewery_delete') }
+      let(:webhook) { BreweryDB::Webhooks::Guild.new(id: model_id, action: 'edit', sub_action: 'brewery_delete') }
 
       it 'removes breweries from an association' do
         brewery   = Factory(:brewery)
@@ -92,7 +92,7 @@ describe BreweryDB::Webhook::Guild do
     end
 
     context '#brewery_edit' do
-      let(:webhook) { BreweryDB::Webhook::Guild.new(id: model_id, action: 'edit', sub_action: 'brewery_edit') }
+      let(:webhook) { BreweryDB::Webhooks::Guild.new(id: model_id, action: 'edit', sub_action: 'brewery_edit') }
 
       it 'acts as a noop, returning true' do
         webhook.process.should be_true

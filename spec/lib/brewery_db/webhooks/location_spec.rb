@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'brewery_db/webhook/location'
+require 'brewery_db/webhooks/location'
 
-describe BreweryDB::Webhook::Location do
+describe BreweryDB::Webhooks::Location do
   let(:model_id) { 'Mq24sa' }
   let(:response) do
     yaml = YAML.load_file("spec/support/vcr_cassettes/#{cassette}.yml")
@@ -10,12 +10,12 @@ describe BreweryDB::Webhook::Location do
 
   context '#insert' do
     let(:cassette) { 'location' }
-    let(:webhook) { BreweryDB::Webhook::Location.new(id: model_id, action: 'insert') }
+    let(:webhook) { BreweryDB::Webhooks::Location.new(id: model_id, action: 'insert') }
 
     context 'before we have a brewery' do
       it 'raises an OrderingError' do
         VCR.use_cassette(cassette) do
-          expect { webhook.process }.to raise_error(BreweryDB::Webhook::OrderingError)
+          expect { webhook.process }.to raise_error(BreweryDB::Webhooks::OrderingError)
         end
       end
     end
@@ -45,7 +45,7 @@ describe BreweryDB::Webhook::Location do
 
     context '#edit' do
       let(:cassette) { 'location' }
-      let(:webhook)  { BreweryDB::Webhook::Location.new(id: model_id, action: 'edit') }
+      let(:webhook)  { BreweryDB::Webhooks::Location.new(id: model_id, action: 'edit') }
 
       before do
         Factory(:brewery, brewerydb_id: response['breweryId'])

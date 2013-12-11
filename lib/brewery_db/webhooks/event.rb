@@ -1,9 +1,9 @@
-require 'brewery_db/webhook/base'
-require 'brewery_db/webhook/concerns/social_accounts'
+require 'brewery_db/webhooks/base'
+require 'brewery_db/webhooks/concerns/social_accounts'
 require 'app/models/event'
 
 module BreweryDB
-  module Webhook
+  module Webhooks
     class Event < Base
       include SocialAccounts
 

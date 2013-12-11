@@ -1,8 +1,8 @@
-require 'brewery_db/webhook/base'
+require 'brewery_db/webhooks/base'
 require 'app/models/location'
 
 module BreweryDB
-  module Webhook
+  module Webhooks
     class Location < Base
       def process
         self.send(@action)

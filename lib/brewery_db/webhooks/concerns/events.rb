@@ -1,5 +1,5 @@
 module BreweryDB
-  module Webhook
+  module Webhooks
     module Events
       def event_insert(events = nil)
         klass     = self.class.to_s.demodulize.underscore

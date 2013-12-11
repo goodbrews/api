@@ -17,8 +17,8 @@ describe WebhookWorker do
         sub_action: params[:subAction].underscore
       }
 
-      mock = double("BreweryDB::Webhook::#{klass.classify}", process: true)
-      BreweryDB::Webhook.const_get(klass.classify).should_receive(:new).with(options).and_return(mock)
+      mock = double("BreweryDB::Webhooks::#{klass.classify}", process: true)
+      BreweryDB::Webhooks::const_get(klass.classify).should_receive(:new).with(options).and_return(mock)
 
       WebhookWorker.new.perform(params)
     end

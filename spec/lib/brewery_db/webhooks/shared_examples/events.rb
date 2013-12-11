@@ -9,7 +9,7 @@ shared_examples 'a webhook that updates events' do
 
     it 'raises an OrderingError if we do not have the events yet' do
       VCR.use_cassette(cassette) do
-        expect { webhook.process }.to raise_error(BreweryDB::Webhook::OrderingError)
+        expect { webhook.process }.to raise_error(BreweryDB::Webhooks::OrderingError)
       end
     end
 

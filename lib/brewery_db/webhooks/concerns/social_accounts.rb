@@ -1,5 +1,5 @@
 module BreweryDB
-  module Webhook
+  module Webhooks
     module SocialAccounts
       def socialaccount_insert(attributes = nil)
         attributes ||= @client.get("/#{self.class.to_s.demodulize.underscore}/#{@brewerydb_id}/socialaccounts").body['data']

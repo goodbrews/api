@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'lib/brewery_db/webhook/shared_examples/events'
-require 'lib/brewery_db/webhook/shared_examples/social_accounts'
-require 'brewery_db/webhook/beer'
+require 'lib/brewery_db/webhooks/shared_examples/events'
+require 'lib/brewery_db/webhooks/shared_examples/social_accounts'
+require 'brewery_db/webhooks/beer'
 
-describe BreweryDB::Webhook::Beer do
+describe BreweryDB::Webhooks::Beer do
   let(:model_id)  { 'TACnR2' }
   let(:response) do
     yaml = YAML.load_file("spec/support/vcr_cassettes/#{cassette}.yml")
@@ -15,13 +15,13 @@ describe BreweryDB::Webhook::Beer do
 
   context '#insert' do
     let(:cassette) { 'beer_with_associations' }
-    let(:webhook) { BreweryDB::Webhook::Beer.new(id: model_id, action: 'insert') }
+    let(:webhook) { BreweryDB::Webhooks::Beer.new(id: model_id, action: 'insert') }
     let!(:style)  { Factory(:style, id: response['styleId']) }
 
     context 'before we have breweries' do
       it 'raises an OrderingError' do
         VCR.use_cassette(cassette) do
-          expect { webhook.process }.to raise_error(BreweryDB::Webhook::OrderingError)
+          expect { webhook.process }.to raise_error(BreweryDB::Webhooks::OrderingError)
         end
       end
     end
@@ -64,7 +64,7 @@ describe BreweryDB::Webhook::Beer do
 
     context '#edit' do
       let(:cassette) { 'beer_with_associations' }
-      let(:webhook) { BreweryDB::Webhook::Beer.new(id: model_id, action: 'edit') }
+      let(:webhook) { BreweryDB::Webhooks::Beer.new(id: model_id, action: 'edit') }
 
       before do
         Factory(:style, id: response['styleId'])
@@ -78,11 +78,11 @@ describe BreweryDB::Webhook::Beer do
 
     context '#brewery_insert' do
       let(:cassette) { 'beer_breweries' }
-      let(:webhook) { BreweryDB::Webhook::Beer.new(id: model_id, action: 'edit', sub_action: 'brewery_insert') }
+      let(:webhook) { BreweryDB::Webhooks::Beer.new(id: model_id, action: 'edit', sub_action: 'brewery_insert') }
 
       it 'raises an OrderingError if we do not have the breweries yet' do
         VCR.use_cassette(cassette) do
-          expect { webhook.process }.to raise_error(BreweryDB::Webhook::OrderingError)
+          expect { webhook.process }.to raise_error(BreweryDB::Webhooks::OrderingError)
         end
       end
 
@@ -96,7 +96,7 @@ describe BreweryDB::Webhook::Beer do
 
     context '#brewery_delete' do
       let(:cassette) { 'beer_breweries' }
-      let(:webhook) { BreweryDB::Webhook::Beer.new(id: model_id, action: 'edit', sub_action: 'brewery_delete') }
+      let(:webhook) { BreweryDB::Webhooks::Beer.new(id: model_id, action: 'edit', sub_action: 'brewery_delete') }
 
       it 'removes breweries from an association' do
         brewery = Factory(:brewery)
@@ -113,7 +113,7 @@ describe BreweryDB::Webhook::Beer do
     end
 
     context '#brewery_edit' do
-      let(:webhook) { BreweryDB::Webhook::Beer.new(id: model_id, action: 'edit', sub_action: 'brewery_edit') }
+      let(:webhook) { BreweryDB::Webhooks::Beer.new(id: model_id, action: 'edit', sub_action: 'brewery_edit') }
 
       it 'acts as a noop, returning true' do
         webhook.process.should be_true

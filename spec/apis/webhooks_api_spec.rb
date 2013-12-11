@@ -2,8 +2,6 @@ require 'spec_helper'
 require 'app/apis/webhooks_api'
 
 describe WebhooksAPI do
-  include Rack::Test::Methods
-
   def app
     WebhooksAPI
   end

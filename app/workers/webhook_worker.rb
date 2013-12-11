@@ -1,8 +1,8 @@
-require 'brewery_db/webhook/beer'
-require 'brewery_db/webhook/brewery'
-require 'brewery_db/webhook/event'
-require 'brewery_db/webhook/guild'
-require 'brewery_db/webhook/location'
+require 'brewery_db/webhooks/beer'
+require 'brewery_db/webhooks/brewery'
+require 'brewery_db/webhooks/event'
+require 'brewery_db/webhooks/guild'
+require 'brewery_db/webhooks/location'
 
 class WebhookWorker
   include Sidekiq::Worker
@@ -17,7 +17,7 @@ class WebhookWorker
       sub_action: params[:subAction] == 'none' ? nil : params[:subAction].underscore
     }
 
-    webhook_klass = BreweryDB::Webhook::const_get(type.classify)
+    webhook_klass = BreweryDB::Webhooks::const_get(type.classify)
     ::NewRelic::Agent.add_custom_parameters(options.merge(type: type))
 
     webhook_klass.new(options).process
