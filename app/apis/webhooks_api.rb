@@ -12,22 +12,22 @@ end
 class WebhooksAPI < Grape::API
   namespace :brewery_db do
     namespace :webhooks do
-      desc "Webhooks provided by BreweryDB."
-      params do
-        requires :type, type: String, values: %w[beer brewery location guild event]
+      # Rather than route_param here, we define each endpoint so that New Relic
+      # treats them as separate endpoints for better tracking.
+      %w[beer brewery location guild event].each do |type|
+        desc "The #{type} webhook provided by BreweryDB."
+        params do
+          requires :key, nonce_key: true
+          requires :nonce, type: String
+          requires :attributeId, type: String
+          requires :action, type: String
 
-        requires :key, nonce_key: true
-        requires :nonce, type: String
-        requires :attributeId, type: String
-        requires :action, type: String
-
-        # These params are optional and only used if params[:action] is 'edit'
-        optional :subAction, type: String
-        optional :subAttributeId
-      end
-      route_param :type do
-        post do
-          WebhookWorker.perform_async(params)
+          # These params are optional and only used if params[:action] is 'edit'
+          optional :subAction, type: String
+          optional :subAttributeId
+        end
+        post type do
+          WebhookWorker.perform_async(params.merge(type: type))
 
           status 200
         end

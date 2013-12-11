@@ -6,6 +6,7 @@ vendor/bundle/
 # Ignore sensitive files.
 config/environment/production.rb
 config/database.yml
+config/newrelic.yml
 config/redis.yml
 
 # Ignore Coveralls.
