@@ -9,16 +9,16 @@ describe BreweriesAPI do
   context 'the index action' do
     it 'returns an empty array' do
       get '/breweries'
-      last_response.status.should == 200
-      last_response.body.should   == '[]'
+      last_response.status.should eq(200)
+      last_response.body.should eq('[]')
     end
 
     it 'returns a list of breweries as JSON' do
       brewery = Factory(:brewery)
       get '/breweries'
 
-      last_response.status.should == 200
-      last_response.body.should   == [brewery].to_json
+      last_response.status.should eq(200)
+      last_response.body.should eq([brewery].to_json)
     end
   end
 end

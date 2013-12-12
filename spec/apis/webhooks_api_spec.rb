@@ -12,7 +12,7 @@ describe WebhooksAPI do
     end
 
     it 'returns a 400 status' do
-      last_response.status.should == 400
+      last_response.status.should eq(400)
     end
 
     it 'requires a key/nonce pair' do
@@ -39,7 +39,7 @@ describe WebhooksAPI do
     end
 
     it 'returns a 400 status' do
-      last_response.status.should == 400
+      last_response.status.should eq(400)
     end
 
     it 'reports that the key and nonce do not match up' do
@@ -64,7 +64,7 @@ describe WebhooksAPI do
 
       post '/brewery_db/webhooks/beer', params
 
-      last_response.status.should == 200
+      last_response.status.should eq(200)
     end
   end
 end
