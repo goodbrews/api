@@ -6,11 +6,11 @@ module Authenticatable
     attr_accessor :current_password
 
     validates :password, length: {
-                         minimum: 8,
-                         maximum: 50,
-                         message: 'must be between 8 and 50 characters',
-                         allow_blank: true
-                       }
+                           minimum: 8,
+                           maximum: 50,
+                           message: 'must be between 8 and 50 characters',
+                           allow_blank: true
+                         }
   end
 
   def update_with_password(params, *options)
