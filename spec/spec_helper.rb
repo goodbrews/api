@@ -35,6 +35,4 @@ RSpec.configure do |config|
   config.after(:all)   { DeferredGarbageCollection.reconsider }
 
   config.order = 'random'
-
-  def app() Goodbrews::API end
 end

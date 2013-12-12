@@ -1,3 +1,4 @@
+require 'app/apis/breweries_api'
 require 'app/apis/webhooks_api'
 
 module Goodbrews
@@ -5,6 +6,7 @@ module Goodbrews
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
     format :json
 
+    mount BreweriesAPI
     mount WebhooksAPI
   end
 end

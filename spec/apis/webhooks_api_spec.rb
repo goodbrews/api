@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'app/apis/webhooks_api'
+require 'app/apis/api'
 
 describe WebhooksAPI do
   def app
-    WebhooksAPI
+    Goodbrews::API
   end
 
   context 'without required params' do
