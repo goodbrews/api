@@ -4,10 +4,10 @@ require 'app/models/location'
 describe Location do
   it 'must belong to a brewery' do
     location = Factory.build(:location, name: '', website: '', brewery: nil)
-    location.should_not be_valid
-    location.errors[:brewery].should include("can't be blank")
+    expect(location).not_to be_valid
+    expect(location.errors[:brewery]).to include("can't be blank")
 
     location.brewery = Factory.build(:brewery)
-    location.should be_valid
+    expect(location).to be_valid
   end
 end

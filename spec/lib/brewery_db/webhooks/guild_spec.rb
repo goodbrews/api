@@ -31,15 +31,15 @@ describe BreweryDB::Webhooks::Guild do
       end
 
       it 'assigns attributes correctly' do
-        attributes_should_be_equal(guild, response)
+        expect_equal_attributes(guild, response)
       end
 
       it 'assigns breweries' do
-        guild.breweries.count.should eq(brewery_response.count)
+        expect(guild.breweries.count).to eq(brewery_response.count)
       end
 
       it 'assigns social media accounts' do
-        guild.social_media_accounts.count.should eq(response['socialAccounts'].count)
+        expect(guild.social_media_accounts.count).to eq(response['socialAccounts'].count)
       end
     end
   end
@@ -53,7 +53,7 @@ describe BreweryDB::Webhooks::Guild do
       before { VCR.use_cassette(cassette) { webhook.process } }
 
       it 'reassigns attributes correctly' do
-        attributes_should_be_equal(guild.reload, response)
+        expect_equal_attributes(guild.reload, response)
       end
     end
 
@@ -70,7 +70,7 @@ describe BreweryDB::Webhooks::Guild do
         brewery_response.each { |b| Factory(:brewery, brewerydb_id: b['id']) }
         VCR.use_cassette(cassette) { webhook.process }
 
-        guild.breweries.count.should eq(brewery_response.count)
+        expect(guild.breweries.count).to eq(brewery_response.count)
       end
     end
 
@@ -86,8 +86,8 @@ describe BreweryDB::Webhooks::Guild do
         VCR.use_cassette(cassette) { webhook.process }
         guild.reload
 
-        guild.breweries.count.should eq(brewery_response.count)
-        guild.breweries.should_not include(brewery)
+        expect(guild.breweries.count).to eq(brewery_response.count)
+        expect(guild.breweries).not_to include(brewery)
       end
     end
 
@@ -95,18 +95,18 @@ describe BreweryDB::Webhooks::Guild do
       let(:webhook) { BreweryDB::Webhooks::Guild.new(id: model_id, action: 'edit', sub_action: 'brewery_edit') }
 
       it 'acts as a noop, returning true' do
-        webhook.process.should be_true
+        expect(webhook.process).to be_true
       end
     end
   end
 
-  def attributes_should_be_equal(guild, attrs)
-    guild.name.should        eq(attrs['name'])
-    guild.established.should eq(attrs['established'].to_i)
-    guild.description.should eq(attrs['description'])
-    guild.website.should     eq(attrs['website'])
+  def expect_equal_attributes(guild, attrs)
+    expect(guild.name).to        eq(attrs['name'])
+    expect(guild.established).to eq(attrs['established'].to_i)
+    expect(guild.description).to eq(attrs['description'])
+    expect(guild.website).to     eq(attrs['website'])
 
-    guild.created_at.should  eq(Time.zone.parse(attrs['createDate']))
-    guild.updated_at.should  eq(Time.zone.parse(attrs['updateDate']))
+    expect(guild.created_at).to  eq(Time.zone.parse(attrs['createDate']))
+    expect(guild.updated_at).to  eq(Time.zone.parse(attrs['updateDate']))
   end
 end

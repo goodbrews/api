@@ -23,6 +23,13 @@ end
 RSpec.configure do |config|
   config.include Rack::Test::Methods
 
+  # Disable the 'should' syntax.
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+
+  # Clear out the database between every test case and defer garbage
+  # collection until it's really needed.
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DeferredGarbageCollection.start
@@ -34,5 +41,6 @@ RSpec.configure do |config|
   config.before(:all)  { DeferredGarbageCollection.start }
   config.after(:all)   { DeferredGarbageCollection.reconsider }
 
+  # No ordering issues here.
   config.order = 'random'
 end

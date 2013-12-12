@@ -6,7 +6,7 @@ shared_examples 'a socialable' do
   let!(:account) { Factory(:social_media_account, socialable: socialable )}
 
   it 'must provide an object with a social_media_accounts association' do
-    socialable.social_media_accounts.should_not be_empty
+    expect(socialable.social_media_accounts).not_to be_empty
   end
 
   it 'must destroy social media accounts on object destruction' do

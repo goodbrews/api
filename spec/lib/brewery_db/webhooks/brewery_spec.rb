@@ -33,23 +33,23 @@ describe BreweryDB::Webhooks::Brewery do
       end
 
       it 'creates a brewery' do
-        brewery.should_not be_nil
+        expect(brewery).not_to be_nil
       end
 
       it 'assigns attributes correctly' do
-        attributes_should_be_equal(brewery, response)
+        expect_equal_attributes(brewery, response)
       end
 
       it 'assigns guilds' do
-        brewery.guilds.count.should eq(response['guilds'].count)
+        expect(brewery.guilds.count).to eq(response['guilds'].count)
       end
 
       it 'creates social media accounts' do
-        brewery.social_media_accounts.count.should eq(response['socialAccounts'].count)
+        expect(brewery.social_media_accounts.count).to eq(response['socialAccounts'].count)
       end
 
       it 'parses and assigns alternate names' do
-        brewery.alternate_names.presence.should eq(response['alternateNames'].presence)
+        expect(brewery.alternate_names.presence).to eq(response['alternateNames'].presence)
       end
     end
   end
@@ -67,7 +67,7 @@ describe BreweryDB::Webhooks::Brewery do
       end
 
       it 'reassigns attributes correctly' do
-        attributes_should_be_equal(brewery.reload, response)
+        expect_equal_attributes(brewery.reload, response)
       end
     end
 
@@ -85,7 +85,7 @@ describe BreweryDB::Webhooks::Brewery do
         response.each { |g| Factory(:guild, brewerydb_id: g['id']) }
         VCR.use_cassette(cassette) { webhook.process }
 
-        brewery.guilds.count.should eq(response.count)
+        expect(brewery.guilds.count).to eq(response.count)
       end
     end
 
@@ -102,8 +102,8 @@ describe BreweryDB::Webhooks::Brewery do
         VCR.use_cassette(cassette) { webhook.process }
         brewery.reload
 
-        brewery.guilds.count.should eq(response.count)
-        brewery.guilds.should_not include(guild)
+        expect(brewery.guilds.count).to eq(response.count)
+        expect(brewery.guilds).not_to include(guild)
       end
     end
 
@@ -111,7 +111,7 @@ describe BreweryDB::Webhooks::Brewery do
       let(:webhook) { BreweryDB::Webhooks::Brewery.new(id: model_id, action: 'edit', sub_action: 'guild_edit') }
 
       it 'acts as a noop, returning true' do
-        webhook.process.should be_true
+        expect(webhook.process).to be_true
       end
     end
 
@@ -129,7 +129,7 @@ describe BreweryDB::Webhooks::Brewery do
         response.each { |b| Factory(:beer, brewerydb_id: b['id']) }
         VCR.use_cassette(cassette) { webhook.process }
 
-        brewery.beers.count.should eq(response.count)
+        expect(brewery.beers.count).to eq(response.count)
       end
     end
 
@@ -146,8 +146,8 @@ describe BreweryDB::Webhooks::Brewery do
         VCR.use_cassette(cassette) { webhook.process }
         brewery.reload
 
-        brewery.beers.count.should eq(response.count)
-        brewery.beers.should_not include(beer)
+        expect(brewery.beers.count).to eq(response.count)
+        expect(brewery.beers).not_to include(beer)
       end
     end
 
@@ -155,7 +155,7 @@ describe BreweryDB::Webhooks::Brewery do
       let(:webhook) { BreweryDB::Webhooks::Brewery.new(id: model_id, action: 'edit', sub_action: 'beer_edit') }
 
       it 'acts as a noop, returning true' do
-        webhook.process.should be_true
+        expect(webhook.process).to be_true
       end
     end
 
@@ -164,22 +164,22 @@ describe BreweryDB::Webhooks::Brewery do
 
       context "#location_#{action}" do
         it 'should be a noop, returning true' do
-          webhook.process.should be_true
+          expect(webhook.process).to be_true
         end
       end
     end
   end
 
-  def attributes_should_be_equal(brewery, attrs)
-    brewery.name.should                eq(attrs['name'])
-    brewery.website.should             eq(attrs['website'])
-    brewery.description.should         eq(attrs['description'])
-    brewery.established.should         eq(attrs['established'].to_i)
-    brewery.should_not be_organic
+  def expect_equal_attributes(brewery, attrs)
+    expect(brewery.name).to                eq(attrs['name'])
+    expect(brewery.website).to             eq(attrs['website'])
+    expect(brewery.description).to         eq(attrs['description'])
+    expect(brewery.established).to         eq(attrs['established'].to_i)
+    expect(brewery).not_to be_organic
 
-    brewery.created_at.should          eq(Time.zone.parse(attrs['createDate']))
-    brewery.updated_at.should          eq(Time.zone.parse(attrs['updateDate']))
+    expect(brewery.created_at).to          eq(Time.zone.parse(attrs['createDate']))
+    expect(brewery.updated_at).to          eq(Time.zone.parse(attrs['updateDate']))
 
-    brewery.image_id.should eq(attrs['images']['icon'].match(/upload_(\w+)-icon/)[1])
+    expect(brewery.image_id).to eq(attrs['images']['icon'].match(/upload_(\w+)-icon/)[1])
   end
 end

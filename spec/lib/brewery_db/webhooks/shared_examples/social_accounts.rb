@@ -10,7 +10,7 @@ shared_examples 'a webhook that updates social accounts' do
     before { VCR.use_cassette(cassette) { webhook.process } }
 
     it 'creates and assigns social_media_accounts' do
-      model.social_media_accounts.count.should eq(response.count)
+      expect(model.social_media_accounts.count).to eq(response.count)
     end
   end
 

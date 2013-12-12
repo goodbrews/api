@@ -59,19 +59,19 @@ describe BreweryDB::Webhooks::Event do
       end
 
       it 'assigns attributes correctly' do
-        attributes_should_be_equal(event, response)
+        expect_equal_attributes(event, response)
       end
 
       it 'assigns breweries' do
-        event.breweries.count.should eq(brewery_response.count)
+        expect(event.breweries.count).to eq(brewery_response.count)
       end
 
       it 'assigns beers' do
-        event.beers.count.should eq(beer_response.count)
+        expect(event.beers.count).to eq(beer_response.count)
       end
 
       it 'assigns social media accounts' do
-        event.social_media_accounts.count.should eq(social_account_response.count)
+        expect(event.social_media_accounts.count).to eq(social_account_response.count)
       end
     end
   end
@@ -90,7 +90,7 @@ describe BreweryDB::Webhooks::Event do
       end
 
       it 'reassigns attributes correctly' do
-        attributes_should_be_equal(event.reload, response)
+        expect_equal_attributes(event.reload, response)
       end
     end
 
@@ -107,7 +107,7 @@ describe BreweryDB::Webhooks::Event do
         brewery_response.each { |b| Factory(:brewery, brewerydb_id: b['breweryId']) }
         VCR.use_cassette(cassette) { webhook.process }
 
-        event.breweries.count.should eq(brewery_response.count)
+        expect(event.breweries.count).to eq(brewery_response.count)
       end
     end
 
@@ -123,8 +123,8 @@ describe BreweryDB::Webhooks::Event do
         VCR.use_cassette(cassette) { webhook.process }
         event.reload
 
-        event.breweries.count.should eq(brewery_response.count)
-        event.breweries.should_not include(brewery)
+        expect(event.breweries.count).to eq(brewery_response.count)
+        expect(event.breweries).not_to include(brewery)
       end
     end
 
@@ -132,7 +132,7 @@ describe BreweryDB::Webhooks::Event do
       let(:webhook) { BreweryDB::Webhooks::Event.new(id: model_id, action: 'edit', sub_action: 'brewery_edit') }
 
       it 'acts as a noop, returning true' do
-        webhook.process.should be_true
+        expect(webhook.process).to be_true
       end
     end
 
@@ -149,7 +149,7 @@ describe BreweryDB::Webhooks::Event do
         beer_response.each { |b| Factory(:beer, brewerydb_id: b['beerId']) }
         VCR.use_cassette(cassette) { webhook.process }
 
-        event.beers.count.should eq(beer_response.count)
+        expect(event.beers.count).to eq(beer_response.count)
       end
     end
 
@@ -165,8 +165,8 @@ describe BreweryDB::Webhooks::Event do
         VCR.use_cassette(cassette) { webhook.process }
         event.reload
 
-        event.beers.count.should eq(beer_response.count)
-        event.beers.should_not include(beer)
+        expect(event.beers.count).to eq(beer_response.count)
+        expect(event.beers).not_to include(beer)
       end
     end
 
@@ -174,35 +174,35 @@ describe BreweryDB::Webhooks::Event do
       let(:webhook) { BreweryDB::Webhooks::Event.new(id: model_id, action: 'edit', sub_action: 'beer_edit') }
 
       it 'acts as a noop, returning true' do
-        webhook.process.should be_true
+        expect(webhook.process).to be_true
       end
     end
   end
 
-  def attributes_should_be_equal(event, attrs)
-    event.name.should        eq(attrs['name'])
-    event.year.should        eq(attrs['year'].to_i)
-    event.description.should eq(attrs['description'])
-    event.category.should    eq(attrs['typeDisplay'])
-    event.start_date.should  eq(Date.parse(attrs['startDate']))
-    event.end_date.should    eq(Date.parse(attrs['endDate']))
-    event.hours.should       eq(attrs['time'])
-    event.price.should       eq(attrs['price'])
-    event.venue.should       eq(attrs['venueName'])
-    event.street.should      eq(attrs['streetAddress'])
-    event.street2.should     eq(attrs['extendedAddress'])
-    event.city.should        eq(attrs['locality'])
-    event.region.should      eq(attrs['region'])
-    event.postal_code.should eq(attrs['postalCode'])
-    event.country.should     eq(attrs['countryIsoCode'])
-    event.latitude.should    eq(attrs['latitude'])
-    event.longitude.should   eq(attrs['longitude'])
-    event.website.should     eq(attrs['website'])
-    event.phone.should       eq(attrs['phone'])
+  def expect_equal_attributes(event, attrs)
+    expect(event.name).to        eq(attrs['name'])
+    expect(event.year).to        eq(attrs['year'].to_i)
+    expect(event.description).to eq(attrs['description'])
+    expect(event.category).to    eq(attrs['typeDisplay'])
+    expect(event.start_date).to  eq(Date.parse(attrs['startDate']))
+    expect(event.end_date).to    eq(Date.parse(attrs['endDate']))
+    expect(event.hours).to       eq(attrs['time'])
+    expect(event.price).to       eq(attrs['price'])
+    expect(event.venue).to       eq(attrs['venueName'])
+    expect(event.street).to      eq(attrs['streetAddress'])
+    expect(event.street2).to     eq(attrs['extendedAddress'])
+    expect(event.city).to        eq(attrs['locality'])
+    expect(event.region).to      eq(attrs['region'])
+    expect(event.postal_code).to eq(attrs['postalCode'])
+    expect(event.country).to     eq(attrs['countryIsoCode'])
+    expect(event.latitude).to    eq(attrs['latitude'])
+    expect(event.longitude).to   eq(attrs['longitude'])
+    expect(event.website).to     eq(attrs['website'])
+    expect(event.phone).to       eq(attrs['phone'])
 
-    event.created_at.should  eq(Time.zone.parse(attrs['createDate']))
-    event.updated_at.should  eq(Time.zone.parse(attrs['updateDate']))
+    expect(event.created_at).to  eq(Time.zone.parse(attrs['createDate']))
+    expect(event.updated_at).to  eq(Time.zone.parse(attrs['updateDate']))
 
-    event.image_id.should eq(attrs['images']['icon'].match(/upload_(\w+)-icon/)[1])
+    expect(event.image_id).to eq(attrs['images']['icon'].match(/upload_(\w+)-icon/)[1])
   end
 end

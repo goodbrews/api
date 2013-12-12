@@ -34,27 +34,27 @@ describe BreweryDB::Webhooks::Beer do
       end
 
       it 'creates a beer' do
-        beer.should_not be_nil
+        expect(beer).not_to be_nil
       end
 
       it 'assigns attributes correctly' do
-        attributes_should_be_equal(beer, response)
+        expect_equal_attributes(beer, response)
       end
 
       it 'assigns a style' do
-        beer.style.should eq(style)
+        expect(beer.style).to eq(style)
       end
 
       it 'assigns breweries' do
-        beer.breweries.count.should eq(response['breweries'].count)
+        expect(beer.breweries.count).to eq(response['breweries'].count)
       end
 
       it 'creates social media accounts' do
-        beer.social_media_accounts.count.should eq(response['socialAccounts'].count)
+        expect(beer.social_media_accounts.count).to eq(response['socialAccounts'].count)
       end
 
       it 'creates ingredients' do
-        beer.ingredients.count.should eq(response['ingredients'].count)
+        expect(beer.ingredients.count).to eq(response['ingredients'].count)
       end
     end
   end
@@ -72,7 +72,7 @@ describe BreweryDB::Webhooks::Beer do
       end
 
       it 'reassigns attributes correctly' do
-        attributes_should_be_equal(beer.reload, response)
+        expect_equal_attributes(beer.reload, response)
       end
     end
 
@@ -90,7 +90,7 @@ describe BreweryDB::Webhooks::Beer do
         response.each { |b| Factory(:brewery, brewerydb_id: b['id']) }
         VCR.use_cassette(cassette) { webhook.process }
 
-        beer.breweries.count.should eq(response.count)
+        expect(beer.breweries.count).to eq(response.count)
       end
     end
 
@@ -107,8 +107,8 @@ describe BreweryDB::Webhooks::Beer do
         VCR.use_cassette(cassette) { webhook.process }
         beer.reload
 
-        beer.breweries.count.should eq(response.count)
-        beer.breweries.should_not include(brewery)
+        expect(beer.breweries.count).to eq(response.count)
+        expect(beer.breweries).not_to include(brewery)
       end
     end
 
@@ -116,25 +116,25 @@ describe BreweryDB::Webhooks::Beer do
       let(:webhook) { BreweryDB::Webhooks::Beer.new(id: model_id, action: 'edit', sub_action: 'brewery_edit') }
 
       it 'acts as a noop, returning true' do
-        webhook.process.should be_true
+        expect(webhook.process).to be_true
       end
     end
   end
 
-  def attributes_should_be_equal(beer, attrs)
-    beer.name.should                eq(attrs['name'])
-    beer.description.should         eq(attrs['description'])
-    beer.abv.should                 eq(attrs['abv'].to_f)
-    beer.ibu.should                 eq(attrs['ibu'].to_f)
-    beer.original_gravity.should    eq(attrs['originalGravity'].to_f)
-    beer.should_not be_organic
-    beer.serving_temperature.should eq(attrs['servingTemperatureDisplay'])
-    beer.availability.should        eq(attrs['available']['name'])
-    beer.glassware.should           eq(attrs['glass']['name'])
+  def expect_equal_attributes(beer, attrs)
+    expect(beer.name).to                eq(attrs['name'])
+    expect(beer.description).to         eq(attrs['description'])
+    expect(beer.abv).to                 eq(attrs['abv'].to_f)
+    expect(beer.ibu).to                 eq(attrs['ibu'].to_f)
+    expect(beer.original_gravity).to    eq(attrs['originalGravity'].to_f)
+    expect(beer).not_to be_organic
+    expect(beer.serving_temperature).to eq(attrs['servingTemperatureDisplay'])
+    expect(beer.availability).to        eq(attrs['available']['name'])
+    expect(beer.glassware).to           eq(attrs['glass']['name'])
 
-    beer.created_at.should          eq(Time.zone.parse(attrs['createDate']))
-    beer.updated_at.should          eq(Time.zone.parse(attrs['updateDate']))
+    expect(beer.created_at).to          eq(Time.zone.parse(attrs['createDate']))
+    expect(beer.updated_at).to          eq(Time.zone.parse(attrs['updateDate']))
 
-    beer.image_id.should eq(attrs['labels']['icon'].match(/upload_(\w+)-icon/)[1])
+    expect(beer.image_id).to eq(attrs['labels']['icon'].match(/upload_(\w+)-icon/)[1])
   end
 end

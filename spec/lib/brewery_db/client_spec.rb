@@ -15,17 +15,18 @@ describe BreweryDB::Client do
       client.get('/beer/TACnR2')
     end
 
-    a_request(:get, 'https://api.brewerydb.com/v2/beer/TACnR2').
-      with(query: { 'key' => ENV['BREWERY_DB_API_KEY'] }).
-      should have_been_made
+    url = 'https://api.brewerydb.com/v2/beer/TACnR2'
+    params = { query: { 'key' => ENV['BREWERY_DB_API_KEY'] } }
+
+    expect(a_request(:get, url).with(params)).to have_been_made
   end
 
   it 'must parse response bodies from BreweryDB as JSON' do
     VCR.use_cassette('beer') do
       response = client.get('/beer/TACnR2')
 
-      response.body.should be_a Hash
-      response.body['data'].should be_present
+      expect(response.body).to be_a(Hash)
+      expect(response.body['data']).to be_present
     end
   end
 
@@ -45,7 +46,7 @@ describe BreweryDB::Client do
         client.get('/beer/TACnR2', associations)
       end
 
-      a_request(:get, path).with(query: query).should have_been_made
+      expect(a_request(:get, path).with(query: query)).to have_been_made
     end
 
     it 'must accept them from a query string in the path' do
@@ -56,7 +57,7 @@ describe BreweryDB::Client do
         client.get(request_path)
       end
 
-      a_request(:get, path).with(query: query).should have_been_made
+      expect(a_request(:get, path).with(query: query)).to have_been_made
     end
 
     it 'must merge a params hash with a query string in the path' do
@@ -67,7 +68,7 @@ describe BreweryDB::Client do
         client.get('/beer/TACnR2?withBreweries=Y', params)
       end
 
-      a_request(:get, path).with(query: query).should have_been_made
+      expect(a_request(:get, path).with(query: query)).to have_been_made
     end
   end
 end

@@ -12,7 +12,7 @@ shared_examples 'something that has join records' do
 
         record.destroy
         expect { associated.reload }.not_to raise_error
-        associated.send(described_class.to_s.underscore.pluralize).should_not include(record)
+        expect(associated.send(described_class.to_s.underscore.pluralize)).not_to include(record)
       end
     end
   end

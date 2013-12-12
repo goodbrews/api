@@ -16,7 +16,7 @@ shared_examples 'a webhook that updates events' do
     it 'assigns events if we have them' do
       response.each { |e| Factory(:event, brewerydb_id: e['eventId']) }
       VCR.use_cassette(cassette) { webhook.process }
-      model.events.count.should eq(response.count)
+      expect(model.events.count).to eq(response.count)
     end
   end
 
@@ -32,8 +32,8 @@ shared_examples 'a webhook that updates events' do
       VCR.use_cassette(cassette) { webhook.process }
       model.reload
 
-      model.events.count.should eq(response.count)
-      model.events.should_not include(event)
+      expect(model.events.count).to eq(response.count)
+      expect(model.events).not_to include(event)
     end
   end
 
@@ -41,7 +41,7 @@ shared_examples 'a webhook that updates events' do
     let(:webhook) { webhook_klass.new(id: model_id, action: 'edit', sub_action: 'event_edit') }
 
     it 'acts as a noop, returning true' do
-      webhook.process.should be_true
+      expect(webhook.process).to be_true
     end
   end
 end
