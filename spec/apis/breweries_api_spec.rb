@@ -16,10 +16,12 @@ describe BreweriesAPI do
 
     it 'returns a list of breweries as JSON' do
       brewery = Factory(:brewery)
+      presenter = BreweryPresenter.present(Brewery.all, context: app)
+
       get '/breweries'
 
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to eq([brewery].to_json)
+      expect(last_response.body).to eq(presenter.to_json)
     end
   end
 end

@@ -12,6 +12,9 @@ gem 'activerecord', '~> 4.0.0', require: 'active_record'
 gem 'recommendable', github: 'davidcelis/recommendable'
 gem 'pg'
 
+# Presentation.
+gem 'jsonite'
+
 # Background processing.
 gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
@@ -20,10 +23,12 @@ gem 'sidekiq-unique-jobs'
 gem 'mail'
 
 # Utilities.
-gem 'newrelic_rpm'
-gem 'newrelic-grape'
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'log4r'
+
+# Monitoring.
+gem 'newrelic_rpm'
+gem 'newrelic-grape'
 
 group :development, :test do
   gem 'guard'
