@@ -13,7 +13,8 @@ gem 'recommendable', github: 'davidcelis/recommendable'
 gem 'pg'
 
 # Presentation.
-gem 'jsonite'
+gem 'jsonite', github: 'barrelage/jsonite'
+gem 'kaminari'
 
 # Background processing.
 gem 'sidekiq'
