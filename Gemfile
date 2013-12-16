@@ -15,6 +15,7 @@ gem 'pg'
 # Presentation.
 gem 'jsonite', github: 'barrelage/jsonite'
 gem 'kaminari'
+gem 'api-pagination'
 
 # Background processing.
 gem 'sidekiq'

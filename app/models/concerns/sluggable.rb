@@ -2,6 +2,7 @@ module Sluggable
   extend ActiveSupport::Concern
 
   included do
+    scope :from_param, ->(slug) { where(slug: slug) }
     before_create :set_slug
     validates :slug, uniqueness: { case_sensitive: false }
   end
