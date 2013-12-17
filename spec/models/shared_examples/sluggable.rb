@@ -23,4 +23,8 @@ shared_examples 'a sluggable' do
   it 'overrides #to_param to return the slug' do
     expect(sluggable.to_param).to eq(sluggable.slug)
   end
+
+  it 'defines a .from_param scope to return a model from a slug' do
+    expect(sluggable.class.from_param(sluggable.slug)).to eq(sluggable)
+  end
 end
