@@ -2,10 +2,6 @@ require 'spec_helper'
 require 'app/apis/api'
 
 describe BreweriesAPI do
-  def app
-    Goodbrews::API
-  end
-
   context 'the index action' do
     it 'returns an empty array' do
       get '/breweries'

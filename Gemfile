@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 # Infrastructure.
-gem 'grape'
+gem 'crepe', github: 'stephencelis/crepe'
 gem 'puma'
 gem 'rake'
 gem 'app'

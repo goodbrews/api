@@ -2,13 +2,13 @@
 require 'coveralls'
 Coveralls.wear!
 
-ENV['GRAPE_ENV'] ||= 'test'
+ENV['RACK_ENV'] ||= 'test'
 require File.expand_path("../../config/application", __FILE__)
 require 'webmock/rspec'
 require 'vcr'
 
 # Require support files, including Factories.
-Dir[Grape.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Crepe.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Don't be slow, BCrypt. Not here. Not now.
 ActiveModel::SecurePassword.min_cost = true
@@ -43,4 +43,8 @@ RSpec.configure do |config|
 
   # No ordering issues here.
   config.order = 'random'
+
+  def app
+    Goodbrews::API
+  end
 end

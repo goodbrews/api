@@ -1,7 +1,7 @@
 require 'active_support/dependencies'
 
 # Load environment-specific configuration
-pathname = Grape.root.join('config', 'environment', Grape.env)
+pathname = Crepe.root.join('config', 'environment', Crepe.env)
 require_dependency pathname.to_s
 
 # Initialize ActiveSupport's default time zone

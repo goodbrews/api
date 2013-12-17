@@ -6,26 +6,6 @@ describe WebhooksAPI do
     Goodbrews::API
   end
 
-  context 'without required params' do
-    before do
-      post '/brewery_db/webhooks/beer'
-    end
-
-    it 'returns a 400 status' do
-      expect(last_response.status).to eq(400)
-    end
-
-    it 'requires a key/nonce pair' do
-      expect(last_response.body).to include('key is missing')
-      expect(last_response.body).to include('nonce is missing')
-    end
-
-    it 'requires actionable params sent by BreweryDB' do
-      expect(last_response.body).to include('action is missing')
-      expect(last_response.body).to include('attributeId is missing')
-    end
-  end
-
   context 'with an invalid key/nonce pair' do
     before do
       params = {
@@ -38,14 +18,12 @@ describe WebhooksAPI do
       post '/brewery_db/webhooks/beer', params
     end
 
-    it 'returns a 400 status' do
-      expect(last_response.status).to eq(400)
+    it 'returns a 401 status' do
+      expect(last_response.status).to eq(401)
     end
 
     it 'reports that the key and nonce do not match up' do
-      expect(last_response.body).to include('key does not match our BreweryDB API key')
-      expect(last_response.body).not_to include('key is missing')
-      expect(last_response.body).not_to include('nonce is missing')
+      expect(last_response.body).to include('Nonce/key pair mismatch.')
     end
   end
 
@@ -59,12 +37,12 @@ describe WebhooksAPI do
       }
     end
 
-    it 'initializes a WebhookWorker with the params' do
+    it 'initializes a WebhookWorker with the params and returns a 204' do
       expect(WebhookWorker).to receive(:perform_async)
 
       post '/brewery_db/webhooks/beer', params
 
-      expect(last_response.status).to eq(200)
+      expect(last_response.status).to eq(204)
     end
   end
 end

@@ -1,4 +1,4 @@
-redis = YAML.load(ERB.new(File.new('config/redis.yml').read).result)[Grape.env]
+redis = YAML.load(ERB.new(File.new('config/redis.yml').read).result)[Crepe.env]
 
 Recommendable.configure do |config|
   # Recommendable's connection to Redis.

@@ -4,7 +4,7 @@ require 'app/apis/api'
 
 use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
-if Grape.env.development?
+if Crepe.env.development?
   require 'new_relic/rack/developer_mode'
   use NewRelic::Rack::DeveloperMode
 end
