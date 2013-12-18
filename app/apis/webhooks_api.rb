@@ -1,6 +1,6 @@
 require 'app/workers/webhook_worker'
 
-class WebhooksAPI < Crepe::API
+class WebhooksAPI < BaseAPI
   namespace :brewery_db do
     namespace :webhooks do
       before :validate_nonce!
@@ -11,7 +11,7 @@ class WebhooksAPI < Crepe::API
         post type do
           WebhookWorker.perform_async(params.merge(type: type))
 
-          head :no_content
+          head :accepted
         end
       end
     end

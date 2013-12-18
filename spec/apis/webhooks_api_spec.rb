@@ -37,12 +37,12 @@ describe WebhooksAPI do
       }
     end
 
-    it 'initializes a WebhookWorker with the params and returns a 204' do
+    it 'initializes a WebhookWorker with the params and returns a 202' do
       expect(WebhookWorker).to receive(:perform_async)
 
       post '/brewery_db/webhooks/beer', params
 
-      expect(last_response.status).to eq(204)
+      expect(last_response.status).to eq(202)
     end
   end
 end

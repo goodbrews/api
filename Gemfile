@@ -14,8 +14,7 @@ gem 'pg'
 
 # Presentation.
 gem 'jsonite', github: 'barrelage/jsonite'
-gem 'kaminari'
-gem 'api-pagination'
+gem 'kaminari', require: false
 
 # Background processing.
 gem 'sidekiq'
@@ -30,7 +29,6 @@ gem 'log4r'
 
 # Monitoring.
 gem 'newrelic_rpm'
-gem 'newrelic-grape'
 
 group :development, :test do
   gem 'guard'

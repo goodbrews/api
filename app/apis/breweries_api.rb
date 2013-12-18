@@ -1,10 +1,11 @@
+require 'app/apis/base_api'
 require 'app/models/brewery'
 require 'app/presenters/brewery_presenter'
 
-class BreweriesAPI < Crepe::API
+class BreweriesAPI < BaseAPI
   namespace :breweries do
     get do
-      @breweries = Brewery.limit(25)
+      @breweries = paginate(Brewery.all)
 
       BreweryPresenter.present(@breweries, context: self)
     end
