@@ -25,7 +25,6 @@ gem 'mail'
 
 # Utilities.
 gem 'bcrypt-ruby', '~> 3.1.2'
-gem 'log4r'
 
 # Monitoring.
 gem 'newrelic_rpm'

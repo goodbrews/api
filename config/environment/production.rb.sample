@@ -9,4 +9,6 @@ Goodbrews::Application.configure do
       password: 'supersecret'
     }
   end
+
+  Crepe.logger = Logger.new File.open('log/production.log', 'a')
 end
