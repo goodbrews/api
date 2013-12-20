@@ -19,14 +19,17 @@ describe BreweryPresenter do
         'beers'           => brewery.beers.count,
         'events'          => brewery.events.count,
         'guilds'          => brewery.guilds.count,
-        'locations'       => brewery.locations.count,
+
+        '_embedded' => {
+          'locations' => LocationPresenter.present(brewery.locations, context: self)
+        },
 
         '_links' => {
           'self'      => { href: "/breweries/#{brewery.to_param}" },
           'beers'     => { href: "/breweries/#{brewery.to_param}/beers"},
           'events'    => { href: "/breweries/#{brewery.to_param}/events"},
           'guilds'    => { href: "/breweries/#{brewery.to_param}/guilds"},
-          'locations' => { href: "/breweries/#{brewery.to_param}/locations"},
+
           'image'     => {
             href:      "https://s3.amazonaws.com/brewerydbapi/brewery/#{brewery.brewerydb_id}/upload_#{brewery.image_id}-{size}.png",
             templated: true,
