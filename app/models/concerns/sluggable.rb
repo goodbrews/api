@@ -2,9 +2,12 @@ module Sluggable
   extend ActiveSupport::Concern
 
   included do
-    scope :from_param, ->(slug) { find_by(slug: slug) }
     before_create :set_slug
     validates :slug, uniqueness: { case_sensitive: false }
+
+    def self.from_param(param)
+      find_by!(slug: param)
+    end
   end
 
   def to_param

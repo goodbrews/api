@@ -3,19 +3,17 @@ require 'app/models/brewery'
 require 'app/presenters/brewery_presenter'
 
 class BreweriesAPI < BaseAPI
-  namespace :breweries do
+  get do
+    breweries = paginate(Brewery.all)
+
+    BreweryPresenter.present(breweries, context: self)
+  end
+
+  param :slug do
+    let(:brewery) { Brewery.from_param(params[:slug]) }
+
     get do
-      @breweries = paginate(Brewery.all)
-
-      BreweryPresenter.present(@breweries, context: self)
-    end
-
-    param :slug do
-      get do
-        @brewery = Brewery.from_param(params[:slug])
-
-        BreweryPresenter.present(@brewery, context: self)
-      end
+      BreweryPresenter.present(brewery, context: self)
     end
   end
 end

@@ -1,19 +1,15 @@
 require 'app/workers/webhook_worker'
 
 class WebhooksAPI < BaseAPI
-  namespace :brewery_db do
-    namespace :webhooks do
-      before :validate_nonce!
+  before :validate_nonce!
 
-      # Rather than route_param here, we define each endpoint so that New Relic
-      # treats them as separate endpoints for better tracking.
-      %w[beer brewery location guild event].each do |type|
-        post type do
-          WebhookWorker.perform_async(params.merge(type: type))
+  # Rather than route_param here, we define each endpoint so that New Relic
+  # treats them as separate endpoints for better tracking.
+  %w[beer brewery location guild event].each do |type|
+    post type do
+      WebhookWorker.perform_async(params.merge(type: type))
 
-          head :accepted
-        end
-      end
+      head :accepted
     end
   end
 

@@ -5,7 +5,11 @@ require 'app/apis/webhooks_api'
 
 module Goodbrews
   class API < BaseAPI
-    mount BreweriesAPI
-    mount WebhooksAPI
+    mount BreweriesAPI => :breweries
+    mount WebhooksAPI  => '/brewery_db/webhooks/'
+
+    any '*catchall' do
+      error! :not_found
+    end
   end
 end
