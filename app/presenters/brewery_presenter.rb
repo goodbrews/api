@@ -1,5 +1,6 @@
 require 'app/models/brewery'
 require 'app/presenters/location_presenter'
+require 'app/presenters/social_media_account_presenter'
 
 class BreweryPresenter < Jsonite
   properties :name, :alternate_names, :description, :website, :organic, :established
@@ -9,6 +10,7 @@ class BreweryPresenter < Jsonite
   property(:guilds)    { guilds.count }
 
   embed :locations, with: LocationPresenter
+  embed :social_media_accounts, with: SocialMediaAccountPresenter
 
   link             { "/breweries/#{self.to_param}" }
   link(:beers)     { "/breweries/#{self.to_param}/beers" }

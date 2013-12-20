@@ -1,4 +1,5 @@
 require 'app/models/event'
+require 'app/presenters/social_media_account_presenter'
 
 class EventPresenter < Jsonite
   properties :name, :description, :category, :year, :start_date, :end_date,
@@ -7,6 +8,8 @@ class EventPresenter < Jsonite
 
   property(:beers)     { beers.count }
   property(:breweries) { breweries.count }
+
+  embed :social_media_accounts, with: SocialMediaAccountPresenter
 
   link             { "/events/#{self.to_param}" }
   link(:beers)     { "/events/#{self.to_param}/beers" }

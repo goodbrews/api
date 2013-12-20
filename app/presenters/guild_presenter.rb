@@ -1,9 +1,12 @@
 require 'app/models/guild'
+require 'app/presenters/social_media_account_presenter'
 
 class GuildPresenter < Jsonite
   properties :name, :description, :established, :website
 
   property(:breweries) { breweries.count }
+
+  embed :social_media_accounts, with: SocialMediaAccountPresenter
 
   link             { "/guilds/#{self.to_param}" }
   link(:breweries) { "/guilds/#{self.to_param}/breweries" }

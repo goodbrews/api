@@ -25,7 +25,8 @@ describe BeerPresenter do
         'events'    => beer.events.count,
 
         '_embedded' => {
-          'ingredients' => IngredientPresenter.present(beer.ingredients, context: self)
+          'ingredients' => IngredientPresenter.present(beer.ingredients, context: self),
+          'social_media_accounts' => SocialMediaAccountPresenter.present(beer.social_media_accounts, context: self)
         },
 
         '_links' => {

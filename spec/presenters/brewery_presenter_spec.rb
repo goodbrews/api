@@ -21,7 +21,8 @@ describe BreweryPresenter do
         'guilds'          => brewery.guilds.count,
 
         '_embedded' => {
-          'locations' => LocationPresenter.present(brewery.locations, context: self)
+          'locations' => LocationPresenter.present(brewery.locations, context: self),
+          'social_media_accounts' => SocialMediaAccountPresenter.present(brewery.social_media_accounts, context: self)
         },
 
         '_links' => {

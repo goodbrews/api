@@ -16,6 +16,10 @@ describe GuildPresenter do
 
         'breweries'   => guild.breweries.count,
 
+        '_embedded' => {
+          'social_media_accounts' => SocialMediaAccountPresenter.present(guild.social_media_accounts, context: self)
+        },
+
         '_links' => {
           'self'      => { href: "/guilds/#{guild.to_param}" },
           'breweries' => { href: "/guilds/#{guild.to_param}/breweries" },

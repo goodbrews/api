@@ -33,6 +33,10 @@ describe EventPresenter do
         'beers'       => event.beers.count,
         'breweries'   => event.breweries.count,
 
+        '_embedded' => {
+          'social_media_accounts' => SocialMediaAccountPresenter.present(event.social_media_accounts, context: self)
+        },
+
         '_links' => {
           'self'      => { href: "/events/#{event.to_param}" },
           'beers'     => { href: "/events/#{event.to_param}/beers" },
