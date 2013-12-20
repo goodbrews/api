@@ -1,4 +1,5 @@
 require 'app/models/beer'
+require 'app/presenters/ingredient_presenter'
 
 class BeerPresenter < Jsonite
   properties :name, :description, :availability, :glassware, :organic,
@@ -8,7 +9,8 @@ class BeerPresenter < Jsonite
   property(:style)       { style_id }
   property(:breweries)   { breweries.count }
   property(:events)      { events.count }
-  property(:ingredients) { ingredients.count }
+
+  embed :ingredients, with: IngredientPresenter
 
   link             { "/beers/#{self.to_param}" }
   link(:style)     { "/styles/#{style.to_param}" }

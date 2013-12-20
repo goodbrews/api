@@ -4,26 +4,29 @@ require 'app/presenters/beer_presenter'
 describe BeerPresenter do
   let(:beers) { [Factory(:beer), Factory(:beer)] }
 
-  it 'presents a brewery with a root key' do
+  it 'presents a beer with a root key' do
     beer = beers.first
 
     expected = {
       'beer' => {
-        'name'            => beer.name,
-        'description'     => beer.description,
-        'availability'    => beer.availability,
-        'glassware'       => beer.glassware,
-        'organic'         => beer.organic,
+        'name'         => beer.name,
+        'description'  => beer.description,
+        'availability' => beer.availability,
+        'glassware'    => beer.glassware,
+        'organic'      => beer.organic,
 
         'abv'                 => beer.abv,
         'ibu'                 => beer.ibu,
         'original_gravity'    => beer.original_gravity,
         'serving_temperature' => beer.serving_temperature,
 
-        'style'       => beer.style_id,
-        'breweries'   => beer.breweries.count,
-        'events'      => beer.events.count,
-        'ingredients' => beer.ingredients.count,
+        'style'     => beer.style_id,
+        'breweries' => beer.breweries.count,
+        'events'    => beer.events.count,
+
+        '_embedded' => {
+          'ingredients' => IngredientPresenter.present(beer.ingredients, context: self)
+        },
 
         '_links' => {
           'self'      => { href: "/beers/#{beer.to_param}" },
@@ -44,7 +47,7 @@ describe BeerPresenter do
     expect(hash).to eq(expected)
   end
 
-  it 'presents an array of breweries without root keys' do
+  it 'presents an array of beers without root keys' do
     expected = [
       BeerPresenter.present(beers.first, context: self)['beer'],
       BeerPresenter.present(beers.last,  context: self)['beer']

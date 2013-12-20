@@ -4,7 +4,7 @@ require 'app/presenters/guild_presenter'
 describe GuildPresenter do
   let(:guilds) { [Factory(:guild), Factory(:guild)] }
 
-  it 'presents a brewery with a root key' do
+  it 'presents a guild with a root key' do
     guild = guilds.first
 
     expected = {
@@ -33,7 +33,7 @@ describe GuildPresenter do
     expect(hash).to eq(expected)
   end
 
-  it 'presents an array of breweries without root keys' do
+  it 'presents an array of guilds without root keys' do
     expected = [
       GuildPresenter.present(guilds.first, context: self)['guild'],
       GuildPresenter.present(guilds.last,  context: self)['guild']

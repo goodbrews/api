@@ -4,7 +4,7 @@ require 'app/presenters/event_presenter'
 describe EventPresenter do
   let(:events) { [Factory(:event), Factory(:event)] }
 
-  it 'presents a brewery with a root key' do
+  it 'presents an event with a root key' do
     event = events.first
 
     expected = {
@@ -51,7 +51,7 @@ describe EventPresenter do
     expect(hash).to eq(expected)
   end
 
-  it 'presents an array of breweries without root keys' do
+  it 'presents an array of events without root keys' do
     expected = [
       EventPresenter.present(events.first, context: self)['event'],
       EventPresenter.present(events.last,  context: self)['event']
