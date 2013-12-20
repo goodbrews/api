@@ -20,11 +20,11 @@ describe BeerPresenter do
         'original_gravity'    => beer.original_gravity,
         'serving_temperature' => beer.serving_temperature,
 
-        'style'     => beer.style_id,
         'breweries' => beer.breweries.count,
         'events'    => beer.events.count,
 
         '_embedded' => {
+          'style' => StylePresenter.present(beer.style, context: self)['style'],
           'ingredients' => IngredientPresenter.present(beer.ingredients, context: self),
           'social_media_accounts' => SocialMediaAccountPresenter.present(beer.social_media_accounts, context: self)
         },

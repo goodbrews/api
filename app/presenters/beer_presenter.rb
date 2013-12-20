@@ -1,16 +1,16 @@
 require 'app/models/beer'
 require 'app/presenters/ingredient_presenter'
 require 'app/presenters/social_media_account_presenter'
+require 'app/presenters/style_presenter'
 
 class BeerPresenter < Jsonite
   properties :name, :description, :availability, :glassware, :organic,
              :abv, :ibu, :original_gravity, :serving_temperature
 
-  # TODO: Embed this instead
-  property(:style)       { style_id }
   property(:breweries)   { breweries.count }
   property(:events)      { events.count }
 
+  embed :style, with: StylePresenter
   embed :ingredients, with: IngredientPresenter
   embed :social_media_accounts, with: SocialMediaAccountPresenter
 
