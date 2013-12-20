@@ -4,4 +4,16 @@ Goodbrews::Application.configure do
   end
 
   config.mail.raise_delivery_errors = false
+
+  # Set up Rails-style autoloading for the Development environment
+  relative_load_paths = %w[
+    app/apis
+    app/helpers
+    app/models
+    app/models/concerns
+    app/presenters
+    lib
+  ]
+
+  ActiveSupport::Dependencies.autoload_paths += relative_load_paths
 end
