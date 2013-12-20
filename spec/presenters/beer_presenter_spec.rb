@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'app/apis/base_api'
 require 'app/presenters/beer_presenter'
 
 describe BeerPresenter do
