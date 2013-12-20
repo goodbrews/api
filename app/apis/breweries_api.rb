@@ -10,10 +10,12 @@ class BreweriesAPI < BaseAPI
       BreweryPresenter.present(@breweries, context: self)
     end
 
-    get '/:slug' do
-      @brewery = Brewery.from_param(params[:slug])
+    param :slug do
+      get do
+        @brewery = Brewery.from_param(params[:slug])
 
-      BreweryPresenter.present(@brewery, context: self)
+        BreweryPresenter.present(@brewery, context: self)
+      end
     end
   end
 end

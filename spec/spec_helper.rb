@@ -43,8 +43,4 @@ RSpec.configure do |config|
 
   # No ordering issues here.
   config.order = 'random'
-
-  def app
-    Goodbrews::API
-  end
 end

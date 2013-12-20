@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: git://github.com/stephencelis/crepe.git
-  revision: aa482d3ea313ca09be5c197be523badcf758a175
+  revision: 522876247af49ab9523a308d7b983c6794ba94fe
   specs:
     crepe (0.0.1.pre)
       activesupport (>= 4.0.0.rc1)
@@ -97,7 +97,6 @@ GEM
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    log4r (1.1.10)
     lumberjack (1.0.4)
     mail (2.2.7)
       activesupport (>= 2.3.6)
@@ -189,7 +188,6 @@ DEPENDENCIES
   guard-puma
   jsonite!
   kaminari
-  log4r
   mail
   miniskirt
   newrelic_rpm
