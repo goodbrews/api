@@ -17,6 +17,8 @@ module Goodbrews
     config.time_zone = 'UTC'
 
     config.mail.raise_delivery_errors = true
+
+    I18n.config.enforce_available_locales = true
   end
 end
 
