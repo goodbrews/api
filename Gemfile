@@ -33,15 +33,16 @@ group :development, :test do
   gem 'guard'
   gem 'guard-puma'
   gem 'pry'
+
+  # Miniskirt and FFaker are also used for seed data.
+  gem 'miniskirt', require: false
+  gem 'ffaker', require: false
 end
 
 group :test do
   gem 'rspec'
   gem 'rack-test'
   gem 'database_cleaner'
-
-  gem 'miniskirt'
-  gem 'ffaker'
 
   gem 'webmock'
   gem 'vcr'
