@@ -5,6 +5,14 @@ require 'app/apis/webhooks_api'
 
 module Goodbrews
   class API < BaseAPI
+    get do
+      {
+        _links: {
+          breweries: { href: '/breweries' }
+        }
+      }
+    end
+
     mount BreweriesAPI => :breweries
     mount WebhooksAPI  => '/brewery_db/webhooks/'
 
