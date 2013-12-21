@@ -24,6 +24,12 @@ Then, to start the server:
 rackup
 ```
 
+Try some requests:
+
+```sh
+curl --include '0.0.0.0:9292/breweries/'
+```
+
 ## Running the tests
 
 To run all of the tests (note that the API is automatically tested via Travis CI):

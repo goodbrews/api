@@ -87,6 +87,10 @@ describe PaginationHelper do
       it 'should give a link with rel "next"' do
         expect(links).to include('<http://example.org/numbers?count=100&page=2>; rel="next"')
       end
+
+      it 'should give a Total header with the number of total items' do
+        expect(last_response.headers['Total']).to eq('100')
+      end
     end
 
     context 'when on the last page' do
@@ -107,6 +111,10 @@ describe PaginationHelper do
       it 'should give a link with rel "prev"' do
         expect(links).to include('<http://example.org/numbers?count=100&page=3>; rel="prev"')
       end
+
+      it 'should give a Total header with the number of total items' do
+        expect(last_response.headers['Total']).to eq('100')
+      end
     end
 
     context 'when somewhere comfortably in the middle' do
@@ -117,6 +125,10 @@ describe PaginationHelper do
         expect(links).to include('<http://example.org/numbers?count=100&page=4>; rel="last"')
         expect(links).to include('<http://example.org/numbers?count=100&page=3>; rel="next"')
         expect(links).to include('<http://example.org/numbers?count=100&page=1>; rel="prev"')
+      end
+
+      it 'should give a Total header with the number of total items' do
+        expect(last_response.headers['Total']).to eq('100')
       end
     end
   end
