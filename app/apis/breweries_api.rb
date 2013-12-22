@@ -7,7 +7,7 @@ require 'app/presenters/guild_presenter'
 
 class BreweriesAPI < BaseAPI
   get do
-    breweries = paginate(Brewery.all)
+    breweries = paginate(Brewery.includes(:locations, :social_media_accounts))
 
     BreweryPresenter.present(breweries, context: self)
   end
@@ -19,10 +19,20 @@ class BreweriesAPI < BaseAPI
       BreweryPresenter.present(brewery, context: self)
     end
 
-    get :beers do
-      beers = paginate(brewery.beers.includes(:style, :ingredients, :social_media_accounts))
+    namespace :beers do
+      get do
+        beers = paginate(brewery.beers.includes(:style, :ingredients, :social_media_accounts))
 
-      BeerPresenter.present(beers, context: self)
+        BeerPresenter.present(beers, context: self)
+      end
+
+      param :beer_slug do
+        let(:beer) { brewery.beers.from_param(params[:beer_slug]) }
+
+        get do
+          BeerPresenter.present(beer, context: self)
+        end
+      end
     end
 
     get :guilds do

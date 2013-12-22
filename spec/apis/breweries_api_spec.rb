@@ -60,6 +60,25 @@ describe BreweriesAPI do
           get "/breweries/#{brewery.slug}/beers"
           expect(last_response.body).to eq(body.to_json)
         end
+
+        context '/:beer_slug' do
+          it 'returns a 404 if the beer doesnt exist' do
+            get "/breweries/#{brewery.slug}/beers/nothing-here"
+
+            expect(last_response.status).to eq(404)
+          end
+
+          it 'returns a beer as JSON' do
+            brewery.save
+            beer = Factory(:beer)
+            brewery.beers << beer
+
+            body = BeerPresenter.present(beer.reload)
+
+            get "/breweries/#{brewery.slug}/beers/#{beer.slug}"
+            expect(last_response.body).to eq(body.to_json)
+          end
+        end
       end
 
       context '/guilds' do
