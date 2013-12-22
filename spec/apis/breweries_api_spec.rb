@@ -39,11 +39,27 @@ describe BreweriesAPI do
       before { expect(Brewery).to receive(:from_param).and_return(brewery) }
 
       it 'returns an existing brewery as json' do
-        body    = BreweryPresenter.present(brewery, context: app)
+        body = BreweryPresenter.present(brewery, context: app)
 
         get "/breweries/#{brewery.slug}"
 
         expect(last_response.body).to eq(body.to_json)
+      end
+
+      context '/beers' do
+        it 'returns an empty array' do
+          get "/breweries/#{brewery.slug}/beers"
+
+          expect(last_response.body).to eq('[]')
+        end
+
+        it 'returns beers as JSON' do
+          brewery.save; brewery.beers << Factory(:beer)
+          body = BeerPresenter.present(brewery.beers.reload, context: app)
+
+          get "/breweries/#{brewery.slug}/beers"
+          expect(last_response.body).to eq(body.to_json)
+        end
       end
     end
   end
