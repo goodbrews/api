@@ -13,6 +13,7 @@ describe UserPresenter do
 
     it 'presents a user with a root key' do
       user = users.first
+      hash = Digest::MD5.hexdigest(user.email.downcase)
 
       expected = {
         'user' => {
@@ -31,7 +32,12 @@ describe UserPresenter do
             'likes'    => { href: "/users/#{user.to_param}/likes" },
             'dislikes' => { href: "/users/#{user.to_param}/dislikes" },
             'cellar'   => { href: "/users/#{user.to_param}/cellar" },
-            'similar'  => { href: "/users/#{user.to_param}/similar" }
+            'similar'  => { href: "/users/#{user.to_param}/similar" },
+            'gravatar' => {
+              href: "https://secure.gravatar.com/avatar/#{hash}.jpg?s={size}",
+              templated: true,
+              size: '1..2048'
+            }
           }
         }
       }
@@ -60,6 +66,8 @@ describe UserPresenter do
     end
 
     it 'presents a user with a root key' do
+      hash = Digest::MD5.hexdigest(user.email.downcase)
+
       expected = {
         'user' => {
           'username' => user.username,
@@ -80,7 +88,13 @@ describe UserPresenter do
             'dislikes' => { href: "/users/#{user.to_param}/dislikes" },
             'cellar'   => { href: "/users/#{user.to_param}/cellar" },
             'hidden'   => { href: "/users/#{user.to_param}/hidden" },
-            'similar'  => { href: "/users/#{user.to_param}/similar" }
+            'similar'  => { href: "/users/#{user.to_param}/similar" },
+
+            'gravatar' => {
+              href: "https://secure.gravatar.com/avatar/#{hash}.jpg?s={size}",
+              templated: true,
+              size: '1..2048'
+            }
           }
         }
       }

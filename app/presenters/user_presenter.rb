@@ -1,4 +1,5 @@
 require 'app/models/user'
+require 'digest/md5'
 
 class UserPresenter < Jsonite
   properties :username, :name, :city, :region, :country
@@ -28,5 +29,8 @@ class UserPresenter < Jsonite
     "/users/#{self.to_param}/hidden"
   end
 
-  # TODO: Gravatar URL?
+  link :gravatar, templated: true, size: '1..2048' do |context|
+    hash = Digest::MD5.hexdigest(email.downcase)
+    "https://secure.gravatar.com/avatar/#{hash}.jpg?s={size}"
+  end
 end

@@ -10,16 +10,26 @@ class BeerPresenter < Jsonite
   property(:breweries)   { breweries.count }
   property(:events)      { events.count }
 
-  embed :style, with: StylePresenter
+  embed :style do |context|
+    throw :ignore unless style.present?
+    StylePresenter.present(style, context: context, root: nil)
+  end
+
   embed :ingredients, with: IngredientPresenter
   embed :social_media_accounts, with: SocialMediaAccountPresenter
 
   link             { "/beers/#{self.to_param}" }
-  link(:style)     { "/styles/#{style.to_param}" }
+
+  link(:style) do |context|
+    throw :ignore unless style.present?
+    "/styles/#{style.to_param}"
+  end
+
   link(:breweries) { "/beers/#{self.to_param}/breweries" }
   link(:events)    { "/beers/#{self.to_param}/events" }
 
   link :image, templated: true, size: %w[icon medium large] do |context|
+    throw :ignore unless image_id.present?
     "https://s3.amazonaws.com/brewerydbapi/beer/#{brewerydb_id}/upload_#{image_id}-{size}.png"
   end
 end
