@@ -16,4 +16,7 @@ Goodbrews::Application.configure do
   ]
 
   ActiveSupport::Dependencies.autoload_paths += relative_load_paths
+
+  # Log database queries to STDOUT
+  ActiveRecord::Base.logger = Crepe.logger
 end
