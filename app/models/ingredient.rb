@@ -1,7 +1,6 @@
-require 'app/models/beer'
+require 'app/models/joins/beer_ingredient'
 
 class Ingredient < ActiveRecord::Base
-  has_and_belongs_to_many :beers
-
-  before_destroy { beers.clear }
+  has_many :beer_ingredients, dependent: :destroy
+  has_many :beers, through: :beer_ingredients
 end

@@ -1,18 +1,24 @@
 require 'app/models/concerns/socialable'
 require 'app/models/concerns/sluggable'
-require 'app/models/brewery'
-require 'app/models/event'
-require 'app/models/ingredient'
+
+require 'app/models/joins/beer_brewery'
+require 'app/models/joins/beer_event'
+require 'app/models/joins/beer_ingredient'
+
 require 'app/models/style'
 
 class Beer < ActiveRecord::Base
   include Socialable
   include Sluggable
 
-  has_and_belongs_to_many :breweries
-  has_and_belongs_to_many :events
-  has_and_belongs_to_many :ingredients
-  belongs_to :style
+  has_many :beer_breweries, dependent: :destroy
+  has_many :breweries, through: :beer_breweries
 
-  before_destroy { [breweries, events, ingredients].each(&:clear) }
+  has_many :beer_events, dependent: :destroy
+  has_many :events, through: :beer_events
+
+  has_many :beer_ingredients, dependent: :destroy
+  has_many :ingredients, through: :beer_ingredients
+
+  belongs_to :style, counter_cache: true
 end

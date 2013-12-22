@@ -25,7 +25,7 @@ class SocialMediaAccount < ActiveRecord::Base
 
     def ratebeer_url
       type = (socialable_type == 'Brewery' ? 'brewers' : 'beer')
-      "http://www.ratebeer.com/#{type}/#{socialable.slug}/#{handle}"
+      "http://www.ratebeer.com/#{type}/#{handle}"
     end
 
     def beeradvocate_url

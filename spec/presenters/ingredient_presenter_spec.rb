@@ -11,6 +11,7 @@ describe IngredientPresenter do
       'ingredient' => {
         'name'     => ingredient.name,
         'category' => ingredient.category,
+        'beers'    => ingredient.beers_count
       }
     }
 

@@ -7,8 +7,8 @@ class BeerPresenter < Jsonite
   properties :name, :description, :availability, :glassware, :organic,
              :abv, :ibu, :original_gravity, :serving_temperature
 
-  property(:breweries)   { breweries.count }
-  property(:events)      { events.count }
+  property(:breweries)   { breweries_count }
+  property(:events)      { events_count }
 
   embed :style do |context|
     throw :ignore unless style.present?

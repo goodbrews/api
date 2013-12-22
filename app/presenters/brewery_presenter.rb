@@ -5,9 +5,9 @@ require 'app/presenters/social_media_account_presenter'
 class BreweryPresenter < Jsonite
   properties :name, :alternate_names, :description, :website, :organic, :established
 
-  property(:beers)     { beers.count }
-  property(:events)    { events.count }
-  property(:guilds)    { guilds.count }
+  property(:beers)     { beers_count }
+  property(:events)    { events_count }
+  property(:guilds)    { guilds_count }
 
   embed :locations, with: LocationPresenter
   embed :social_media_accounts, with: SocialMediaAccountPresenter

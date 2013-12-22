@@ -5,7 +5,7 @@ class StylePresenter < Jsonite
              :max_ibu, :min_original_gravity, :max_original_gravity,
              :min_final_gravity, :max_final_gravity
 
-  property(:beers) { beers.count }
+  property(:beers) { beers_count }
 
   link         { "/styles/#{self.to_param}" }
   link(:beers) { "/styles/#{self.to_param}/beers" }

@@ -2,4 +2,6 @@ require 'app/models/ingredient'
 
 class IngredientPresenter < Jsonite
   properties :name, :category
+
+  property(:beers) { beers_count }
 end

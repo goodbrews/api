@@ -6,8 +6,8 @@ class EventPresenter < Jsonite
              :hours, :price, :venue, :street, :street2, :city, :region,
              :postal_code, :country, :latitude, :longitude, :website, :phone
 
-  property(:beers)     { beers.count }
-  property(:breweries) { breweries.count }
+  property(:beers)     { beers_count }
+  property(:breweries) { breweries_count }
 
   embed :social_media_accounts, with: SocialMediaAccountPresenter
 

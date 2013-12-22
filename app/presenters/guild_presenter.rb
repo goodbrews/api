@@ -4,7 +4,7 @@ require 'app/presenters/social_media_account_presenter'
 class GuildPresenter < Jsonite
   properties :name, :description, :established, :website
 
-  property(:breweries) { breweries.count }
+  property(:breweries) { breweries_count }
 
   embed :social_media_accounts, with: SocialMediaAccountPresenter
 

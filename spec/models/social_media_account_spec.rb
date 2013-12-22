@@ -35,7 +35,7 @@ describe SocialMediaAccount do
       it 'can have a RateBeer URL' do
         account.website = 'RateBeer'
         type = account.socialable_type == 'Brewery' ? 'brewers' : 'beer'
-        expect(account.url).to eq("http://www.ratebeer.com/#{type}/#{account.socialable.slug}/#{account.handle}")
+        expect(account.url).to eq("http://www.ratebeer.com/#{type}/#{account.handle}")
       end
 
       it 'can have a BeerAdvocate URL' do

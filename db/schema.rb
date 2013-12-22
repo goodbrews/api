@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131202113823) do
+ActiveRecord::Schema.define(version: 20131221161333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "beer_breweries", force: true do |t|
+    t.integer "beer_id",    null: false
+    t.integer "brewery_id", null: false
+  end
+
+  add_index "beer_breweries", ["beer_id", "brewery_id"], name: "index_beer_breweries_on_beer_id_and_brewery_id", unique: true, using: :btree
+
+  create_table "beer_events", force: true do |t|
+    t.integer "beer_id",  null: false
+    t.integer "event_id", null: false
+  end
+
+  add_index "beer_events", ["beer_id", "event_id"], name: "index_beer_events_on_beer_id_and_event_id", unique: true, using: :btree
+
+  create_table "beer_ingredients", force: true do |t|
+    t.integer "beer_id",       null: false
+    t.integer "ingredient_id", null: false
+  end
+
+  add_index "beer_ingredients", ["beer_id", "ingredient_id"], name: "index_beer_ingredients_on_beer_id_and_ingredient_id", unique: true, using: :btree
 
   create_table "beers", force: true do |t|
     t.string   "name"
@@ -32,6 +53,9 @@ ActiveRecord::Schema.define(version: 20131202113823) do
     t.integer  "style_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "breweries_count",               default: 0, null: false
+    t.integer  "events_count",                  default: 0, null: false
+    t.integer  "ingredients_count",             default: 0, null: false
   end
 
   add_index "beers", ["brewerydb_id"], name: "index_beers_on_brewerydb_id", unique: true, using: :btree
@@ -39,30 +63,9 @@ ActiveRecord::Schema.define(version: 20131202113823) do
   add_index "beers", ["slug"], name: "index_beers_on_slug", unique: true, using: :btree
   add_index "beers", ["style_id"], name: "index_beers_on_style_id", using: :btree
 
-  create_table "beers_breweries", id: false, force: true do |t|
-    t.integer "beer_id",    null: false
-    t.integer "brewery_id", null: false
-  end
-
-  add_index "beers_breweries", ["beer_id", "brewery_id"], name: "index_beers_breweries_on_beer_id_and_brewery_id", unique: true, using: :btree
-
-  create_table "beers_events", id: false, force: true do |t|
-    t.integer "beer_id",  null: false
-    t.integer "event_id", null: false
-  end
-
-  add_index "beers_events", ["beer_id", "event_id"], name: "index_beers_events_on_beer_id_and_event_id", unique: true, using: :btree
-
-  create_table "beers_ingredients", id: false, force: true do |t|
-    t.integer "beer_id",       null: false
-    t.integer "ingredient_id", null: false
-  end
-
-  add_index "beers_ingredients", ["beer_id", "ingredient_id"], name: "index_beers_ingredients_on_beer_id_and_ingredient_id", unique: true, using: :btree
-
   create_table "breweries", force: true do |t|
     t.string   "name"
-    t.string   "alternate_names",           default: [], array: true
+    t.string   "alternate_names",           default: [],              array: true
     t.text     "description"
     t.string   "website"
     t.boolean  "organic"
@@ -72,24 +75,28 @@ ActiveRecord::Schema.define(version: 20131202113823) do
     t.string   "brewerydb_id",    limit: 6
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "beers_count",               default: 0,  null: false
+    t.integer  "events_count",              default: 0,  null: false
+    t.integer  "guilds_count",              default: 0,  null: false
+    t.integer  "locations_count",           default: 0,  null: false
   end
 
   add_index "breweries", ["brewerydb_id"], name: "index_breweries_on_brewerydb_id", unique: true, using: :btree
   add_index "breweries", ["slug"], name: "index_breweries_on_slug", unique: true, using: :btree
 
-  create_table "breweries_events", id: false, force: true do |t|
+  create_table "brewery_events", force: true do |t|
     t.integer "brewery_id", null: false
     t.integer "event_id",   null: false
   end
 
-  add_index "breweries_events", ["brewery_id", "event_id"], name: "index_breweries_events_on_brewery_id_and_event_id", unique: true, using: :btree
+  add_index "brewery_events", ["brewery_id", "event_id"], name: "index_brewery_events_on_brewery_id_and_event_id", unique: true, using: :btree
 
-  create_table "breweries_guilds", id: false, force: true do |t|
+  create_table "brewery_guilds", force: true do |t|
     t.integer "brewery_id", null: false
     t.integer "guild_id",   null: false
   end
 
-  add_index "breweries_guilds", ["brewery_id", "guild_id"], name: "index_breweries_guilds_on_brewery_id_and_guild_id", unique: true, using: :btree
+  add_index "brewery_guilds", ["brewery_id", "guild_id"], name: "index_brewery_guilds_on_brewery_id_and_guild_id", unique: true, using: :btree
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -111,10 +118,12 @@ ActiveRecord::Schema.define(version: 20131202113823) do
     t.float    "longitude"
     t.string   "website"
     t.string   "phone"
-    t.string   "image_id",     limit: 6
-    t.string   "brewerydb_id", limit: 6
+    t.string   "image_id",        limit: 6
+    t.string   "brewerydb_id",    limit: 6
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "beers_count",               default: 0, null: false
+    t.integer  "breweries_count",           default: 0, null: false
   end
 
   add_index "events", ["brewerydb_id"], name: "index_events_on_brewerydb_id", unique: true, using: :btree
@@ -123,11 +132,12 @@ ActiveRecord::Schema.define(version: 20131202113823) do
     t.string   "name"
     t.text     "description"
     t.string   "website"
-    t.string   "image_id",     limit: 6
-    t.string   "brewerydb_id", limit: 6
+    t.string   "image_id",        limit: 6
+    t.string   "brewerydb_id",    limit: 6
     t.integer  "established"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "breweries_count",           default: 0, null: false
   end
 
   add_index "guilds", ["brewerydb_id"], name: "index_guilds_on_brewerydb_id", unique: true, using: :btree
@@ -137,6 +147,7 @@ ActiveRecord::Schema.define(version: 20131202113823) do
     t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "beers_count", default: 0, null: false
   end
 
   create_table "locations", force: true do |t|
@@ -193,6 +204,7 @@ ActiveRecord::Schema.define(version: 20131202113823) do
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "beers_count",          default: 0, null: false
   end
 
   add_index "styles", ["category"], name: "index_styles_on_category", using: :btree
