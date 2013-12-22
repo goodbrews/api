@@ -74,7 +74,7 @@ module BreweryDB
           if breweries.count == brewery_ids.count
             @model.breweries = breweries
           else
-            raise OrderingError, 'Received an event insertion before we had the events!'
+            raise OrderingError, 'Received an brewery insertion before we had the breweries!'
           end
         end
         alias :brewery_delete :brewery_insert
