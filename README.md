@@ -1,4 +1,4 @@
-# api.goodbre.ws
+# api.goodbre.ws ![build status](https://travis-ci.org/goodbrews/api.png)
 
 This is the code that powers the API of the upcoming goodbre.ws rewrite.
 
