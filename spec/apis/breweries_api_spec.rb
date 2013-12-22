@@ -61,6 +61,54 @@ describe BreweriesAPI do
           expect(last_response.body).to eq(body.to_json)
         end
       end
+
+      context '/guilds' do
+        it 'returns an empty array' do
+          get "/breweries/#{brewery.slug}/guilds"
+
+          expect(last_response.body).to eq('[]')
+        end
+
+        it 'returns guilds as JSON' do
+          brewery.save; brewery.guilds << Factory(:guild)
+          body = GuildPresenter.present(brewery.guilds.reload, context: app)
+
+          get "/breweries/#{brewery.slug}/guilds"
+          expect(last_response.body).to eq(body.to_json)
+        end
+      end
+
+      context '/events' do
+        it 'returns an empty array' do
+          get "/breweries/#{brewery.slug}/events"
+
+          expect(last_response.body).to eq('[]')
+        end
+
+        it 'returns events as JSON' do
+          brewery.save; brewery.events << Factory(:event)
+          body = EventPresenter.present(brewery.events.reload, context: app)
+
+          get "/breweries/#{brewery.slug}/events"
+          expect(last_response.body).to eq(body.to_json)
+        end
+      end
+
+      context '/locations' do
+        it 'returns an empty array' do
+          get "/breweries/#{brewery.slug}/locations"
+
+          expect(last_response.body).to eq('[]')
+        end
+
+        it 'returns locations as JSON' do
+          brewery.save; brewery.locations << Factory(:location)
+          body = LocationPresenter.present(brewery.locations.reload, context: app)
+
+          get "/breweries/#{brewery.slug}/locations"
+          expect(last_response.body).to eq(body.to_json)
+        end
+      end
     end
   end
 end
