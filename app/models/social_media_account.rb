@@ -56,6 +56,10 @@ class SocialMediaAccount < ActiveRecord::Base
       "http://pinterest.com/#{handle}"
     end
 
+    def linkedin_url
+      "http://linkedin.com/in/#{handle}"
+    end
+
     def feed_url
       handle
     end
