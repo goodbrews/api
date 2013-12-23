@@ -7,4 +7,10 @@ class Guild < ActiveRecord::Base
 
   has_many :brewery_guilds, dependent: :destroy
   has_many :breweries, through: :brewery_guilds
+
+  scope :from_param, ->(id) { find_by!(brewerydb_id: id) }
+
+  def to_param
+    brewerydb_id
+  end
 end

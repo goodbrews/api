@@ -3,6 +3,7 @@ require 'app/apis/base_api'
 require 'app/apis/beers_api'
 require 'app/apis/breweries_api'
 require 'app/apis/events_api'
+require 'app/apis/guilds_api'
 require 'app/apis/webhooks_api'
 
 module Goodbrews
@@ -19,6 +20,7 @@ module Goodbrews
     mount BeersAPI     => :beers
     mount BreweriesAPI => :breweries
     mount EventsAPI    => :events
+    mount GuildsAPI    => :guilds
     mount WebhooksAPI  => '/brewery_db/webhooks/'
 
     any '*catchall' do
