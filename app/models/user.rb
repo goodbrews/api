@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   recommends :beers
 
+  scope :from_param, ->(param) { find_by!(username: param) }
+
   validates :username, exclusion: {
                          in: %w(admin goodbrews),
                          message: 'is reserved'

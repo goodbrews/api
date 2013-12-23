@@ -7,6 +7,10 @@ gem 'puma'
 gem 'rake'
 gem 'app'
 
+# Background processing.
+gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
+
 # Data storage.
 gem 'activerecord', '~> 4.0.0', require: 'active_record'
 gem 'recommendable', github: 'davidcelis/recommendable'
@@ -15,10 +19,6 @@ gem 'pg'
 # Presentation.
 gem 'jsonite', github: 'barrelage/jsonite'
 gem 'kaminari', require: false
-
-# Background processing.
-gem 'sidekiq'
-gem 'sidekiq-unique-jobs'
 
 # Email/Notifications.
 gem 'mail'

@@ -7,6 +7,10 @@ require File.expand_path("../../config/application", __FILE__)
 require 'webmock/rspec'
 require 'vcr'
 
+# Disable Sidekiq logging
+require 'sidekiq/testing'
+Sidekiq::Logging.logger = nil
+
 # Require support files, including Factories.
 Dir[Crepe.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -36,7 +40,10 @@ RSpec.configure do |config|
   end
 
   config.before(:each) { DatabaseCleaner.start }
-  config.after(:each)  { DatabaseCleaner.clean }
+  config.after(:each) do
+    DatabaseCleaner.clean
+    Recommendable.redis.flushdb
+  end
 
   config.before(:all)  { DeferredGarbageCollection.start }
   config.after(:all)   { DeferredGarbageCollection.reconsider }
