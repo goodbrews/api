@@ -6,6 +6,12 @@ describe IngredientsAPI do
     Goodbrews::API
   end
 
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:authorized?).and_return(false)
+    end
+  end
+
   context '/ingredients' do
     it 'returns an empty array' do
       get '/ingredients'
@@ -16,7 +22,7 @@ describe IngredientsAPI do
 
     it 'returns a list of ingredients as JSON' do
       ingredient = Factory(:ingredient)
-      body = IngredientPresenter.present([ingredient], context: app)
+      body = IngredientPresenter.present([ingredient], context: context)
 
       get '/ingredients'
 
@@ -38,7 +44,7 @@ describe IngredientsAPI do
       let(:ingredient) { Factory(:ingredient) }
 
       it 'returns an existing ingredient as json' do
-        body = IngredientPresenter.present(ingredient, context: app)
+        body = IngredientPresenter.present(ingredient, context: context)
 
         get "/ingredients/#{ingredient.to_param}"
 
@@ -54,7 +60,7 @@ describe IngredientsAPI do
 
         it 'returns beers as JSON' do
           ingredient.beers << Factory(:beer)
-          body = BeerPresenter.present(ingredient.beers.reload, context: app)
+          body = BeerPresenter.present(ingredient.beers.reload, context: context)
 
           get "/ingredients/#{ingredient.to_param}/beers"
           expect(last_response.body).to eq(body.to_json)

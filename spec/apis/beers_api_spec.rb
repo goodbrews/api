@@ -6,6 +6,12 @@ describe BeersAPI do
     Goodbrews::API
   end
 
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:authorized?).and_return(false)
+    end
+  end
+
   context '/beers' do
     it 'returns an empty array' do
       get '/beers'
@@ -16,7 +22,7 @@ describe BeersAPI do
 
     it 'returns a list of beers as JSON' do
       beer = Factory(:beer)
-      body = BeerPresenter.present([beer.reload], context: app)
+      body = BeerPresenter.present([beer.reload], context: context)
 
       get '/beers'
 
@@ -38,7 +44,7 @@ describe BeersAPI do
       let(:beer) { Factory(:beer, slug: 'a-beer', breweries: []) }
 
       it 'returns an existing beer as json' do
-        body = BeerPresenter.present(beer.reload, context: app)
+        body = BeerPresenter.present(beer.reload, context: context)
 
         get "/beers/#{beer.slug}"
 
@@ -129,7 +135,7 @@ describe BeersAPI do
 
         it 'returns breweries as JSON' do
           beer.breweries << Factory(:brewery)
-          body = BreweryPresenter.present(beer.breweries.reload, context: app)
+          body = BreweryPresenter.present(beer.breweries.reload, context: context)
 
           get "/beers/#{beer.slug}/breweries"
           expect(last_response.body).to eq(body.to_json)
@@ -145,7 +151,7 @@ describe BeersAPI do
 
         it 'returns ingredients as JSON' do
           beer.ingredients << Factory(:ingredient)
-          body = IngredientPresenter.present(beer.ingredients.reload, context: app)
+          body = IngredientPresenter.present(beer.ingredients.reload, context: context)
 
           get "/beers/#{beer.slug}/ingredients"
           expect(last_response.body).to eq(body.to_json)
@@ -161,7 +167,7 @@ describe BeersAPI do
 
         it 'returns events as JSON' do
           beer.events << Factory(:event)
-          body = EventPresenter.present(beer.events.reload, context: app)
+          body = EventPresenter.present(beer.events.reload, context: context)
 
           get "/beers/#{beer.slug}/events"
           expect(last_response.body).to eq(body.to_json)

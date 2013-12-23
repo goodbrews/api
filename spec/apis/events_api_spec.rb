@@ -6,6 +6,12 @@ describe EventsAPI do
     Goodbrews::API
   end
 
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:authorized?).and_return(false)
+    end
+  end
+
   context '/events' do
     it 'returns an empty array' do
       get '/events'
@@ -16,7 +22,7 @@ describe EventsAPI do
 
     it 'returns a list of events as JSON' do
       event = Factory(:event)
-      body = EventPresenter.present([event], context: app)
+      body = EventPresenter.present([event], context: context)
 
       get '/events'
 
@@ -38,7 +44,7 @@ describe EventsAPI do
       let(:event) { Factory(:event) }
 
       it 'returns an existing event as json' do
-        body = EventPresenter.present(event, context: app)
+        body = EventPresenter.present(event, context: context)
 
         get "/events/#{event.to_param}"
 
@@ -54,7 +60,7 @@ describe EventsAPI do
 
         it 'returns breweries as JSON' do
           event.breweries << Factory(:brewery)
-          body = BreweryPresenter.present(event.breweries.reload, context: app)
+          body = BreweryPresenter.present(event.breweries.reload, context: context)
 
           get "/events/#{event.to_param}/breweries"
           expect(last_response.body).to eq(body.to_json)
@@ -70,7 +76,7 @@ describe EventsAPI do
 
         it 'returns beers as JSON' do
           event.beers << Factory(:beer)
-          body = BeerPresenter.present(event.beers.reload, context: app)
+          body = BeerPresenter.present(event.beers.reload, context: context)
 
           get "/events/#{event.to_param}/beers"
           expect(last_response.body).to eq(body.to_json)

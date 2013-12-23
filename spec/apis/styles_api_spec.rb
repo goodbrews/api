@@ -6,6 +6,12 @@ describe StylesAPI do
     Goodbrews::API
   end
 
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:authorized?).and_return(false)
+    end
+  end
+
   context '/styles' do
     it 'returns an empty array' do
       get '/styles'
@@ -16,7 +22,7 @@ describe StylesAPI do
 
     it 'returns a list of styles as JSON' do
       style = Factory(:style)
-      body = StylePresenter.present([style], context: app)
+      body = StylePresenter.present([style], context: context)
 
       get '/styles'
 
@@ -38,7 +44,7 @@ describe StylesAPI do
       let(:style) { Factory(:style) }
 
       it 'returns an existing style as json' do
-        body = StylePresenter.present(style, context: app)
+        body = StylePresenter.present(style, context: context)
 
         get "/styles/#{style.to_param}"
 
@@ -54,7 +60,7 @@ describe StylesAPI do
 
         it 'returns beers as JSON' do
           Factory(:beer, style: style)
-          body = BeerPresenter.present(style.beers.reload, context: app)
+          body = BeerPresenter.present(style.beers.reload, context: context)
 
           get "/styles/#{style.to_param}/beers"
           expect(last_response.body).to eq(body.to_json)

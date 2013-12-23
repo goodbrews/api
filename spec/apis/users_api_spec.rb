@@ -6,6 +6,12 @@ describe UsersAPI do
     Goodbrews::API
   end
 
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:authorized?).and_return(false)
+    end
+  end
+
   context '/users/:username' do
     context 'without an existing user' do
       it 'returns a 404' do
@@ -17,11 +23,7 @@ describe UsersAPI do
 
     context 'with an existing user' do
       let(:user) { Factory(:user) }
-      let(:context) do
-        double.tap do |d|
-          allow(d).to receive(:current_user).and_return(nil)
-        end
-      end
+      before { allow(context).to receive(:current_user).and_return(nil) }
 
       it 'returns an existing user as json' do
         body = UserPresenter.present(user, context: context)
@@ -99,10 +101,9 @@ describe UsersAPI do
         end
 
         context 'when authorized' do
-          let(:context) do
-            double.tap do |d|
-              allow(d).to receive(:current_user).and_return(user)
-            end
+          before do
+            allow(context).to receive(:authorized?).and_return(true)
+            allow(context).to receive(:current_user).and_return(user)
           end
 
           it 'returns an empty array' do

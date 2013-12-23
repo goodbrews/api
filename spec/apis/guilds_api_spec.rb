@@ -6,6 +6,12 @@ describe GuildsAPI do
     Goodbrews::API
   end
 
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:authorized?).and_return(false)
+    end
+  end
+
   context '/guilds' do
     it 'returns an empty array' do
       get '/guilds'
@@ -16,7 +22,7 @@ describe GuildsAPI do
 
     it 'returns a list of guilds as JSON' do
       guild = Factory(:guild)
-      body = GuildPresenter.present([guild], context: app)
+      body = GuildPresenter.present([guild], context: context)
 
       get '/guilds'
 
@@ -38,7 +44,7 @@ describe GuildsAPI do
       let(:guild) { Factory(:guild) }
 
       it 'returns an existing guild as json' do
-        body = GuildPresenter.present(guild, context: app)
+        body = GuildPresenter.present(guild, context: context)
 
         get "/guilds/#{guild.to_param}"
 
@@ -54,7 +60,7 @@ describe GuildsAPI do
 
         it 'returns breweries as JSON' do
           guild.breweries << Factory(:brewery)
-          body = BreweryPresenter.present(guild.breweries.reload, context: app)
+          body = BreweryPresenter.present(guild.breweries.reload, context: context)
 
           get "/guilds/#{guild.to_param}/breweries"
           expect(last_response.body).to eq(body.to_json)

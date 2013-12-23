@@ -6,6 +6,12 @@ describe BreweriesAPI do
     Goodbrews::API
   end
 
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:authorized?).and_return(false)
+    end
+  end
+
   context '/breweries' do
     it 'returns an empty array' do
       get '/breweries'
@@ -16,7 +22,7 @@ describe BreweriesAPI do
 
     it 'returns a list of breweries as JSON' do
       brewery = Factory(:brewery)
-      body = BreweryPresenter.present([brewery], context: app)
+      body = BreweryPresenter.present([brewery], context: context)
 
       get '/breweries'
 
@@ -39,7 +45,7 @@ describe BreweriesAPI do
       before { expect(Brewery).to receive(:from_param).and_return(brewery) }
 
       it 'returns an existing brewery as json' do
-        body = BreweryPresenter.present(brewery, context: app)
+        body = BreweryPresenter.present(brewery, context: context)
 
         get "/breweries/#{brewery.slug}"
 
@@ -55,7 +61,7 @@ describe BreweriesAPI do
 
         it 'returns beers as JSON' do
           brewery.save; brewery.beers << Factory(:beer)
-          body = BeerPresenter.present(brewery.beers.reload, context: app)
+          body = BeerPresenter.present(brewery.beers.reload, context: context)
 
           get "/breweries/#{brewery.slug}/beers"
           expect(last_response.body).to eq(body.to_json)
@@ -73,7 +79,7 @@ describe BreweriesAPI do
             beer = Factory(:beer)
             brewery.beers << beer
 
-            body = BeerPresenter.present(beer.reload)
+            body = BeerPresenter.present(beer.reload, context: context)
 
             get "/breweries/#{brewery.slug}/beers/#{beer.slug}"
             expect(last_response.body).to eq(body.to_json)
@@ -90,7 +96,7 @@ describe BreweriesAPI do
 
         it 'returns guilds as JSON' do
           brewery.save; brewery.guilds << Factory(:guild)
-          body = GuildPresenter.present(brewery.guilds.reload, context: app)
+          body = GuildPresenter.present(brewery.guilds.reload, context: context)
 
           get "/breweries/#{brewery.slug}/guilds"
           expect(last_response.body).to eq(body.to_json)
@@ -106,7 +112,7 @@ describe BreweriesAPI do
 
         it 'returns events as JSON' do
           brewery.save; brewery.events << Factory(:event)
-          body = EventPresenter.present(brewery.events.reload, context: app)
+          body = EventPresenter.present(brewery.events.reload, context: context)
 
           get "/breweries/#{brewery.slug}/events"
           expect(last_response.body).to eq(body.to_json)
@@ -122,7 +128,7 @@ describe BreweriesAPI do
 
         it 'returns locations as JSON' do
           brewery.save; brewery.locations << Factory(:location)
-          body = LocationPresenter.present(brewery.locations.reload, context: app)
+          body = LocationPresenter.present(brewery.locations.reload, context: context)
 
           get "/breweries/#{brewery.slug}/locations"
           expect(last_response.body).to eq(body.to_json)
