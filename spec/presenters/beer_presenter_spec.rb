@@ -3,6 +3,11 @@ require 'app/presenters/beer_presenter'
 
 describe BeerPresenter do
   let(:beers) { [Factory(:beer), Factory(:beer)] }
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:authorized?).and_return(false)
+    end
+  end
 
   it 'presents a beer with a root key' do
     beer = beers.first
@@ -24,8 +29,8 @@ describe BeerPresenter do
         'events'    => beer.events.count,
 
         '_embedded' => {
-          'style' => StylePresenter.present(beer.style, context: self)['style'],
-          'ingredients' => IngredientPresenter.present(beer.ingredients, context: self),
+          'style' => StylePresenter.present(beer.style, context: context)['style'],
+          'ingredients' => IngredientPresenter.present(beer.ingredients, context: context),
           'social_media_accounts' => SocialMediaAccountPresenter.present(beer.social_media_accounts, context: self)
         },
 
@@ -43,17 +48,42 @@ describe BeerPresenter do
       }
     }
 
-    hash = BeerPresenter.present(beers.first, context: self)
+    hash = BeerPresenter.present(beers.first, context: context)
 
     expect(hash).to eq(expected)
   end
 
   it 'presents an array of beers without root keys' do
     expected = [
-      BeerPresenter.present(beers.first, context: self)['beer'],
-      BeerPresenter.present(beers.last,  context: self)['beer']
+      BeerPresenter.present(beers.first, context: context)['beer'],
+      BeerPresenter.present(beers.last,  context: context)['beer']
     ]
 
-    expect(BeerPresenter.present(beers, context: self)).to eq(expected)
+    expect(BeerPresenter.present(beers, context: context)).to eq(expected)
+  end
+
+  it 'includes rating links when authorized' do
+    allow(context).to receive(:authorized?).and_return(true)
+    beer = beers.first
+    hash = BeerPresenter.present(beer, context: context)
+
+    %w[like dislike cellar hide].each do |action|
+      post_link = {
+        action => {
+          method: 'POST',
+          href: "/beers/#{beer.to_param}/#{action}"
+        }
+      }
+
+      delete_link = {
+        "un#{action}" => {
+          method: 'DELETE',
+          href: "/beers/#{beer.to_param}/#{action}"
+        }
+      }
+
+      expect(hash['beer']['_links']).to include(post_link)
+      expect(hash['beer']['_links']).to include(delete_link)
+    end
   end
 end

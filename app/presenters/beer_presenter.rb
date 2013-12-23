@@ -20,7 +20,19 @@ class BeerPresenter < Jsonite
 
   link             { "/beers/#{self.to_param}" }
 
-  link(:style) do |context|
+  %w[like dislike cellar hide].each do |action|
+    link action, method: 'POST' do |context|
+      throw :ignore unless context.authorized?
+      "/beers/#{self.to_param}/#{action}"
+    end
+
+    link "un#{action}", method: 'DELETE' do |context|
+      throw :ignore unless context.authorized?
+      "/beers/#{self.to_param}/#{action}"
+    end
+  end
+
+  link :style do |context|
     throw :ignore unless style.present?
     "/styles/#{style.to_param}"
   end
