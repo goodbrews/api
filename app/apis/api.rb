@@ -5,20 +5,29 @@ require 'app/apis/breweries_api'
 require 'app/apis/events_api'
 require 'app/apis/guilds_api'
 require 'app/apis/ingredients_api'
+require 'app/apis/styles_api'
 require 'app/apis/webhooks_api'
 
 module Goodbrews
   class API < BaseAPI
+    respond_to :json, :html
+
     get do
-      {
-        _links: {
-          beers:       { href: '/beers' },
-          breweries:   { href: '/breweries' },
-          events:      { href: '/events' },
-          guilds:      { href: '/guilds' },
-          ingredients: { href: '/ingredients' }
+      case format
+      when :html
+        redirect_to 'https://goodbrews.github.com/api'
+      when :json
+        {
+          _links: {
+            beers:       { href: '/beers' },
+            breweries:   { href: '/breweries' },
+            events:      { href: '/events' },
+            guilds:      { href: '/guilds' },
+            ingredients: { href: '/ingredients' },
+            styles:      { href: '/styles' }
+          }
         }
-      }
+      end
     end
 
     mount BeersAPI       => :beers
@@ -26,6 +35,7 @@ module Goodbrews
     mount EventsAPI      => :events
     mount GuildsAPI      => :guilds
     mount IngredientsAPI => :ingredients
+    mount StylesAPI      => :styles
     mount WebhooksAPI    => '/brewery_db/webhooks/'
 
     any '*catchall' do
