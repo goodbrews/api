@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
   recommends :beers
 
+  # Alias the `bookmark` actions to `cellar` for recommendable
+  alias_method :cellar,   :bookmark
+  alias_method :uncellar, :unbookmark
+  def cellared_beers() bookmarked_beers end
+
   scope :from_param, ->(param) { find_by!(username: param) }
 
   validates :username, exclusion: {

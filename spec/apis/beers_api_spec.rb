@@ -45,6 +45,81 @@ describe BeersAPI do
         expect(last_response.body).to eq(body.to_json)
       end
 
+      %w[like dislike cellar hide].each do |action|
+
+        context "POST /#{action}" do
+          context 'when unauthorized' do
+            it 'should return a 401' do
+              post "/beers/#{beer.slug}/#{action}"
+
+              expect(last_response.status).to eq(401)
+            end
+          end
+
+          context 'when authorized' do
+            let(:user) { Factory(:user) }
+            let(:past_action) do
+              case action
+                when 'like', 'dislike' then "#{action}d"
+                when 'cellar' then 'cellared'
+                when 'hide' then 'hidden'
+              end
+            end
+
+            it 'rates the beer' do
+              post "/beers/#{beer.slug}/#{action}", auth_token: user.auth_token
+
+              expect(last_response.status).to eq(201)
+              expect(user.send("#{past_action}_beers")).to include(beer)
+            end
+
+            it 'returns a 400 if the beer was already rated' do
+              user.send(action, beer)
+              post "/beers/#{beer.slug}/#{action}", auth_token: user.auth_token
+
+              expect(last_response.status).to eq(400)
+              expect(last_response.body).to eq('{"error":{"message":"User has already submitted this rating."}}')
+            end
+          end
+        end
+
+        context "DELETE /#{action}" do
+          context 'when unauthorized' do
+            it 'should return a 401' do
+              delete "/beers/#{beer.slug}/#{action}"
+
+              expect(last_response.status).to eq(401)
+            end
+          end
+
+          context 'when authorized' do
+            let(:user) { Factory(:user) }
+            let(:past_action) do
+              case action
+                when 'like', 'dislike' then "#{action}d"
+                when 'cellar' then 'cellared'
+                when 'hide' then 'hidden'
+              end
+            end
+
+            it 'removes a rating for the beer' do
+              user.send(action, beer)
+              delete "/beers/#{beer.slug}/#{action}", auth_token: user.auth_token
+
+              expect(last_response.status).to eq(204)
+              expect(user.send("#{past_action}_beers")).not_to include(beer)
+            end
+
+            it 'returns a 400 if the beer was not already rated' do
+              delete "/beers/#{beer.slug}/#{action}", auth_token: user.auth_token
+
+              expect(last_response.status).to eq(400)
+              expect(last_response.body).to eq('{"error":{"message":"Nothing to delete."}}')
+            end
+          end
+        end
+      end
+
       context '/breweries' do
         it 'returns an empty array' do
           get "/beers/#{beer.slug}/breweries"

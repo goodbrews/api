@@ -24,7 +24,7 @@ class UsersAPI < BaseAPI
     end
 
     get :cellar do
-      beers = user.bookmarked_beers.includes(:ingredients, :social_media_accounts, :style)
+      beers = user.cellared_beers.includes(:ingredients, :social_media_accounts, :style)
       beers = paginate(beers)
 
       BeerPresenter.present(beers, context: self)

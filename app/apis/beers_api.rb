@@ -19,6 +19,28 @@ class BeersAPI < BaseAPI
       BeerPresenter.present(beer, context: self)
     end
 
+    %w[like dislike cellar hide].each do |action|
+      post action do
+        unauthorized! unless authorized?
+
+        if current_user.send(action, beer)
+          head :created
+        else
+          error! :bad_request, 'User has already submitted this rating.'
+        end
+      end
+
+      delete action do
+        unauthorized! unless authorized?
+
+        if current_user.send("un#{action}", beer)
+          head :no_content
+        else
+          error! :bad_request, 'Nothing to delete.'
+        end
+      end
+    end
+
     get :breweries do
       breweries = beer.breweries.includes(:locations, :social_media_accounts)
 
