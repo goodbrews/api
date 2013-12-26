@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/barrelage/jsonite.git
-  revision: 5fd0a2c273e8994a641dd80a7cbfecd1ed66fefc
+  revision: 67ad00de8043201a5fa816e2dcc1ad738b3c755c
   specs:
     jsonite (0.0.2)
       activesupport (>= 3.1.0)
