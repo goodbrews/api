@@ -26,13 +26,13 @@ describe BreweryPresenter do
         },
 
         '_links' => {
-          'self'      => { href: "/breweries/#{brewery.to_param}" },
-          'beers'     => { href: "/breweries/#{brewery.to_param}/beers"},
-          'events'    => { href: "/breweries/#{brewery.to_param}/events"},
-          'guilds'    => { href: "/breweries/#{brewery.to_param}/guilds"},
+          'self'      => { 'href' => "/breweries/#{brewery.to_param}" },
+          'beers'     => { 'href' => "/breweries/#{brewery.to_param}/beers"},
+          'events'    => { 'href' => "/breweries/#{brewery.to_param}/events"},
+          'guilds'    => { 'href' => "/breweries/#{brewery.to_param}/guilds"},
 
           'image'     => {
-            href:      "https://s3.amazonaws.com/brewerydbapi/brewery/#{brewery.brewerydb_id}/upload_#{brewery.image_id}-{size}.png",
+            'href' =>  "https://s3.amazonaws.com/brewerydbapi/brewery/#{brewery.brewerydb_id}/upload_#{brewery.image_id}-{size}.png",
             templated: true,
             size:      %w[icon medium large]
           }

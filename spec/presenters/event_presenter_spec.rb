@@ -38,11 +38,11 @@ describe EventPresenter do
         },
 
         '_links' => {
-          'self'      => { href: "/events/#{event.to_param}" },
-          'beers'     => { href: "/events/#{event.to_param}/beers" },
-          'breweries' => { href: "/events/#{event.to_param}/breweries" },
+          'self'      => { 'href' => "/events/#{event.to_param}" },
+          'beers'     => { 'href' => "/events/#{event.to_param}/beers" },
+          'breweries' => { 'href' => "/events/#{event.to_param}/breweries" },
           'image'     => {
-            href:      "https://s3.amazonaws.com/brewerydbapi/event/#{event.brewerydb_id}/upload_#{event.image_id}-{size}.png",
+            'href' =>  "https://s3.amazonaws.com/brewerydbapi/event/#{event.brewerydb_id}/upload_#{event.image_id}-{size}.png",
             templated: true,
             size:      %w[icon medium large]
           }

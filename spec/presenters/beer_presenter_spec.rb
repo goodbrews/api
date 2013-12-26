@@ -35,12 +35,12 @@ describe BeerPresenter do
         },
 
         '_links' => {
-          'self'      => { href: "/beers/#{beer.to_param}" },
-          'style'     => { href: "/styles/#{beer.style.to_param}" },
-          'breweries' => { href: "/beers/#{beer.to_param}/breweries" },
-          'events'    => { href: "/beers/#{beer.to_param}/events" },
+          'self'      => { 'href' => "/beers/#{beer.to_param}" },
+          'style'     => { 'href' => "/styles/#{beer.style.to_param}" },
+          'breweries' => { 'href' => "/beers/#{beer.to_param}/breweries" },
+          'events'    => { 'href' => "/beers/#{beer.to_param}/events" },
           'image'     => {
-            href:      "https://s3.amazonaws.com/brewerydbapi/beer/#{beer.brewerydb_id}/upload_#{beer.image_id}-{size}.png",
+            'href'  => "https://s3.amazonaws.com/brewerydbapi/beer/#{beer.brewerydb_id}/upload_#{beer.image_id}-{size}.png",
             templated: true,
             size:      %w[icon medium large]
           }
@@ -71,14 +71,14 @@ describe BeerPresenter do
       post_link = {
         action => {
           method: 'POST',
-          href: "/beers/#{beer.to_param}/#{action}"
+          'href' => "/beers/#{beer.to_param}/#{action}"
         }
       }
 
       delete_link = {
         "un#{action}" => {
           method: 'DELETE',
-          href: "/beers/#{beer.to_param}/#{action}"
+          'href' => "/beers/#{beer.to_param}/#{action}"
         }
       }
 

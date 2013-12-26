@@ -21,10 +21,10 @@ describe GuildPresenter do
         },
 
         '_links' => {
-          'self'      => { href: "/guilds/#{guild.to_param}" },
-          'breweries' => { href: "/guilds/#{guild.to_param}/breweries" },
+          'self'      => { 'href' => "/guilds/#{guild.to_param}" },
+          'breweries' => { 'href' => "/guilds/#{guild.to_param}/breweries" },
           'image'     => {
-            href:      "https://s3.amazonaws.com/brewerydbapi/guild/#{guild.brewerydb_id}/upload_#{guild.image_id}-{size}.png",
+            'href' =>  "https://s3.amazonaws.com/brewerydbapi/guild/#{guild.brewerydb_id}/upload_#{guild.image_id}-{size}.png",
             templated: true,
             size:      %w[icon medium large]
           }

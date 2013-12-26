@@ -28,15 +28,15 @@ describe UserPresenter do
           'cellar'   => user.bookmarked_beers_count,
 
           '_links' => {
-            'self'     => { href: "/users/#{user.to_param}" },
-            'likes'    => { href: "/users/#{user.to_param}/likes" },
-            'dislikes' => { href: "/users/#{user.to_param}/dislikes" },
-            'cellar'   => { href: "/users/#{user.to_param}/cellar" },
-            'similar'  => { href: "/users/#{user.to_param}/similar" },
+            'self'     => { 'href' => "/users/#{user.to_param}" },
+            'likes'    => { 'href' => "/users/#{user.to_param}/likes" },
+            'dislikes' => { 'href' => "/users/#{user.to_param}/dislikes" },
+            'cellar'   => { 'href' => "/users/#{user.to_param}/cellar" },
+            'similar'  => { 'href' => "/users/#{user.to_param}/similar" },
             'gravatar' => {
-              href: "https://secure.gravatar.com/avatar/#{hash}.jpg?s={size}",
+              'href' =>  "https://secure.gravatar.com/avatar/#{hash}.jpg?s={size}",
               templated: true,
-              size: '1..2048'
+              size:      '1..2048'
             }
           }
         }
@@ -83,17 +83,17 @@ describe UserPresenter do
           'hidden'   => user.hidden_beers_count,
 
           '_links' => {
-            'self'     => { href: "/users/#{user.to_param}" },
-            'likes'    => { href: "/users/#{user.to_param}/likes" },
-            'dislikes' => { href: "/users/#{user.to_param}/dislikes" },
-            'cellar'   => { href: "/users/#{user.to_param}/cellar" },
-            'hidden'   => { href: "/users/#{user.to_param}/hidden" },
-            'similar'  => { href: "/users/#{user.to_param}/similar" },
+            'self'     => { 'href' => "/users/#{user.to_param}" },
+            'likes'    => { 'href' => "/users/#{user.to_param}/likes" },
+            'dislikes' => { 'href' => "/users/#{user.to_param}/dislikes" },
+            'cellar'   => { 'href' => "/users/#{user.to_param}/cellar" },
+            'hidden'   => { 'href' => "/users/#{user.to_param}/hidden" },
+            'similar'  => { 'href' => "/users/#{user.to_param}/similar" },
 
             'gravatar' => {
-              href: "https://secure.gravatar.com/avatar/#{hash}.jpg?s={size}",
+              'href' =>  "https://secure.gravatar.com/avatar/#{hash}.jpg?s={size}",
               templated: true,
-              size: '1..2048'
+              size:      '1..2048'
             }
           }
         }

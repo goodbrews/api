@@ -25,8 +25,8 @@ describe StylePresenter do
         'beers' => style.beers.count,
 
         '_links' => {
-          'self'  => { href: "/styles/#{style.to_param}" },
-          'beers' => { href: "/styles/#{style.to_param}/beers" }
+          'self'  => { 'href' => "/styles/#{style.to_param}" },
+          'beers' => { 'href' => "/styles/#{style.to_param}/beers" }
         }
       }
     }

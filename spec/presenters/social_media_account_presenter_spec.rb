@@ -16,7 +16,7 @@ describe SocialMediaAccountPresenter do
 
         '_links' => {
           'external' => {
-            href: social_media_account.url
+            'href' => social_media_account.url
           }
         }
       }
