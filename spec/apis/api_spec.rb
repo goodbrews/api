@@ -11,12 +11,13 @@ describe Goodbrews::API do
       it 'returns a hash of explorable links' do
         links = {
           _links: {
-            beers:       { href: '/beers' },
-            breweries:   { href: '/breweries' },
-            events:      { href: '/events' },
-            guilds:      { href: '/guilds' },
-            ingredients: { href: '/ingredients' },
-            styles:      { href: '/styles' }
+            authorization: { href: '/authorize', method: 'POST' },
+            beers:         { href: '/beers' },
+            breweries:     { href: '/breweries' },
+            events:        { href: '/events' },
+            guilds:        { href: '/guilds' },
+            ingredients:   { href: '/ingredients' },
+            styles:        { href: '/styles' }
           }
         }
 

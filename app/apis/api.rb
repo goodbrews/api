@@ -1,5 +1,6 @@
 require 'app/helpers/pagination_helper'
 require 'app/apis/base_api'
+require 'app/apis/authorization_api'
 require 'app/apis/beers_api'
 require 'app/apis/breweries_api'
 require 'app/apis/events_api'
@@ -11,6 +12,7 @@ require 'app/apis/webhooks_api'
 
 module Goodbrews
   class API < BaseAPI
+    # TODO: Force SSL
     respond_to :json, :html
 
     get do
@@ -20,17 +22,19 @@ module Goodbrews
       when :json
         {
           _links: {
-            beers:       { href: '/beers' },
-            breweries:   { href: '/breweries' },
-            events:      { href: '/events' },
-            guilds:      { href: '/guilds' },
-            ingredients: { href: '/ingredients' },
-            styles:      { href: '/styles' }
+            authorization: { href: '/authorize', method: 'POST' },
+            beers:         { href: '/beers' },
+            breweries:     { href: '/breweries' },
+            events:        { href: '/events' },
+            guilds:        { href: '/guilds' },
+            ingredients:   { href: '/ingredients' },
+            styles:        { href: '/styles' }
           }
         }
       end
     end
 
+    mount AuthorizationAPI
     mount BeersAPI       => :beers
     mount BreweriesAPI   => :breweries
     mount EventsAPI      => :events

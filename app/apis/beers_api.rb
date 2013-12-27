@@ -15,9 +15,7 @@ class BeersAPI < BaseAPI
   param :slug do
     let(:beer) { Beer.includes(:ingredients, :social_media_accounts, :style).from_param(params[:slug]) }
 
-    get do
-      BeerPresenter.present(beer, context: self)
-    end
+    get { BeerPresenter.present(beer, context: self) }
 
     %w[like dislike cellar hide].each do |action|
       post action do

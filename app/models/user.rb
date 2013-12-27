@@ -4,6 +4,16 @@ require 'app/models/beer'
 class User < ActiveRecord::Base
   include Authenticatable
 
+  PERMISSIBLE_PARAMS = [
+    :username,
+    :email,
+    :password,
+    :password_confirmation,
+    :city,
+    :region,
+    :country
+  ]
+
   before_create { generate_token(:auth_token) }
   recommends :beers
 
@@ -23,7 +33,7 @@ class User < ActiveRecord::Base
                          message: 'has already been taken'
                        },
                        format: {
-                         with: /\A\w+\z/,
+                         with: /\A[\w\-]+\z/,
                          message: "can only contain letters, numbers, or '_'.",
                          allow_blank: true
                        },
@@ -45,6 +55,10 @@ class User < ActiveRecord::Base
 
   def to_param
     username
+  end
+
+  def self.from_login(login)
+    User.find_by('lower(username) = lower(?) OR lower(email) = lower(?)', login, login)
   end
 
   private

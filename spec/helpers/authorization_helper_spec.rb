@@ -28,20 +28,10 @@ describe AuthorizationHelper do
     let(:token) { user.auth_token }
     let(:body)  { { authorized: true, current_user: user } }
 
-    context 'in the form of the HTTP Authorization header' do
-      it 'should find a current user' do
-        get :current_user, {}, 'HTTP_AUTHORIZATION' => "token #{token}"
+    it 'should find a current user' do
+      get :current_user, {}, 'HTTP_AUTHORIZATION' => "token #{token}"
 
-        expect(last_response.body).to eq(body.to_json)
-      end
-    end
-
-    context 'in the form of an auth_token param' do
-      it 'should find a current_user' do
-        get :current_user, auth_token: token
-
-        expect(last_response.body).to eq(body.to_json)
-      end
+      expect(last_response.body).to eq(body.to_json)
     end
   end
 end
