@@ -21,4 +21,6 @@ class Beer < ActiveRecord::Base
   has_many :ingredients, through: :beer_ingredients
 
   belongs_to :style, counter_cache: true
+
+  default_scope { includes(:ingredients, :social_media_accounts, :style) }
 end

@@ -14,7 +14,21 @@ describe UsersAPI do
 
   context '/users' do
     context 'POST without valid params' do
-      it 'returns 422' do
+      it 'requires params to be wrapped in a `user` key' do
+        post '/users'
+
+        expect(last_response.status).to eq(422)
+        expect(last_response.body).to eq(%({"error":{"message":"Missing parameter: user"}}))
+      end
+
+      it 'disallows invalid parameters' do
+        post '/users', { user: { nothing: :here } }
+
+        expect(last_response.status).to eq(422)
+        expect(last_response.body).to eq(%({"error":{"message":"Invalid parameter(s): nothing"}}))
+      end
+
+      it 'requires certain parameters' do
         body = {
           error: {
             message: [
@@ -25,7 +39,7 @@ describe UsersAPI do
           }
         }
 
-        post '/users'
+        post '/users', { user: { country: 'USA' } }
 
         expect(last_response.status).to eq(422)
         expect(last_response.body).to eq(body.to_json)
@@ -35,10 +49,12 @@ describe UsersAPI do
     context 'POST with valid params' do
       it 'creates a user, returning its auth_token as JSON' do
         params = {
-          username: 'user',
-          email: 'user@goodbre.ws',
-          password: 'supersecret',
-          password_confirmation: 'supersecret'
+          user: {
+            username: 'user',
+            email: 'user@goodbre.ws',
+            password: 'supersecret',
+            password_confirmation: 'supersecret'
+          }
         }
 
         post '/users', params
@@ -89,7 +105,7 @@ describe UsersAPI do
             put "/users/#{user.to_param}", { user: { username: 'fantastic-user' } }, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
 
             expect(last_response.status).to eq(422)
-            expect(last_response.body).to eq(%({"error":{"message":"Missing parameter: current_password"}}))
+            expect(last_response.body).to eq(%({"error":{"message":["Current password can't be blank"]}}))
           end
 
           it 'updates a user with valid params' do

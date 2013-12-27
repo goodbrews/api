@@ -8,9 +8,13 @@ class UsersAPI < BaseAPI
     error! :unprocessable_entity, e.message
   end
 
+  rescue_from(Crepe::Params::Invalid) do |e|
+    error! :unprocessable_entity, e.message
+  end
+
   post do
-    params.permit(*User::PERMISSIBLE_PARAMS)
-    user = User.new(params)
+    user_params = params.require(:user).permit(*User::PERMISSIBLE_PARAMS)
+    user = User.new(user_params)
 
     if user.save
       status :created
@@ -27,9 +31,7 @@ class UsersAPI < BaseAPI
 
     put do
       unauthorized! unless user == current_user
-      params.require(:user).require(:current_password)
-      params[:user].permit(:current_password, *User::PERMISSIBLE_PARAMS)
-
+      user_params = params.require(:user).permit(:current_password, *User::PERMISSIBLE_PARAMS)
       user_params = params[:user].to_h.with_indifferent_access
 
       if user.update_with_password(user_params)
@@ -39,38 +41,18 @@ class UsersAPI < BaseAPI
       end
     end
 
-    get :likes do
-      beers = user.liked_beers.includes(:ingredients, :social_media_accounts, :style)
-      beers = paginate(beers)
+    get(:likes) { BeerPresenter.present paginate(user.liked_beers), context: self }
 
-      BeerPresenter.present(beers, context: self)
-    end
+    get(:dislikes) { BeerPresenter.present paginate(user.disliked_beers), context: self }
 
-    get :dislikes do
-      beers = user.disliked_beers.includes(:ingredients, :social_media_accounts, :style)
-      beers = paginate(beers)
-
-      BeerPresenter.present(beers, context: self)
-    end
-
-    get :cellar do
-      beers = user.cellared_beers.includes(:ingredients, :social_media_accounts, :style)
-      beers = paginate(beers)
-
-      BeerPresenter.present(beers, context: self)
-    end
+    get(:cellar) { BeerPresenter.present paginate(user.cellared_beers), context: self }
 
     get :hidden do
       unauthorized! unless user == current_user
 
-      beers = user.hidden_beers.includes(:ingredients, :social_media_accounts, :style)
-      beers = paginate(beers)
-
-      BeerPresenter.present(beers, context: self)
+      BeerPresenter.present paginate(user.hidden_beers), context: self
     end
 
-    get :similar do
-      UserPresenter.present(user.similar_raters, context: self)
-    end
+    get(:similar) { UserPresenter.present user.similar_raters, context: self }
   end
 end

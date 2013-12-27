@@ -11,11 +11,6 @@ class IngredientsAPI < BaseAPI
 
     get { IngredientPresenter.present(ingredient, context: self) }
 
-    get :beers do
-      beers = ingredient.beers.includes(:ingredients, :social_media_accounts, :style)
-      beers = paginate(beers)
-
-      BeerPresenter.present(beers, context: self)
-    end
+    get(:beers) { BeerPresenter.present paginate(ingredient.beers), context: self }
   end
 end

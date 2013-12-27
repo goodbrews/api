@@ -9,48 +9,38 @@ class BreweriesAPI < BaseAPI
   get do
     breweries = paginate(Brewery.includes(:locations, :social_media_accounts))
 
-    BreweryPresenter.present(breweries, context: self)
+    BreweryPresenter.present breweries, context: self
   end
 
   param :slug do
     let(:brewery) { Brewery.from_param(params[:slug]) }
 
-    get do
-      BreweryPresenter.present(brewery, context: self)
-    end
+    get { BreweryPresenter.present brewery, context: self }
 
     namespace :beers do
-      get do
-        beers = paginate(brewery.beers.includes(:style, :ingredients, :social_media_accounts))
-
-        BeerPresenter.present(beers, context: self)
-      end
+      get { BeerPresenter.present paginate(brewery.beers), context: self }
 
       param :beer_slug do
         let(:beer) { brewery.beers.from_param(params[:beer_slug]) }
 
-        get do
-          BeerPresenter.present(beer, context: self)
-        end
+        get { BeerPresenter.present beer, context: self }
       end
     end
 
     get :guilds do
       guilds = paginate(brewery.guilds.includes(:social_media_accounts))
 
-      GuildPresenter.present(guilds, context: self)
+      GuildPresenter.present guilds, context: self
     end
 
     get :events do
       events = paginate(brewery.events.includes(:social_media_accounts))
 
-      EventPresenter.present(events, context: self)
+      EventPresenter.present events, context: self
     end
 
     get :locations do
-      locations = paginate(brewery.locations)
-
-      LocationPresenter.present(locations, context: self)
+      LocationPresenter.present paginate(brewery.locations), context: self
     end
   end
 end

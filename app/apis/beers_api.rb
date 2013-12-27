@@ -6,14 +6,10 @@ require 'app/presenters/event_presenter'
 require 'app/presenters/ingredient_presenter'
 
 class BeersAPI < BaseAPI
-  get do
-    beers = paginate(Beer.includes(:ingredients, :social_media_accounts, :style))
-
-    BeerPresenter.present(beers, context: self)
-  end
+  get { BeerPresenter.present(paginate(Beer.all), context: self) }
 
   param :slug do
-    let(:beer) { Beer.includes(:ingredients, :social_media_accounts, :style).from_param(params[:slug]) }
+    let(:beer) { Beer.from_param(params[:slug]) }
 
     get { BeerPresenter.present(beer, context: self) }
 
@@ -42,15 +38,13 @@ class BeersAPI < BaseAPI
     get :breweries do
       breweries = beer.breweries.includes(:locations, :social_media_accounts)
 
-      BreweryPresenter.present(breweries, context: self)
+      BreweryPresenter.present breweries, context: self
     end
 
     get :ingredients do
-      IngredientPresenter.present(beer.ingredients, context: self)
+      IngredientPresenter.present beer.ingredients, context: self
     end
 
-    get :events do
-      EventPresenter.present(beer.events, context: self)
-    end
+    get(:events) { EventPresenter.present beer.events, context: self }
   end
 end

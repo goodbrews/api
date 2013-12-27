@@ -11,11 +11,6 @@ class StylesAPI < BaseAPI
 
     get { StylePresenter.present(style, context: self) }
 
-    get :beers do
-      beers = style.beers.includes(:ingredients, :social_media_accounts)
-      beers = paginate(beers)
-
-      BeerPresenter.present(beers, context: self)
-    end
+    get(:beers) { BeerPresenter.present paginate(style.beers), context: self }
   end
 end
