@@ -6,11 +6,7 @@ require 'app/presenters/event_presenter'
 require 'app/presenters/guild_presenter'
 
 class BreweriesAPI < BaseAPI
-  get do
-    breweries = paginate(Brewery.includes(:locations, :social_media_accounts))
-
-    BreweryPresenter.present breweries, context: self
-  end
+  get { BreweryPresenter.present paginate(Brewery.all), context: self }
 
   param :slug do
     let(:brewery) { Brewery.from_param(params[:slug]) }

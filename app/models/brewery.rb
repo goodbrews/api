@@ -21,4 +21,6 @@ class Brewery < ActiveRecord::Base
   has_many :guilds, through: :brewery_guilds
 
   has_many :locations, dependent: :destroy
+
+  default_scope { includes(:locations, :social_media_accounts) }
 end

@@ -12,9 +12,7 @@ class GuildsAPI < BaseAPI
     get { GuildPresenter.present(guild, context: self) }
 
     get :breweries do
-      breweries = guild.breweries.includes(:locations, :social_media_accounts)
-
-      BreweryPresenter.present paginate(breweries), context: self
+      BreweryPresenter.present paginate(guild.breweries), context: self
     end
   end
 end

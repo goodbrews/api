@@ -36,9 +36,7 @@ class BeersAPI < BaseAPI
     end
 
     get :breweries do
-      breweries = beer.breweries.includes(:locations, :social_media_accounts)
-
-      BreweryPresenter.present breweries, context: self
+      BreweryPresenter.present paginate(beer.breweries), context: self
     end
 
     get :ingredients do
