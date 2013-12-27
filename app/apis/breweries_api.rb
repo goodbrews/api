@@ -30,9 +30,7 @@ class BreweriesAPI < BaseAPI
     end
 
     get :events do
-      events = paginate(brewery.events.includes(:social_media_accounts))
-
-      EventPresenter.present events, context: self
+      EventPresenter.present paginate(brewery.events), context: self
     end
 
     get :locations do

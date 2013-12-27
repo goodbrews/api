@@ -12,6 +12,7 @@ class Event < ActiveRecord::Base
   has_many :brewery_events, dependent: :destroy
   has_many :breweries, through: :brewery_events
 
+  default_scope { includes(:social_media_accounts) }
   scope :from_param, ->(id) { find_by!(brewerydb_id: id) }
 
   def to_param
