@@ -1,6 +1,5 @@
 require 'app/models/concerns/socialable'
 require 'app/models/concerns/sluggable'
-
 require 'app/models/joins/beer_brewery'
 require 'app/models/joins/brewery_event'
 require 'app/models/joins/brewery_guild'

@@ -1,10 +1,8 @@
 require 'app/models/concerns/socialable'
 require 'app/models/concerns/sluggable'
-
 require 'app/models/joins/beer_brewery'
 require 'app/models/joins/beer_event'
 require 'app/models/joins/beer_ingredient'
-
 require 'app/models/style'
 
 class Beer < ActiveRecord::Base

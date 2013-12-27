@@ -1,5 +1,4 @@
 require 'app/models/concerns/socialable'
-
 require 'app/models/joins/brewery_guild'
 
 class Guild < ActiveRecord::Base
@@ -8,6 +7,7 @@ class Guild < ActiveRecord::Base
   has_many :brewery_guilds, dependent: :destroy
   has_many :breweries, through: :brewery_guilds
 
+  default_scope { includes(:social_media_accounts) }
   scope :from_param, ->(id) { find_by!(brewerydb_id: id) }
 
   def to_param

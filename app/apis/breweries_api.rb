@@ -24,9 +24,7 @@ class BreweriesAPI < BaseAPI
     end
 
     get :guilds do
-      guilds = paginate(brewery.guilds.includes(:social_media_accounts))
-
-      GuildPresenter.present guilds, context: self
+      GuildPresenter.present paginate(brewery.guilds), context: self
     end
 
     get :events do
