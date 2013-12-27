@@ -73,7 +73,7 @@ describe BeersAPI do
             end
 
             it 'rates the beer' do
-              post "/beers/#{beer.slug}/#{action}", auth_token: user.auth_token
+              post "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
 
               expect(last_response.status).to eq(201)
               expect(user.send("#{past_action}_beers")).to include(beer)
@@ -81,7 +81,7 @@ describe BeersAPI do
 
             it 'returns a 400 if the beer was already rated' do
               user.send(action, beer)
-              post "/beers/#{beer.slug}/#{action}", auth_token: user.auth_token
+              post "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
 
               expect(last_response.status).to eq(400)
               expect(last_response.body).to eq('{"error":{"message":"User has already submitted this rating."}}')
@@ -110,14 +110,14 @@ describe BeersAPI do
 
             it 'removes a rating for the beer' do
               user.send(action, beer)
-              delete "/beers/#{beer.slug}/#{action}", auth_token: user.auth_token
+              delete "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
 
               expect(last_response.status).to eq(204)
               expect(user.send("#{past_action}_beers")).not_to include(beer)
             end
 
             it 'returns a 400 if the beer was not already rated' do
-              delete "/beers/#{beer.slug}/#{action}", auth_token: user.auth_token
+              delete "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
 
               expect(last_response.status).to eq(400)
               expect(last_response.body).to eq('{"error":{"message":"Nothing to delete."}}')
