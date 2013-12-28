@@ -13,9 +13,11 @@ class EventsAPI < BaseAPI
     get { EventPresenter.present event, context: self }
 
     get :breweries do
-      BreweryPresenter.present paginate(event.breweries), context: self
+      BreweryPresenter.present event.breweries, context: self
     end
 
-    get(:beers) { BeerPresenter.present paginate(event.beers), context: self }
+    get :beers do
+      BeersPresenter.new(event.beers, context: self, root: nil).present
+    end
   end
 end

@@ -9,6 +9,7 @@ describe StylesAPI do
   let(:context) do
     double.tap do |d|
       allow(d).to receive(:authorized?).and_return(false)
+      allow(d).to receive(:params).and_return({})
     end
   end
 
@@ -55,12 +56,12 @@ describe StylesAPI do
         it 'returns an empty array' do
           get "/styles/#{style.to_param}/beers"
 
-          expect(last_response.body).to eq('[]')
+          expect(last_response.body).to eq('{"count":0,"beers":[]}')
         end
 
         it 'returns beers as JSON' do
           Factory(:beer, style: style)
-          body = BeerPresenter.present(style.beers.reload, context: context)
+          body = BeersPresenter.new(style.beers.reload, context: context, root: nil).present
 
           get "/styles/#{style.to_param}/beers"
           expect(last_response.body).to eq(body.to_json)

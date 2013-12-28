@@ -6,7 +6,7 @@ require 'app/presenters/event_presenter'
 require 'app/presenters/ingredient_presenter'
 
 class BeersAPI < BaseAPI
-  get { BeerPresenter.present(paginate(Beer.all), context: self) }
+  get { BeersPresenter.new(Beer.all, context: self, root: nil).present }
 
   param :slug do
     let(:beer) { Beer.from_param(params[:slug]) }
@@ -36,7 +36,7 @@ class BeersAPI < BaseAPI
     end
 
     get :breweries do
-      BreweryPresenter.present paginate(beer.breweries), context: self
+      BreweryPresenter.present beer.breweries, context: self
     end
 
     get :ingredients do

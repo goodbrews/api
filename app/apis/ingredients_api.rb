@@ -11,6 +11,8 @@ class IngredientsAPI < BaseAPI
 
     get { IngredientPresenter.present(ingredient, context: self) }
 
-    get(:beers) { BeerPresenter.present paginate(ingredient.beers), context: self }
+    get :beers do
+      BeersPresenter.new(ingredient.beers, context: self, root: nil).present
+    end
   end
 end

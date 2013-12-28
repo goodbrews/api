@@ -9,6 +9,7 @@ describe UsersAPI do
   let(:context) do
     double.tap do |d|
       allow(d).to receive(:authorized?).and_return(false)
+      allow(d).to receive(:params).and_return({})
     end
   end
 
@@ -129,15 +130,14 @@ describe UsersAPI do
           it 'returns an empty array' do
             get "/users/#{user.to_param}/likes"
 
-            expect(last_response.body).to eq('[]')
+            expect(last_response.body).to eq('{"count":0,"beers":[]}')
           end
 
           it 'returns beers as JSON' do
             beer = Factory(:beer)
             user.like(beer)
-            beers = user.liked_beers.includes(:ingredients, :social_media_accounts, :style)
 
-            body = BeerPresenter.present(beers, context: context)
+            body = BeersPresenter.new(user.liked_beers, context: context, root: nil).present
 
             get "/users/#{user.to_param}/likes"
             expect(last_response.body).to eq(body.to_json)
@@ -148,15 +148,14 @@ describe UsersAPI do
           it 'returns an empty array' do
             get "/users/#{user.to_param}/dislikes"
 
-            expect(last_response.body).to eq('[]')
+            expect(last_response.body).to eq('{"count":0,"beers":[]}')
           end
 
           it 'returns beers as JSON' do
             beer = Factory(:beer)
             user.dislike(beer)
-            beers = user.disliked_beers.includes(:ingredients, :social_media_accounts, :style)
 
-            body = BeerPresenter.present(beers, context: context)
+            body = BeersPresenter.new(user.disliked_beers, context: context, root: nil).present
 
             get "/users/#{user.to_param}/dislikes"
             expect(last_response.body).to eq(body.to_json)
@@ -167,15 +166,14 @@ describe UsersAPI do
           it 'returns an empty array' do
             get "/users/#{user.to_param}/cellar"
 
-            expect(last_response.body).to eq('[]')
+            expect(last_response.body).to eq('{"count":0,"beers":[]}')
           end
 
           it 'returns beers as JSON' do
             beer = Factory(:beer)
             user.bookmark(beer)
-            beers = user.bookmarked_beers.includes(:ingredients, :social_media_accounts, :style)
 
-            body = BeerPresenter.present(beers, context: context)
+            body = BeersPresenter.new(user.cellared_beers, context: context, root: nil).present
 
             get "/users/#{user.to_param}/cellar"
             expect(last_response.body).to eq(body.to_json)
@@ -201,15 +199,14 @@ describe UsersAPI do
             it 'returns an empty array' do
               get "/users/#{user.to_param}/hidden", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
 
-              expect(last_response.body).to eq('[]')
+              expect(last_response.body).to eq('{"count":0,"beers":[]}')
             end
 
             it 'returns beers as JSON' do
               beer = Factory(:beer)
               user.hide(beer)
-              beers = user.hidden_beers.includes(:ingredients, :social_media_accounts, :style)
 
-              body = BeerPresenter.present(beers, context: context)
+              body = BeersPresenter.new(user.hidden_beers, context: context, root: nil).present
 
               get "/users/#{user.to_param}/hidden", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
               expect(last_response.body).to eq(body.to_json)

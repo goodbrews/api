@@ -9,6 +9,7 @@ describe BreweriesAPI do
   let(:context) do
     double.tap do |d|
       allow(d).to receive(:authorized?).and_return(false)
+      allow(d).to receive(:params).and_return({})
     end
   end
 
@@ -56,12 +57,12 @@ describe BreweriesAPI do
         it 'returns an empty array' do
           get "/breweries/#{brewery.slug}/beers"
 
-          expect(last_response.body).to eq('[]')
+          expect(last_response.body).to eq('{"count":0,"beers":[]}')
         end
 
         it 'returns beers as JSON' do
           brewery.save; brewery.beers << Factory(:beer)
-          body = BeerPresenter.present(brewery.beers.reload, context: context)
+          body = BeersPresenter.new(brewery.beers.reload, context: context, root: nil).present
 
           get "/breweries/#{brewery.slug}/beers"
           expect(last_response.body).to eq(body.to_json)

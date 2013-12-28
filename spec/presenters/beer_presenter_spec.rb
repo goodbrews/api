@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'app/presenters/beer_presenter'
 
 describe BeerPresenter do
-  let(:beers) { [Factory(:beer), Factory(:beer)] }
+  let(:beer) { Factory(:beer) }
   let(:context) do
     double.tap do |d|
       allow(d).to receive(:authorized?).and_return(false)
@@ -10,8 +10,6 @@ describe BeerPresenter do
   end
 
   it 'presents a beer with a root key' do
-    beer = beers.first
-
     expected = {
       'beer' => {
         'name'         => beer.name,
@@ -48,23 +46,13 @@ describe BeerPresenter do
       }
     }
 
-    hash = BeerPresenter.present(beers.first, context: context)
+    hash = BeerPresenter.present(beer, context: context)
 
     expect(hash).to eq(expected)
   end
 
-  it 'presents an array of beers without root keys' do
-    expected = [
-      BeerPresenter.present(beers.first, context: context)['beer'],
-      BeerPresenter.present(beers.last,  context: context)['beer']
-    ]
-
-    expect(BeerPresenter.present(beers, context: context)).to eq(expected)
-  end
-
   it 'includes rating links when authorized' do
     allow(context).to receive(:authorized?).and_return(true)
-    beer = beers.first
     hash = BeerPresenter.present(beer, context: context)
 
     %w[like dislike cellar hide].each do |action|
@@ -85,5 +73,31 @@ describe BeerPresenter do
       expect(hash['beer']['_links']).to include(post_link)
       expect(hash['beer']['_links']).to include(delete_link)
     end
+  end
+end
+
+describe BeersPresenter do
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:authorized?).and_return(false)
+      allow(d).to receive(:params).and_return({})
+    end
+  end
+
+  before { 2.times { Factory(:beer) } }
+
+  it 'presents a collection of beers' do
+    beers = Beer.all
+    expected = {
+      'count' => 2,
+      'beers' => [
+        BeerPresenter.new(beers.first, context: context, root: nil).present,
+        BeerPresenter.new(beers.last,  context: context, root: nil).present
+      ]
+    }
+
+    presented = BeersPresenter.new(beers, context: context, root: nil).present
+
+    expect(presented).to eq(expected)
   end
 end

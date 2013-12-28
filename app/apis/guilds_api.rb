@@ -12,7 +12,7 @@ class GuildsAPI < BaseAPI
     get { GuildPresenter.present(guild, context: self) }
 
     get :breweries do
-      BreweryPresenter.present paginate(guild.breweries), context: self
+      BreweryPresenter.present guild.breweries, context: self
     end
   end
 end

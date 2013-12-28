@@ -41,16 +41,22 @@ class UsersAPI < BaseAPI
       end
     end
 
-    get(:likes) { BeerPresenter.present paginate(user.liked_beers), context: self }
+    get :likes do
+      BeersPresenter.new(user.liked_beers, context: self, root: nil).present
+    end
 
-    get(:dislikes) { BeerPresenter.present paginate(user.disliked_beers), context: self }
+    get :dislikes do
+      BeersPresenter.new(user.disliked_beers, context: self, root: nil).present
+    end
 
-    get(:cellar) { BeerPresenter.present paginate(user.cellared_beers), context: self }
+    get :cellar do
+      BeersPresenter.new(user.cellared_beers, context: self, root: nil).present
+    end
 
     get :hidden do
       unauthorized! unless user == current_user
 
-      BeerPresenter.present paginate(user.hidden_beers), context: self
+      BeersPresenter.new(user.hidden_beers, context: self, root: nil).present
     end
 
     get(:similar) { UserPresenter.present user.similar_raters, context: self }

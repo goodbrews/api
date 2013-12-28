@@ -11,6 +11,8 @@ class StylesAPI < BaseAPI
 
     get { StylePresenter.present(style, context: self) }
 
-    get(:beers) { BeerPresenter.present paginate(style.beers), context: self }
+    get :beers do
+      BeersPresenter.new(style.beers, context: self, root: nil).present
+    end
   end
 end

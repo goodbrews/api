@@ -9,6 +9,7 @@ describe BeersAPI do
   let(:context) do
     double.tap do |d|
       allow(d).to receive(:authorized?).and_return(false)
+      allow(d).to receive(:params).and_return({})
     end
   end
 
@@ -17,12 +18,12 @@ describe BeersAPI do
       get '/beers'
 
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to eq('[]')
+      expect(last_response.body).to eq('{"count":0,"beers":[]}')
     end
 
     it 'returns a list of beers as JSON' do
-      beer = Factory(:beer)
-      body = BeerPresenter.present([beer.reload], context: context)
+      Factory(:beer)
+      body = BeersPresenter.new(Beer.all, context: context, root: nil).present
 
       get '/beers'
 

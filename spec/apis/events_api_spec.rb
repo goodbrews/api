@@ -9,6 +9,7 @@ describe EventsAPI do
   let(:context) do
     double.tap do |d|
       allow(d).to receive(:authorized?).and_return(false)
+      allow(d).to receive(:params).and_return({})
     end
   end
 
@@ -71,12 +72,12 @@ describe EventsAPI do
         it 'returns an empty array' do
           get "/events/#{event.to_param}/beers"
 
-          expect(last_response.body).to eq('[]')
+          expect(last_response.body).to eq('{"count":0,"beers":[]}')
         end
 
         it 'returns beers as JSON' do
           event.beers << Factory(:beer)
-          body = BeerPresenter.present(event.beers.reload, context: context)
+          body = BeersPresenter.new(event.beers.reload, context: context, root: nil).present
 
           get "/events/#{event.to_param}/beers"
           expect(last_response.body).to eq(body.to_json)

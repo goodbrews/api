@@ -14,7 +14,7 @@ class BreweriesAPI < BaseAPI
     get { BreweryPresenter.present brewery, context: self }
 
     namespace :beers do
-      get { BeerPresenter.present paginate(brewery.beers), context: self }
+      get { BeersPresenter.new(brewery.beers, context: self, root: nil).present }
 
       param :beer_slug do
         let(:beer) { brewery.beers.from_param(params[:beer_slug]) }
