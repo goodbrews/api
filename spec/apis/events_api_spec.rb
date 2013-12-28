@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'app/apis/events_api'
+require 'app/apis/api'
 
 describe EventsAPI do
   def app

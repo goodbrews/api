@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'app/apis/ingredients_api'
+require 'app/apis/api'
 
 describe IngredientsAPI do
   def app

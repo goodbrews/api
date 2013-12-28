@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'app/apis/beers_api'
+require 'app/apis/api'
 
 describe BeersAPI do
   def app

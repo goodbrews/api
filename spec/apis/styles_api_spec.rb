@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'app/apis/styles_api'
+require 'app/apis/api'
 
 describe StylesAPI do
   def app

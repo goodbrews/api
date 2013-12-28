@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'app/apis/guilds_api'
+require 'app/apis/api'
 
 describe GuildsAPI do
   def app
