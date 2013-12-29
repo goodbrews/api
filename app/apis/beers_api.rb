@@ -40,7 +40,7 @@ class BeersAPI < BaseAPI
     end
 
     get :ingredients do
-      IngredientPresenter.present beer.ingredients, context: self
+      IngredientsPresenter.new(beer.ingredients, context: self, root: nil).present
     end
 
     get :events do

@@ -2,11 +2,9 @@ require 'spec_helper'
 require 'app/presenters/guild_presenter'
 
 describe GuildPresenter do
-  let(:guilds) { [Factory(:guild), Factory(:guild)] }
+  let(:guild) { Factory(:guild) }
 
   it 'presents a guild with a root key' do
-    guild = guilds.first
-
     expected = {
       'guild' => {
         'name'        => guild.name,
@@ -32,17 +30,33 @@ describe GuildPresenter do
       }
     }
 
-    hash = GuildPresenter.present(guilds.first, context: self)
+    hash = GuildPresenter.present(guild, context: self)
 
     expect(hash).to eq(expected)
   end
+end
 
-  it 'presents an array of guilds without root keys' do
-    expected = [
-      GuildPresenter.present(guilds.first, context: self)['guild'],
-      GuildPresenter.present(guilds.last,  context: self)['guild']
-    ]
+describe GuildsPresenter do
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:params).and_return({})
+    end
+  end
 
-    expect(GuildPresenter.present(guilds, context: self)).to eq(expected)
+  before { 2.times { Factory(:guild) } }
+
+  it 'presents a collection of guilds' do
+    guilds = Guild.all
+    expected = {
+      'count' => 2,
+      'guilds' => [
+        GuildPresenter.new(guilds.first, context: context, root: nil).present,
+        GuildPresenter.new(guilds.last,  context: context, root: nil).present
+      ]
+    }
+
+    presented = GuildsPresenter.new(guilds, context: context, root: nil).present
+
+    expect(presented).to eq(expected)
   end
 end

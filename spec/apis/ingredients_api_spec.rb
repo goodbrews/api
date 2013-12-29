@@ -18,12 +18,12 @@ describe IngredientsAPI do
       get '/ingredients'
 
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to eq('[]')
+      expect(last_response.body).to eq('{"count":0,"ingredients":[]}')
     end
 
     it 'returns a list of ingredients as JSON' do
       ingredient = Factory(:ingredient)
-      body = IngredientPresenter.present([ingredient], context: context)
+      body = IngredientsPresenter.new(Ingredient.all, context: context, root: nil).present
 
       get '/ingredients'
 

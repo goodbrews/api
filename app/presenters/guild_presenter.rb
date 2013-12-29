@@ -18,5 +18,5 @@ class GuildPresenter < Jsonite
 end
 
 class GuildsPresenter < PaginatedPresenter
-  property(:guilds) { to_a }
+  property(:guilds, with: GuildPresenter) { to_a }
 end

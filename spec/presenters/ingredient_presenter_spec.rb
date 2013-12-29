@@ -2,11 +2,9 @@ require 'spec_helper'
 require 'app/presenters/ingredient_presenter'
 
 describe IngredientPresenter do
-  let(:ingredients) { [Factory(:ingredient), Factory(:ingredient)] }
+  let(:ingredient) { Factory(:ingredient) }
 
   it 'presents an ingredient with a root key' do
-    ingredient = ingredients.first
-
     expected = {
       'ingredient' => {
         'name'     => ingredient.name,
@@ -15,17 +13,33 @@ describe IngredientPresenter do
       }
     }
 
-    hash = IngredientPresenter.present(ingredients.first, context: self)
+    hash = IngredientPresenter.present(ingredient, context: self)
 
     expect(hash).to eq(expected)
   end
+end
 
-  it 'presents an array of ingredients without root keys' do
-    expected = [
-      IngredientPresenter.present(ingredients.first, context: self)['ingredient'],
-      IngredientPresenter.present(ingredients.last,  context: self)['ingredient']
-    ]
+describe IngredientsPresenter do
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:params).and_return({})
+    end
+  end
 
-    expect(IngredientPresenter.present(ingredients, context: self)).to eq(expected)
+  before { 2.times { Factory(:ingredient) } }
+
+  it 'presents a collection of ingredients' do
+    ingredients = Ingredient.all
+    expected = {
+      'count' => 2,
+      'ingredients' => [
+        IngredientPresenter.new(ingredients.first, context: context, root: nil).present,
+        IngredientPresenter.new(ingredients.last,  context: context, root: nil).present
+      ]
+    }
+
+    presented = IngredientsPresenter.new(ingredients, context: context, root: nil).present
+
+    expect(presented).to eq(expected)
   end
 end

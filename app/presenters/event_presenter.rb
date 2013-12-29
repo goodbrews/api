@@ -22,5 +22,5 @@ class EventPresenter < Jsonite
 end
 
 class EventsPresenter < PaginatedPresenter
-  property(:events) { to_a }
+  property(:events, with: EventPresenter) { to_a }
 end

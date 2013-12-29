@@ -2,11 +2,9 @@ require 'spec_helper'
 require 'app/presenters/event_presenter'
 
 describe EventPresenter do
-  let(:events) { [Factory(:event), Factory(:event)] }
+  let(:event) { Factory(:event) }
 
   it 'presents an event with a root key' do
-    event = events.first
-
     expected = {
       'event' => {
         'name'        => event.name,
@@ -50,17 +48,34 @@ describe EventPresenter do
       }
     }
 
-    hash = EventPresenter.present(events.first, context: self)
+    hash = EventPresenter.present(event, context: self)
 
     expect(hash).to eq(expected)
   end
+end
 
-  it 'presents an array of events without root keys' do
-    expected = [
-      EventPresenter.present(events.first, context: self)['event'],
-      EventPresenter.present(events.last,  context: self)['event']
-    ]
+describe EventsPresenter do
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:authorized?).and_return(false)
+      allow(d).to receive(:params).and_return({})
+    end
+  end
 
-    expect(EventPresenter.present(events, context: self)).to eq(expected)
+  before { 2.times { Factory(:event) } }
+
+  it 'presents a collection of events' do
+    events = Event.all
+    expected = {
+      'count' => 2,
+      'events' => [
+        EventPresenter.new(events.first, context: context, root: nil).present,
+        EventPresenter.new(events.last,  context: context, root: nil).present
+      ]
+    }
+
+    presented = EventsPresenter.new(events, context: context, root: nil).present
+
+    expect(presented).to eq(expected)
   end
 end

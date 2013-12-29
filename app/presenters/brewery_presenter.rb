@@ -24,5 +24,5 @@ class BreweryPresenter < Jsonite
 end
 
 class BreweriesPresenter < PaginatedPresenter
-  property(:breweries) { to_a }
+  property(:breweries, with: BreweryPresenter) { to_a }
 end

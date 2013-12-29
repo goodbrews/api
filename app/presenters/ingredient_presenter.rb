@@ -5,3 +5,7 @@ class IngredientPresenter < Jsonite
 
   property(:beers) { beers_count }
 end
+
+class IngredientsPresenter < PaginatedPresenter
+  property(:ingredients, with: IngredientPresenter) { to_a }
+end

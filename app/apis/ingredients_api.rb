@@ -4,7 +4,9 @@ require 'app/presenters/beer_presenter'
 require 'app/presenters/ingredient_presenter'
 
 class IngredientsAPI < BaseAPI
-  get { IngredientPresenter.present(paginate(Ingredient.all), context: self) }
+  get do
+    IngredientsPresenter.new(Ingredient.all, context: self, root: nil).present
+  end
 
   param :id do
     let(:ingredient) { Ingredient.find(params[:id]) }

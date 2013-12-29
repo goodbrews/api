@@ -2,11 +2,9 @@ require 'spec_helper'
 require 'app/presenters/brewery_presenter'
 
 describe BreweryPresenter do
-  let(:breweries) { [Factory(:brewery), Factory(:brewery)] }
+  let(:brewery) { Factory(:brewery) }
 
   it 'presents a brewery with a root key' do
-    brewery = breweries.first
-
     expected = {
       'brewery' => {
         'name'            => brewery.name,
@@ -40,17 +38,33 @@ describe BreweryPresenter do
       }
     }
 
-    hash = BreweryPresenter.present(breweries.first, context: self)
+    hash = BreweryPresenter.present(brewery, context: self)
 
     expect(hash).to eq(expected)
   end
+end
 
-  it 'presents an array of breweries without root keys' do
-    expected = [
-      BreweryPresenter.present(breweries.first, context: self)['brewery'],
-      BreweryPresenter.present(breweries.last,  context: self)['brewery']
-    ]
+describe BreweriesPresenter do
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:params).and_return({})
+    end
+  end
 
-    expect(BreweryPresenter.present(breweries, context: self)).to eq(expected)
+  before { 2.times { Factory(:brewery) } }
+
+  it 'presents a collection of breweries' do
+    breweries = Brewery.all
+    expected = {
+      'count' => 2,
+      'breweries' => [
+        BreweryPresenter.new(breweries.first, context: context, root: nil).present,
+        BreweryPresenter.new(breweries.last,  context: context, root: nil).present
+      ]
+    }
+
+    presented = BreweriesPresenter.new(breweries, context: context, root: nil).present
+
+    expect(presented).to eq(expected)
   end
 end
