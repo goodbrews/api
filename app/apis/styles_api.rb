@@ -9,7 +9,7 @@ class StylesAPI < BaseAPI
   param :slug do
     let(:style) { Style.from_param(params[:slug]) }
 
-    get { StylePresenter.present(style, context: self) }
+    get { StylePresenter.new(style, context: self).present }
 
     get :beers do
       BeersPresenter.new(style.beers, context: self, root: nil).present

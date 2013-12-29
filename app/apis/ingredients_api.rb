@@ -11,7 +11,7 @@ class IngredientsAPI < BaseAPI
   param :id do
     let(:ingredient) { Ingredient.find(params[:id]) }
 
-    get { IngredientPresenter.present(ingredient, context: self) }
+    get { IngredientPresenter.new(ingredient, context: self).present }
 
     get :beers do
       BeersPresenter.new(ingredient.beers, context: self, root: nil).present

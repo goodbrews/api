@@ -9,7 +9,7 @@ class GuildsAPI < BaseAPI
   param :id do
     let(:guild) { Guild.from_param(params[:id]) }
 
-    get { GuildPresenter.present(guild, context: self) }
+    get { GuildPresenter.new(guild, context: self).present }
 
     get :breweries do
       BreweriesPresenter.new(guild.breweries, context: self, root: nil).present

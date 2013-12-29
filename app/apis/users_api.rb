@@ -27,7 +27,7 @@ class UsersAPI < BaseAPI
   param :username do
     let(:user) { User.from_param(params[:username]) }
 
-    get { UserPresenter.present(user, context: self) }
+    get { UserPresenter.new(user, context: self).present }
 
     put do
       unauthorized! unless user == current_user

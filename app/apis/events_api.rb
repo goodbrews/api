@@ -10,7 +10,7 @@ class EventsAPI < BaseAPI
   param :id do
     let(:event) { Event.from_param(params[:id]) }
 
-    get { EventPresenter.present event, context: self }
+    get { EventPresenter.new(event, context: self).present }
 
     get :breweries do
       BreweriesPresenter.new(event.breweries, context: self, root: nil).present

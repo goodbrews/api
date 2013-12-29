@@ -11,7 +11,7 @@ class BeersAPI < BaseAPI
   param :slug do
     let(:beer) { Beer.from_param(params[:slug]) }
 
-    get { BeerPresenter.present beer, context: self }
+    get { BeerPresenter.new(beer, context: self).present }
 
     %w[like dislike cellar hide].each do |action|
       post action do

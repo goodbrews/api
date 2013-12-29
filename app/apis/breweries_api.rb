@@ -11,7 +11,7 @@ class BreweriesAPI < BaseAPI
   param :slug do
     let(:brewery) { Brewery.from_param(params[:slug]) }
 
-    get { BreweryPresenter.present brewery, context: self }
+    get { BreweryPresenter.new(brewery, context: self).present }
 
     namespace :beers do
       get { BeersPresenter.new(brewery.beers, context: self, root: nil).present }
@@ -19,7 +19,7 @@ class BreweriesAPI < BaseAPI
       param :beer_slug do
         let(:beer) { brewery.beers.from_param(params[:beer_slug]) }
 
-        get { BeerPresenter.present beer, context: self }
+        get { BeerPresenter.new(beer, context: self).present }
       end
     end
 
