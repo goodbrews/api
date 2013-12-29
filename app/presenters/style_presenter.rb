@@ -10,3 +10,7 @@ class StylePresenter < Jsonite
   link         { "/styles/#{self.to_param}" }
   link(:beers) { "/styles/#{self.to_param}/beers" }
 end
+
+class StylesPresenter < PaginatedPresenter
+  property(:styles, with: StylePresenter) { to_a }
+end

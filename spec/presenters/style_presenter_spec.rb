@@ -35,13 +35,30 @@ describe StylePresenter do
 
     expect(hash).to eq(expected)
   end
+end
 
-  it 'presents an array of styles without root keys' do
-    expected = [
-      StylePresenter.present(styles.first, context: self)['style'],
-      StylePresenter.present(styles.last,  context: self)['style']
-    ]
+describe StylesPresenter do
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:params).and_return({})
+    end
+  end
 
-    expect(StylePresenter.present(styles, context: self)).to eq(expected)
+  before { 2.times { Factory(:style) } }
+
+  it 'presents a collection of styles' do
+    styles = Style.all
+    expected = {
+      'count' => 2,
+      'styles' => [
+        StylePresenter.new(styles.first, context: context, root: nil).present,
+        StylePresenter.new(styles.last,  context: context, root: nil).present
+      ]
+    }
+
+    presented = StylesPresenter.new(styles, context: context, root: nil).present
+
+    expect(presented).to eq(expected)
   end
 end
+
