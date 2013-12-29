@@ -4,7 +4,7 @@ require 'app/presenters/brewery_presenter'
 require 'app/presenters/guild_presenter'
 
 class GuildsAPI < BaseAPI
-  get { GuildPresenter.present paginate(Guild.all), context: self }
+  get { GuildsPresenter.new(Guild.all, context: self, root: nil).present }
 
   param :id do
     let(:guild) { Guild.from_param(params[:id]) }

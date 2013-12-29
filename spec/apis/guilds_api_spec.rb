@@ -18,12 +18,12 @@ describe GuildsAPI do
       get '/guilds'
 
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to eq('[]')
+      expect(last_response.body).to eq('{"count":0,"guilds":[]}')
     end
 
     it 'returns a list of guilds as JSON' do
       guild = Factory(:guild)
-      body = GuildPresenter.present([guild], context: context)
+      body = GuildsPresenter.new(Guild.all, context: context, root: nil).present
 
       get '/guilds'
 

@@ -16,3 +16,7 @@ class GuildPresenter < Jsonite
     "https://s3.amazonaws.com/brewerydbapi/guild/#{brewerydb_id}/upload_#{image_id}-{size}.png"
   end
 end
+
+class GuildsPresenter < PaginatedPresenter
+  property(:guilds) { to_a }
+end

@@ -24,7 +24,7 @@ class BreweriesAPI < BaseAPI
     end
 
     get :guilds do
-      GuildPresenter.present paginate(brewery.guilds), context: self
+      GuildsPresenter.new(brewery.guilds, context: self, root: nil).present
     end
 
     get :events do

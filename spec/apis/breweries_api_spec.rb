@@ -92,12 +92,12 @@ describe BreweriesAPI do
         it 'returns an empty array' do
           get "/breweries/#{brewery.slug}/guilds"
 
-          expect(last_response.body).to eq('[]')
+          expect(last_response.body).to eq('{"count":0,"guilds":[]}')
         end
 
         it 'returns guilds as JSON' do
           brewery.save; brewery.guilds << Factory(:guild)
-          body = GuildPresenter.present(brewery.guilds.reload, context: context)
+          body = GuildsPresenter.new(brewery.guilds.reload, context: context, root: nil).present
 
           get "/breweries/#{brewery.slug}/guilds"
           expect(last_response.body).to eq(body.to_json)
