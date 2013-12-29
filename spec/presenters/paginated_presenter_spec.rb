@@ -29,7 +29,8 @@ describe PaginatedPresenter do
 
   let(:context) do
     OpenStruct.new(
-      request: OpenStruct.new(url: 'http://example.org/numbers'),
+      url: 'http://example.org/numbers',
+      query_params: {},
       params: {}
     )
   end
@@ -47,8 +48,9 @@ describe PaginatedPresenter do
 
     let(:context) do
       OpenStruct.new(
-        request: OpenStruct.new(url: 'http://example.org/numbers'),
-        params: { param: :value }
+        url: 'http://example.org/numbers',
+        query_params: { param: :value },
+        params: { query_string: false }
       )
     end
 
