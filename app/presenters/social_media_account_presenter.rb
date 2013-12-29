@@ -5,3 +5,7 @@ class SocialMediaAccountPresenter < Jsonite
 
   link(:external) { url }
 end
+
+class SocialMediaAccountsPresenter < PaginatedPresenter
+  property(:social_media_accounts, with: SocialMediaAccountPresenter) { to_a }
+end

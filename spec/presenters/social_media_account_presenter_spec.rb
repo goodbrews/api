@@ -26,13 +26,30 @@ describe SocialMediaAccountPresenter do
 
     expect(hash).to eq(expected)
   end
+end
 
-  it 'presents an array of social_media_accounts without root keys' do
-    expected = [
-      SocialMediaAccountPresenter.present(social_media_accounts.first, context: self)['social_media_account'],
-      SocialMediaAccountPresenter.present(social_media_accounts.last,  context: self)['social_media_account']
-    ]
+describe SocialMediaAccountsPresenter do
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:params).and_return({})
+    end
+  end
 
-    expect(SocialMediaAccountPresenter.present(social_media_accounts, context: self)).to eq(expected)
+  before { 2.times { Factory(:social_media_account) } }
+
+  it 'presents a collection of social_media_accounts' do
+    social_media_accounts = SocialMediaAccount.all
+    expected = {
+      'count' => 2,
+      'social_media_accounts' => [
+        SocialMediaAccountPresenter.new(social_media_accounts.first, context: context, root: nil).present,
+        SocialMediaAccountPresenter.new(social_media_accounts.last,  context: context, root: nil).present
+      ]
+    }
+
+    presented = SocialMediaAccountsPresenter.new(social_media_accounts, context: context, root: nil).present
+
+    expect(presented).to eq(expected)
   end
 end
+

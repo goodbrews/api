@@ -36,7 +36,7 @@ describe LocationPresenter do
   end
 end
 
-describe GuildsPresenter do
+describe LocationsPresenter do
   let(:context) do
     double.tap do |d|
       allow(d).to receive(:params).and_return({})
