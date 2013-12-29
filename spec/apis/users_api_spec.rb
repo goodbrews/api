@@ -218,15 +218,15 @@ describe UsersAPI do
           it 'returns an empty array' do
             get "/users/#{user.to_param}/similar"
 
-            expect(last_response.body).to eq('[]')
+            expect(last_response.body).to eq('{"users":[]}')
           end
 
           it 'returns users as JSON' do
             friend = Factory(:user)
-            expect(user).to receive(:similar_raters).and_return([friend])
+            expect(user).to receive(:similar_raters).twice.and_return([friend])
             expect(User).to receive(:from_param).with(user.username).and_return(user)
 
-            body = UserPresenter.present([friend], context: context)
+            body = UsersPresenter.new(user.similar_raters, context: context, root: nil)
 
             get "/users/#{user.to_param}/similar"
             expect(last_response.body).to eq(body.to_json)

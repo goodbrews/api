@@ -59,6 +59,6 @@ class UsersAPI < BaseAPI
       BeersPresenter.new(user.hidden_beers, context: self, root: nil).present
     end
 
-    get(:similar) { UserPresenter.present user.similar_raters, context: self }
+    get(:similar) { UsersPresenter.new(user.similar_raters, context: self, root: nil).present }
   end
 end

@@ -4,7 +4,7 @@ require 'app/presenters/beer_presenter'
 require 'app/presenters/style_presenter'
 
 class StylesAPI < BaseAPI
-  get { StylePresenter.present(paginate(Style.all), context: self) }
+  get { StylesPresenter.new(Style.all, context: self, root: nil).present }
 
   param :slug do
     let(:style) { Style.from_param(params[:slug]) }

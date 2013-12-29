@@ -110,7 +110,6 @@ describe UsersPresenter do
   it 'presents a collection of users' do
     users = User.all
     expected = {
-      'count' => 2,
       'users' => [
         UserPresenter.new(users.first, context: context, root: nil).present,
         UserPresenter.new(users.last,  context: context, root: nil).present

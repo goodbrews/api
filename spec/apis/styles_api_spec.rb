@@ -18,12 +18,12 @@ describe StylesAPI do
       get '/styles'
 
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to eq('[]')
+      expect(last_response.body).to eq('{"count":0,"styles":[]}')
     end
 
     it 'returns a list of styles as JSON' do
       style = Factory(:style)
-      body = StylePresenter.present([style], context: context)
+      body = StylesPresenter.new(Style.all, context: context, root: nil).present
 
       get '/styles'
 

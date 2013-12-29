@@ -32,7 +32,7 @@ class BreweriesAPI < BaseAPI
     end
 
     get :locations do
-      LocationPresenter.present paginate(brewery.locations), context: self
+      LocationsPresenter.new(brewery.locations, context: self, root: nil).present
     end
   end
 end
