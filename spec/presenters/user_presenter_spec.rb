@@ -46,15 +46,6 @@ describe UserPresenter do
 
       expect(hash).to eq(expected)
     end
-
-    it 'presents an array of users without root keys' do
-      expected = [
-        UserPresenter.present(users.first, context: context)['user'],
-        UserPresenter.present(users.last,  context: context)['user']
-      ]
-
-      expect(UserPresenter.present(users, context: context)).to eq(expected)
-    end
   end
 
   context 'with the current user' do
@@ -103,5 +94,31 @@ describe UserPresenter do
 
       expect(hash).to eq(expected)
     end
+  end
+end
+
+describe UsersPresenter do
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:params).and_return({})
+      allow(d).to receive(:current_user).and_return(nil)
+    end
+  end
+
+  before { 2.times { Factory(:user) } }
+
+  it 'presents a collection of users' do
+    users = User.all
+    expected = {
+      'count' => 2,
+      'users' => [
+        UserPresenter.new(users.first, context: context, root: nil).present,
+        UserPresenter.new(users.last,  context: context, root: nil).present
+      ]
+    }
+
+    presented = UsersPresenter.new(users, context: context, root: nil).present
+
+    expect(presented).to eq(expected)
   end
 end

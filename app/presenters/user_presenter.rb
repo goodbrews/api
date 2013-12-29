@@ -34,3 +34,7 @@ class UserPresenter < Jsonite
     "https://secure.gravatar.com/avatar/#{hash}.jpg?s={size}"
   end
 end
+
+class UsersPresenter < PaginatedPresenter
+  property(:users, with: UserPresenter) { to_a }
+end
