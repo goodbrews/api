@@ -1,4 +1,3 @@
-require 'app/helpers/pagination_helper'
 require 'app/apis/base_api'
 require 'app/apis/authorization_api'
 require 'app/apis/beers_api'
