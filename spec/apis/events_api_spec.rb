@@ -56,12 +56,12 @@ describe EventsAPI do
         it 'returns an empty array' do
           get "/events/#{event.to_param}/breweries"
 
-          expect(last_response.body).to eq('[]')
+          expect(last_response.body).to eq('{"count":0,"breweries":[]}')
         end
 
         it 'returns breweries as JSON' do
           event.breweries << Factory(:brewery)
-          body = BreweryPresenter.present(event.breweries.reload, context: context)
+          body = BreweriesPresenter.new(event.breweries.reload, context: context, root: nil).present
 
           get "/events/#{event.to_param}/breweries"
           expect(last_response.body).to eq(body.to_json)

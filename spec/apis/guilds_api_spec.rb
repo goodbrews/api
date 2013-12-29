@@ -56,12 +56,12 @@ describe GuildsAPI do
         it 'returns an empty array' do
           get "/guilds/#{guild.to_param}/breweries"
 
-          expect(last_response.body).to eq('[]')
+          expect(last_response.body).to eq('{"count":0,"breweries":[]}')
         end
 
         it 'returns breweries as JSON' do
           guild.breweries << Factory(:brewery)
-          body = BreweryPresenter.present(guild.breweries.reload, context: context)
+          body = BreweriesPresenter.new(guild.breweries.reload, context: context, root: nil).present
 
           get "/guilds/#{guild.to_param}/breweries"
           expect(last_response.body).to eq(body.to_json)

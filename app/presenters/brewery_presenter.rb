@@ -22,3 +22,7 @@ class BreweryPresenter < Jsonite
     "https://s3.amazonaws.com/brewerydbapi/brewery/#{brewerydb_id}/upload_#{image_id}-{size}.png"
   end
 end
+
+class BreweriesPresenter < PaginatedPresenter
+  property(:breweries) { to_a }
+end

@@ -36,7 +36,7 @@ class BeersAPI < BaseAPI
     end
 
     get :breweries do
-      BreweryPresenter.present beer.breweries, context: self
+      BreweriesPresenter.new(beer.breweries, context: self, root: nil).present
     end
 
     get :ingredients do

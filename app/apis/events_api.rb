@@ -13,7 +13,7 @@ class EventsAPI < BaseAPI
     get { EventPresenter.present event, context: self }
 
     get :breweries do
-      BreweryPresenter.present event.breweries, context: self
+      BreweriesPresenter.new(event.breweries, context: self, root: nil).present
     end
 
     get :beers do

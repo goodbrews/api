@@ -18,12 +18,12 @@ describe BreweriesAPI do
       get '/breweries'
 
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to eq('[]')
+      expect(last_response.body).to eq('{"count":0,"breweries":[]}')
     end
 
     it 'returns a list of breweries as JSON' do
       brewery = Factory(:brewery)
-      body = BreweryPresenter.present([brewery], context: context)
+      body = BreweriesPresenter.new(Brewery.all, context: context, root: nil).present
 
       get '/breweries'
 

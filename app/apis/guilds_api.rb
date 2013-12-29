@@ -12,7 +12,7 @@ class GuildsAPI < BaseAPI
     get { GuildPresenter.present(guild, context: self) }
 
     get :breweries do
-      BreweryPresenter.present guild.breweries, context: self
+      BreweriesPresenter.new(guild.breweries, context: self, root: nil).present
     end
   end
 end
