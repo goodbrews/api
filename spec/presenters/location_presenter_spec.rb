@@ -34,13 +34,29 @@ describe LocationPresenter do
 
     expect(hash).to eq(expected)
   end
+end
 
-  it 'presents an array of locations without root keys' do
-    expected = [
-      LocationPresenter.present(locations.first, context: self)['location'],
-      LocationPresenter.present(locations.last,  context: self)['location']
-    ]
+describe GuildsPresenter do
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:params).and_return({})
+    end
+  end
 
-    expect(LocationPresenter.present(locations, context: self)).to eq(expected)
+  before { 2.times { Factory(:location) } }
+
+  it 'presents a collection of locations' do
+    locations = Location.all
+    expected = {
+      'count' => 2,
+      'locations' => [
+        LocationPresenter.new(locations.first, context: context, root: nil).present,
+        LocationPresenter.new(locations.last,  context: context, root: nil).present
+      ]
+    }
+
+    presented = LocationsPresenter.new(locations, context: context, root: nil).present
+
+    expect(presented).to eq(expected)
   end
 end

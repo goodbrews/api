@@ -5,3 +5,7 @@ class LocationPresenter < Jsonite
              :hours, :website, :phone, :street, :street2, :city, :region,
              :postal_code, :country, :latitude, :longitude
 end
+
+class LocationsPresenter < PaginatedPresenter
+  property(:locations, with: LocationPresenter) { to_a }
+end
