@@ -18,12 +18,12 @@ describe EventsAPI do
       get '/events'
 
       expect(last_response.status).to eq(200)
-      expect(last_response.body).to eq('[]')
+      expect(last_response.body).to eq('{"count":0,"events":[]}')
     end
 
     it 'returns a list of events as JSON' do
       event = Factory(:event)
-      body = EventPresenter.present([event], context: context)
+      body = EventsPresenter.new(Event.all, context: context, root: nil).present
 
       get '/events'
 

@@ -28,7 +28,7 @@ class BreweriesAPI < BaseAPI
     end
 
     get :events do
-      EventPresenter.present paginate(brewery.events), context: self
+      EventsPresenter.new(brewery.events, context: self, root: nil).present
     end
 
     get :locations do

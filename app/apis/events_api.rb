@@ -5,7 +5,7 @@ require 'app/presenters/brewery_presenter'
 require 'app/presenters/event_presenter'
 
 class EventsAPI < BaseAPI
-  get { EventPresenter.present paginate(Event.all), context: self }
+  get { EventsPresenter.new(Event.all, context: self, root: nil).present }
 
   param :id do
     let(:event) { Event.from_param(params[:id]) }
