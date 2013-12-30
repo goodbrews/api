@@ -1,6 +1,11 @@
 # Load the Grape application.
 require File.expand_path('../config/application', __FILE__)
+require 'new_relic/rack/agent_hooks'
+require 'new_relic/rack/error_collector'
 require 'app/apis/api'
+
+use NewRelic::Rack::AgentHooks
+use NewRelic::Rack::ErrorCollector
 
 use ActiveRecord::ConnectionAdapters::ConnectionManagement
 use ActiveRecord::QueryCache

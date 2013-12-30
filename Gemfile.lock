@@ -6,6 +6,14 @@ GIT
       activesupport (>= 3.1.0)
 
 GIT
+  remote: git://github.com/davidcelis/new_relic-crepe.git
+  revision: 9038a05549e936786932a116a7a6aabece25003d
+  specs:
+    new_relic-crepe (0.0.1)
+      crepe
+      newrelic_rpm
+
+GIT
   remote: git://github.com/davidcelis/recommendable.git
   revision: f2357dd9e287b6608a3f329b450452a51d5f704e
   specs:
@@ -192,6 +200,7 @@ DEPENDENCIES
   kaminari
   mail
   miniskirt
+  new_relic-crepe!
   newrelic_rpm
   pg
   pry
