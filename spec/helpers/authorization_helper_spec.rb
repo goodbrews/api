@@ -8,7 +8,7 @@ describe AuthorizationHelper do
 
       get :current_user do
         response = { authorized: authorized? }
-        response[:current_user] = current_user if authorized?
+        response[:current_user] = current_user.as_json if authorized?
 
         response
       end
