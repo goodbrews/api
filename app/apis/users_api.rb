@@ -4,14 +4,6 @@ require 'app/presenters/beer_presenter'
 require 'app/presenters/user_presenter'
 
 class UsersAPI < BaseAPI
-  rescue_from(Crepe::Params::Missing) do |e|
-    error! :unprocessable_entity, e.message
-  end
-
-  rescue_from(Crepe::Params::Invalid) do |e|
-    error! :unprocessable_entity, e.message
-  end
-
   post do
     user_params = params.require(:user).permit(*User::PERMISSIBLE_PARAMS)
     user = User.new(user_params)

@@ -2,10 +2,6 @@ require 'app/apis/base_api'
 require 'app/models/user'
 
 class AuthorizationAPI < BaseAPI
-  rescue_from(Crepe::Params::Missing) do |e|
-    unauthorized! e.message
-  end
-
   # TODO: Filter the password parameter from login.
   post :authorize do
     params.require(:login) and params.require(:password)

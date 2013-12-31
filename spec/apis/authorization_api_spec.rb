@@ -18,15 +18,15 @@ describe AuthorizationAPI do
     it 'requires a login' do
       post '/authorize'
 
-      expect(last_response.status).to eq(401)
-      expect(last_response.body).to eq('{"error":{"message":"Missing parameter: login"}}')
+      expect(last_response.status).to eq(400)
+      expect(last_response.body).to eq('{"error":{"message":"Missing parameter: login","missing":"login"}}')
     end
 
     it 'requires a password' do
       post '/authorize', login: user.username
 
-      expect(last_response.status).to eq(401)
-      expect(last_response.body).to eq('{"error":{"message":"Missing parameter: password"}}')
+      expect(last_response.status).to eq(400)
+      expect(last_response.body).to eq('{"error":{"message":"Missing parameter: password","missing":"password"}}')
     end
 
     it 'returns a 401 with bad credentials' do

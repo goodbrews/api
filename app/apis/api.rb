@@ -11,7 +11,6 @@ require 'app/apis/webhooks_api'
 
 module Goodbrews
   class API < BaseAPI
-    # TODO: Force SSL
     respond_to :json, :html
 
     get do
@@ -42,9 +41,5 @@ module Goodbrews
     mount StylesAPI      => :styles
     mount UsersAPI       => :users
     mount WebhooksAPI    => '/brewery_db/webhooks/'
-
-    any '*catchall' do
-      error! :not_found
-    end
   end
 end

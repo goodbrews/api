@@ -24,13 +24,12 @@ GIT
 
 GIT
   remote: git://github.com/stephencelis/crepe.git
-  revision: 4b027fdece27efad58dead0ba07082ee2f223bba
+  revision: 77fc365c05ab88217c26406c8a80e871394eedf7
   specs:
     crepe (0.0.1.pre)
       activesupport (>= 4.0.0)
       rack (~> 1.5.x)
       rack-mount (~> 0.8.x)
-      tilt (~> 1.3.x)
 
 GEM
   remote: https://rubygems.org/
@@ -116,7 +115,6 @@ GEM
     minitest (4.7.5)
     mock_redis (0.10.0)
     multi_json (1.8.2)
-    multi_xml (0.5.5)
     newrelic_rpm (3.7.1.180)
     pg (0.17.1)
     polyglot (0.3.3)
@@ -169,7 +167,6 @@ GEM
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
-    tilt (1.4.1)
     timers (1.1.0)
     tins (0.13.1)
     treetop (1.4.15)

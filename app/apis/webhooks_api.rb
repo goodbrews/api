@@ -15,6 +15,8 @@ class WebhooksAPI < BaseAPI
 
   helper do
     def validate_nonce!
+      params.require(:nonce) and params.require(:key)
+
       secret = "#{ENV['BREWERY_DB_API_KEY']}#{params[:nonce]}"
       secret = Digest::SHA1.hexdigest(secret)
 

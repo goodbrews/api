@@ -18,15 +18,15 @@ describe UsersAPI do
       it 'requires params to be wrapped in a `user` key' do
         post '/users'
 
-        expect(last_response.status).to eq(422)
-        expect(last_response.body).to eq(%({"error":{"message":"Missing parameter: user"}}))
+        expect(last_response.status).to eq(400)
+        expect(last_response.body).to eq(%({"error":{"message":"Missing parameter: user","missing":"user"}}))
       end
 
       it 'disallows invalid parameters' do
         post '/users', { user: { nothing: :here } }
 
-        expect(last_response.status).to eq(422)
-        expect(last_response.body).to eq(%({"error":{"message":"Invalid parameter(s): nothing"}}))
+        expect(last_response.status).to eq(400)
+        expect(last_response.body).to eq(%({"error":{"message":"Invalid parameter(s): nothing","invalid":["nothing"],"valid":["username","email","password","password_confirmation","city","region","country"]}}))
       end
 
       it 'requires certain parameters' do
@@ -98,8 +98,8 @@ describe UsersAPI do
           it 'requires parameters to be wrapped in a `user` key' do
             put "/users/#{user.to_param}", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
 
-            expect(last_response.status).to eq(422)
-            expect(last_response.body).to eq(%({"error":{"message":"Missing parameter: user"}}))
+            expect(last_response.status).to eq(400)
+            expect(last_response.body).to eq(%({"error":{"message":"Missing parameter: user","missing":"user"}}))
           end
 
           it 'requires a current_password' do
