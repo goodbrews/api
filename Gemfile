@@ -27,7 +27,6 @@ gem 'mail'
 gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Monitoring.
-gem 'newrelic_rpm'
 gem 'new_relic-crepe', github: 'davidcelis/new_relic-crepe'
 
 group :development, :test do

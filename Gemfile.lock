@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/davidcelis/new_relic-crepe.git
-  revision: 7c365809e5241313cd781915e51412a5614964e9
+  revision: 931b75b6692e4ee79d8a7c93719d66a34415813e
   specs:
     new_relic-crepe (0.0.1)
       crepe
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: git://github.com/stephencelis/crepe.git
-  revision: 77fc365c05ab88217c26406c8a80e871394eedf7
+  revision: 998aaf9962ab620a3d48d0f2e219b26fd6537c46
   specs:
     crepe (0.0.1.pre)
       activesupport (>= 4.0.0)
@@ -115,7 +115,7 @@ GEM
     minitest (4.7.5)
     mock_redis (0.10.0)
     multi_json (1.8.2)
-    newrelic_rpm (3.7.1.180)
+    newrelic_rpm (3.7.1.182)
     pg (0.17.1)
     polyglot (0.3.3)
     pry (0.9.12.4)
@@ -196,7 +196,6 @@ DEPENDENCIES
   mail
   miniskirt
   new_relic-crepe!
-  newrelic_rpm
   pg
   pry
   puma
