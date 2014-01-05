@@ -23,6 +23,8 @@ VCR.configure do |c|
   c.filter_sensitive_data('secret_api_key') { ENV['BREWERY_DB_API_KEY'] }
 end
 
+NewRelic::Agent.manual_start
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.include Rack::Test::Methods

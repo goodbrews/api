@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/davidcelis/new_relic-crepe.git
-  revision: 931b75b6692e4ee79d8a7c93719d66a34415813e
+  revision: 8f9a255e85d26d83264b986d176a9e842f690dd2
   specs:
     new_relic-crepe (0.0.1)
       crepe
