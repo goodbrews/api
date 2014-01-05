@@ -30,8 +30,6 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'new_relic-crepe', github: 'davidcelis/new_relic-crepe'
 
 group :development, :test do
-  gem 'guard'
-  gem 'guard-puma'
   gem 'pry'
 
   # Miniskirt and FFaker are also used for seed data.

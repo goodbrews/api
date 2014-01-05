@@ -78,32 +78,12 @@ GEM
     docile (1.1.1)
     erubis (2.7.0)
     ffaker (1.22.1)
-    ffi (1.9.3)
-    formatador (0.2.4)
-    guard (2.2.5)
-      formatador (>= 0.2.4)
-      listen (~> 2.1)
-      lumberjack (~> 1.0)
-      pry (>= 0.9.12)
-      thor (>= 0.18.1)
-    guard-puma (0.2.4)
-      guard (>= 1.0.1)
-      libnotify
-      puma
-      rb-inotify
     hooks (0.3.3)
     i18n (0.6.9)
     json (1.8.1)
     kaminari (0.15.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    libnotify (0.8.2)
-      ffi (>= 1.0.11)
-    listen (2.4.0)
-      celluloid (>= 0.15.2)
-      rb-fsevent (>= 0.9.3)
-      rb-inotify (>= 0.9)
-    lumberjack (1.0.4)
     mail (2.2.7)
       activesupport (>= 2.3.6)
       mime-types
@@ -130,9 +110,6 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.1.1)
-    rb-fsevent (0.9.3)
-    rb-inotify (0.9.3)
-      ffi (>= 0.5.0)
     redis (3.0.6)
     redis-namespace (1.4.1)
       redis (~> 3.0.4)
@@ -189,8 +166,6 @@ DEPENDENCIES
   crepe!
   database_cleaner
   ffaker
-  guard
-  guard-puma
   jsonite!
   kaminari
   mail
