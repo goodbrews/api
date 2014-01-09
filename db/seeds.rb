@@ -35,7 +35,12 @@ styles = %w[
   Baltic-Style Porter
 ]
 
-styles.map! { |name| Factory(:style, name: name, category: 'Ale') }
+styles.map! do |name|
+  style = Style.find_or_initialize_by(name: name)
+  style.category = %w[Ale Lager].sample
+  style.save!
+  style
+end
 
 ##
 # Breweries
@@ -55,7 +60,12 @@ location = Factory(:location, brewery: brewery)
 
 ingredients = %w[Amarillo Cascade Chinook Citra Crystal Nugget Simcoe Spalt]
 
-ingredients.map! { |hop| Factory(:ingredient, name: hop, category: 'Hops') }
+ingredients.map! do |hop|
+  ingredient = Ingredient.find_or_initialize_by(name: hop)
+  ingredient.category = 'Hops'
+  ingredient.save!
+  ingredient
+end
 
 ##
 # Beers
