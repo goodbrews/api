@@ -1,0 +1,10 @@
+# Configuration file for Sidekiq.
+# Options here can still be overridden by cmd line args.
+#   sidekiq -C config/sidekiq.yml
+---
+:require: ./config/application.rb
+:verbose: false
+:concurrency: 25
+:queues:
+  - [recommendable, 2]
+  - [webhooks, 1]

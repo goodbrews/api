@@ -29,6 +29,8 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 # Monitoring.
 gem 'new_relic-crepe', github: 'davidcelis/new_relic-crepe'
 
+gem 'foreman', group: :development
+
 group :development, :test do
   gem 'pry'
 

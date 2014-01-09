@@ -76,8 +76,12 @@ GEM
     database_cleaner (1.2.0)
     diff-lcs (1.2.5)
     docile (1.1.1)
+    dotenv (0.9.0)
     erubis (2.7.0)
     ffaker (1.22.1)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
     hooks (0.3.3)
     i18n (0.6.9)
     json (1.8.1)
@@ -166,6 +170,7 @@ DEPENDENCIES
   crepe!
   database_cleaner
   ffaker
+  foreman
   jsonite!
   kaminari
   mail
