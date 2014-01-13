@@ -214,6 +214,44 @@ describe UsersAPI do
           end
         end
 
+        context '/recommendations' do
+          context 'when unauthorized' do
+            it 'returns a 403' do
+              get "/users/#{user.to_param}/recommendations"
+
+              expect(last_response.status).to eq(401)
+              expect(last_response.body).to eq('{"error":{"message":"Unauthorized"}}')
+            end
+          end
+
+          context 'when authorized' do
+            before do
+              allow(context).to receive(:authorized?).and_return(true)
+              allow(context).to receive(:current_user).and_return(user)
+            end
+
+            it 'returns an empty array' do
+              get "/users/#{user.to_param}/recommendations", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+
+              expect(last_response.body).to eq('{"count":0,"beers":[]}')
+            end
+
+            it 'returns beers as JSON' do
+              # Coerce an ActiveRecord::Relation
+              beer = Factory(:beer)
+              beers = Beer.where(id: beer.id)
+
+              expect(user).to receive(:recommended_beers).and_return(beers)
+              expect(User).to receive(:from_param).with(user.to_param).and_return(user)
+
+              body = BeersPresenter.new(beers, context: context, root: nil).present
+
+              get "/users/#{user.to_param}/recommendations", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+              expect(last_response.body).to eq(body.to_json)
+            end
+          end
+        end
+
         context '/similar' do
           it 'returns an empty array' do
             get "/users/#{user.to_param}/similar"

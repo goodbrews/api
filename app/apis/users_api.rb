@@ -51,6 +51,12 @@ class UsersAPI < BaseAPI
       BeersPresenter.new(user.hidden_beers, context: self, root: nil).present
     end
 
+    get :recommendations do
+      unauthorized! unless user == current_user
+
+      BeersPresenter.new(user.recommended_beers, context: self, root: nil).present
+    end
+
     get(:similar) { UsersPresenter.new(user.similar_raters, context: self, root: nil).present }
   end
 end
