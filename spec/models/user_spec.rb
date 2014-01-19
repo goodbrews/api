@@ -191,6 +191,24 @@ describe User do
 
     it { should have_sent_email.from('brewmaster@goodbre.ws') }
     it { should have_sent_email.to(user.email) }
-    it { should have_sent_email.matching_body(/Hey there, #{user.display_name}/) }
+    it { should have_sent_email.matching_body(/Hey there, #{user.display_name}!/) }
+  end
+
+  describe '#send_password_reset' do
+    subject(:user) { Factory(:user) }
+
+    before { user.send_password_reset }
+
+    it 'should have a password_reset_token' do
+      expect(user.password_reset_token).not_to be_nil
+    end
+
+    it 'should have a password_reset_sent_at' do
+      expect(user.password_reset_sent_at).not_to be_nil
+    end
+
+    it { should have_sent_email.from('brewmaster@goodbre.ws') }
+    it { should have_sent_email.to(user.email) }
+    it { should have_sent_email.matching_body(%r{https://goodbre.ws/reset_password/#{user.password_reset_token}}) }
   end
 end
