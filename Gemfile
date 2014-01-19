@@ -21,7 +21,7 @@ gem 'jsonite', github: 'barrelage/jsonite'
 gem 'kaminari', require: false
 
 # Email/Notifications.
-gem 'mail'
+gem 'mail', '~> 2.5.4'
 
 # Utilities.
 gem 'bcrypt-ruby', '~> 3.1.2'

@@ -6,6 +6,7 @@ ENV['RACK_ENV'] ||= 'test'
 require File.expand_path("../../config/application", __FILE__)
 require 'webmock/rspec'
 require 'vcr'
+require 'mail'
 
 # Disable Sidekiq logging
 require 'sidekiq/testing'
@@ -28,6 +29,7 @@ NewRelic::Agent.manual_start
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.include Rack::Test::Methods
+  config.include Mail::Matchers
 
   # Disable the 'should' syntax.
   config.expect_with :rspec do |c|
@@ -41,7 +43,11 @@ RSpec.configure do |config|
     DeferredGarbageCollection.start
   end
 
-  config.before(:each) { DatabaseCleaner.start }
+  config.before(:each) do
+    DatabaseCleaner.start
+    Mail::TestMailer.deliveries.clear
+  end
+
   config.after(:each) do
     DatabaseCleaner.clean
     Recommendable.redis.flushdb

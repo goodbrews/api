@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   ]
 
   before_create { generate_token(:auth_token) }
+  after_create :send_welcome_email
   recommends :beers
 
   # Alias the `bookmark` actions to `cellar` for recommendable
@@ -57,6 +58,10 @@ class User < ActiveRecord::Base
     username
   end
 
+  def display_name
+    name.presence || username
+  end
+
   def self.from_login(login)
     User.find_by('lower(username) = lower(?) OR lower(email) = lower(?)', login, login)
   end
@@ -67,5 +72,20 @@ class User < ActiveRecord::Base
       begin
         self[column] = SecureRandom.urlsafe_base64
       end while User.exists?(column => self[column])
+    end
+
+    def send_welcome_email
+      erb = ERB.new(File.read('app/templates/welcome.html.erb'))
+
+      mail = Mail.new do
+        content_type 'text/html; charset=UTF-8'
+        from     'brewmaster@goodbre.ws'
+        subject  'Welcome to goodbre.ws!'
+      end
+
+      mail[:to]   = self.email
+      mail[:body] = erb.result(self.instance_eval { binding })
+
+      mail.deliver!
     end
 end

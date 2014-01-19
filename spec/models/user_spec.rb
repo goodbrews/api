@@ -184,4 +184,13 @@ describe User do
       expect(user.authenticate('securely')).to be_true
     end
   end
+
+  describe '#send_welcome_email' do
+    let(:user) { Factory.build(:user) }
+    before { user.save }
+
+    it { should have_sent_email.from('brewmaster@goodbre.ws') }
+    it { should have_sent_email.to(user.email) }
+    it { should have_sent_email.matching_body(/Hey there, #{user.display_name}/) }
+  end
 end

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/barrelage/jsonite.git
-  revision: 67ad00de8043201a5fa816e2dcc1ad738b3c755c
+  revision: 53b7b635c2a5d3fde01003781b48646928c2d941
   specs:
     jsonite (0.0.2)
       activesupport (>= 3.1.0)
@@ -75,7 +75,7 @@ GEM
       safe_yaml (~> 0.9.0)
     database_cleaner (1.2.0)
     diff-lcs (1.2.5)
-    docile (1.1.1)
+    docile (1.1.2)
     dotenv (0.9.0)
     erubis (2.7.0)
     ffaker (1.22.1)
@@ -85,15 +85,14 @@ GEM
     hooks (0.3.3)
     i18n (0.6.9)
     json (1.8.1)
-    kaminari (0.15.0)
+    kaminari (0.15.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    mail (2.2.7)
-      activesupport (>= 2.3.6)
-      mime-types
-      treetop (>= 1.4.5)
+    mail (2.5.4)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
     method_source (0.8.2)
-    mime-types (2.0)
+    mime-types (1.25.1)
     miniskirt (1.2.1)
       activesupport
     minitest (4.7.5)
@@ -128,7 +127,7 @@ GEM
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.4)
     safe_yaml (0.9.7)
-    sidekiq (2.17.1)
+    sidekiq (2.17.3)
       celluloid (>= 0.15.2)
       connection_pool (>= 1.0.0)
       json
@@ -155,7 +154,7 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (0.3.38)
     vcr (2.8.0)
-    webmock (1.16.1)
+    webmock (1.17.1)
       addressable (>= 2.2.7)
       crack (>= 0.3.2)
 
@@ -173,7 +172,7 @@ DEPENDENCIES
   foreman
   jsonite!
   kaminari
-  mail
+  mail (~> 2.5.4)
   miniskirt
   new_relic-crepe!
   pg
