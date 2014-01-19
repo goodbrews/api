@@ -53,3 +53,7 @@ end
 class BeersPresenter < PaginatedPresenter
   property(:beers, with: BeerPresenter) { to_a }
 end
+
+class TopBeersPresenter < Jsonite
+  property(:beers, with: BeerPresenter) { to_a }
+end

@@ -32,6 +32,26 @@ describe BeersAPI do
     end
   end
 
+  context '/top' do
+    it 'returns an empty array' do
+      get '/beers/top'
+
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq('{"beers":[]}')
+    end
+
+    it 'returns a list of beers as JSON' do
+      beer = Factory(:beer)
+      expect(Beer).to receive(:top).and_return([beer])
+      body = TopBeersPresenter.new([beer], context: context, root: nil).present
+
+      get '/beers/top'
+
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq(body.to_json)
+    end
+  end
+
   context '/beers/:slug' do
     context 'without an existing beer' do
       it 'returns a 404' do

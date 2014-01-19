@@ -8,6 +8,10 @@ require 'app/presenters/ingredient_presenter'
 class BeersAPI < BaseAPI
   get { BeersPresenter.new(Beer.all, context: self, root: nil).present }
 
+  get :top do
+    TopBeersPresenter.new(Beer.top(count: 10), context: self, root: nil).present
+  end
+
   param :slug do
     let(:beer) { Beer.from_param(params[:slug]) }
 

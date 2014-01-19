@@ -15,9 +15,9 @@ GIT
 
 GIT
   remote: git://github.com/davidcelis/recommendable.git
-  revision: f2357dd9e287b6608a3f329b450452a51d5f704e
+  revision: f90419d3653d58bd91d15fcf8303d7b245b63e11
   specs:
-    recommendable (2.1.2)
+    recommendable (2.1.3)
       activesupport (>= 3.0.0)
       hooks (>= 0.2.1)
       redis (>= 2.2.0)
@@ -98,7 +98,7 @@ GEM
       activesupport
     minitest (4.7.5)
     mock_redis (0.10.0)
-    multi_json (1.8.2)
+    multi_json (1.8.4)
     newrelic_rpm (3.7.1.182)
     pg (0.17.1)
     polyglot (0.3.3)
