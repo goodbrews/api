@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :auth_token,      null: false
 
       t.string   :password_reset_token
-      t.datetime :password_reset_token_sent_at
+      t.datetime :password_reset_sent_at
 
       t.string   :name
       t.string   :city

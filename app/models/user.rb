@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
     :email,
     :password,
     :password_confirmation,
+    :name,
     :city,
     :region,
     :country

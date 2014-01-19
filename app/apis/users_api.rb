@@ -16,6 +16,35 @@ class UsersAPI < BaseAPI
     end
   end
 
+  scope :reset_password do
+    post do
+      params.require(:email)
+      user = User.find_by(email: params[:email])
+
+      user.send_password_reset if user
+
+      { message: 'Email sent with password reset instructions.' }
+    end
+
+    param :password_reset_token do
+      let(:user) { User.find_by!(password_reset_token: params[:password_reset_token]) }
+
+      post do
+        params.require(:password) and params.require(:password_confirmation)
+        params.permit(:password, :password_confirmation, :password_reset_token)
+        user_params = params.to_h.with_indifferent_access
+        user_params[:password_reset_token] = nil
+
+        if user.password_reset_sent_at > 2.hours.ago
+          user.update_attributes(user_params)
+          { message: 'Your password has been reset.' }
+        else
+          { error: { message: 'Your password reset has expired.'} }
+        end
+      end
+    end
+  end
+
   param :username do
     let(:user) { User.from_param(params[:username]) }
 

@@ -26,7 +26,7 @@ describe UsersAPI do
         post '/users', { user: { nothing: :here } }
 
         expect(last_response.status).to eq(400)
-        expect(last_response.body).to eq(%({"error":{"message":"Invalid parameter(s): nothing","invalid":["nothing"],"valid":["username","email","password","password_confirmation","city","region","country"]}}))
+        expect(last_response.body).to eq(%({"error":{"message":"Invalid parameter(s): nothing","invalid":["nothing"],"valid":["username","email","password","password_confirmation","name","city","region","country"]}}))
       end
 
       it 'requires certain parameters' do
@@ -63,6 +63,79 @@ describe UsersAPI do
         expect(last_response.status).to eq(201)
         expect(User.count).to eq(1)
         expect(last_response.body).to eq(%({"auth_token":"#{User.first.auth_token}"}))
+      end
+    end
+
+    context '/reset_password' do
+      context 'POST without valid params' do
+        it 'requires an email param' do
+          post '/users/reset_password'
+
+          expect(last_response.status).to eq(400)
+          expect(last_response.body).to eq('{"error":{"message":"Missing parameter: email","missing":"email"}}')
+        end
+      end
+
+      context 'POST with valid params' do
+        let(:user) { Factory(:user) }
+
+        it "resets a user's password" do
+          expect(User).to receive(:find_by).with(email: user.email).and_return(user)
+          expect(user).to receive(:send_password_reset)
+
+          post '/users/reset_password', email: user.email
+
+          expect(last_response.status).to eq(201)
+          expect(last_response.body).to eq('{"message":"Email sent with password reset instructions."}')
+        end
+
+        it 'claims success even if no user is found' do
+          post '/users/reset_password', email: 'nobody@here.com'
+
+          expect(last_response.status).to eq(201)
+          expect(last_response.body).to eq('{"message":"Email sent with password reset instructions."}')
+        end
+      end
+
+      context '/:password_reset_token' do
+        let(:user) { Factory(:user) }
+        before { user.send_password_reset }
+
+        context 'POST without valid params' do
+          it 'requires a password' do
+            post "/users/reset_password/#{user.password_reset_token}"
+
+            expect(last_response.status).to eq(400)
+            expect(last_response.body).to eq('{"error":{"message":"Missing parameter: password","missing":"password"}}')
+          end
+
+          it 'requires a password_confirmation' do
+            post "/users/reset_password/#{user.password_reset_token}", password: 'imsosecret'
+
+            expect(last_response.status).to eq(400)
+            expect(last_response.body).to eq('{"error":{"message":"Missing parameter: password_confirmation","missing":"password_confirmation"}}')
+          end
+
+          it 'disallows other parameters' do
+            post "/users/reset_password/#{user.password_reset_token}", password: 'imsosecret', password_confirmation: 'imsosecret', email: 'dont@let.me'
+
+            expect(last_response.status).to eq(400)
+            expect(last_response.body).to eq('{"error":{"message":"Invalid parameter(s): email","invalid":["email"],"valid":["password","password_confirmation","password_reset_token"]}}')
+          end
+        end
+
+        context 'POST with valid params' do
+          it "resets a user's password" do
+            post "/users/reset_password/#{user.password_reset_token}", password: 'imsosecret', password_confirmation: 'imsosecret'
+
+            expect(last_response.status).to eq(201)
+            expect(last_response.body).to eq('{"message":"Your password has been reset."}')
+            user.reload
+
+            expect(user.authenticate('imsosecret')).to be_true
+            expect(user.password_reset_token).to be_nil
+          end
+        end
       end
     end
 
