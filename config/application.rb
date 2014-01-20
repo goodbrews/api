@@ -1,4 +1,5 @@
 require File.expand_path('../boot', __FILE__)
+require 'active_support/dependencies'
 require 'crepe'
 
 # Require the gems listed in Gemfile, including any gems
@@ -8,19 +9,15 @@ Bundler.require(:default, Crepe.env)
 $:.unshift Crepe.root
 $:.unshift Crepe.root.join('lib')
 
-module Goodbrews
-  class Application < Configurable
-    config.mail = OpenStruct.new
+# Initialize ActiveSupport's default time zone.
+Time.zone = 'UTC'
 
-    # Set Time.zone default to the specified zone and make Active Record
-    # auto-convert to this zone.
-    config.time_zone = 'UTC'
+# Silence I18n warnings.
+I18n.config.enforce_available_locales = true
 
-    config.mail.raise_delivery_errors = true
-
-    I18n.config.enforce_available_locales = true
-  end
-end
+# Load environment-specific configuration.
+pathname = Crepe.root.join('config', 'environment', Crepe.env)
+require_dependency pathname.to_s
 
 # Load initializers.
 Dir['config/initializers/**/*.rb'].each { |f| require f }

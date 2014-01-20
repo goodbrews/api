@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 gem 'crepe', github: 'stephencelis/crepe'
 gem 'puma'
 gem 'rake'
-gem 'app'
 
 # Background processing.
 gem 'sidekiq'

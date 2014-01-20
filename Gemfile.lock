@@ -56,7 +56,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
-    app (1.0.3)
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
@@ -163,7 +162,6 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 4.0.0)
-  app
   bcrypt-ruby (~> 3.1.2)
   coveralls
   crepe!
