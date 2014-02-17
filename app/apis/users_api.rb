@@ -34,6 +34,7 @@ class UsersAPI < BaseAPI
         params.permit(:password, :password_confirmation, :password_reset_token)
         user_params = params.to_h.with_indifferent_access
         user_params[:password_reset_token] = nil
+        user_params[:password_reset_sent_at] = nil
 
         if user.password_reset_sent_at > 2.hours.ago
           user.update_attributes(user_params)

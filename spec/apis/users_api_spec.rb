@@ -134,6 +134,7 @@ describe UsersAPI do
 
             expect(user.authenticate('imsosecret')).to be_true
             expect(user.password_reset_token).to be_nil
+            expect(user.password_reset_sent_at).to be_nil
           end
         end
       end
