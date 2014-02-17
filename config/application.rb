@@ -6,6 +6,9 @@ require 'crepe'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Crepe.env)
 
+# Load ENV variables
+Dotenv.load
+
 $:.unshift Crepe.root
 $:.unshift Crepe.root.join('lib')
 

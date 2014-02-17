@@ -24,12 +24,20 @@ gem 'mail', '~> 2.5.4'
 
 # Utilities.
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'dotenv'
 
 # Monitoring.
 gem 'new_relic-crepe', github: 'davidcelis/new_relic-crepe'
 
 gem 'foreman', group: :development
-gem 'capistrano', '~> 3.1.0'
+
+group :deployment do
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-chruby', '~> 0.1.1'
+  gem 'capistrano-bundler', '~> 1.1.2'
+  gem 'capistrano3-puma', '~> 0.2.2'
+  gem 'capistrano-rails', '~> 1.1'
+end
 
 group :development, :test do
   gem 'pry'

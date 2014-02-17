@@ -3,4 +3,4 @@ Mail.defaults do
 end
 
 # Log database queries to STDOUT
-ActiveRecord::Base.logger = Crepe.logger
+# ActiveRecord::Base.logger = Crepe.logger

@@ -8,3 +8,6 @@ coverage/
 
 # Ignore logfiles.
 log/*.log
+
+# Ignore .env file
+.env
