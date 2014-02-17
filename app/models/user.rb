@@ -63,6 +63,11 @@ class User < ActiveRecord::Base
     name.presence || username
   end
 
+  def authorize!
+    generate_token(:auth_token)
+    save!
+  end
+
   def send_password_reset
     generate_token :password_reset_token
     self.password_reset_sent_at = Time.zone.now
@@ -83,7 +88,7 @@ class User < ActiveRecord::Base
   end
 
   def self.from_login(login)
-    User.find_by('lower(username) = lower(?) OR lower(email) = lower(?)', login, login)
+    find_by('lower(username) = lower(?) OR lower(email) = lower(?)', login, login)
   end
 
   private
