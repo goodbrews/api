@@ -1,0 +1,25 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+
+development:
+  <<: *defaults
+  database: goodbrews_development
+  pool: 16
+  username: postgres
+  password:
+
+test:
+  <<: *defaults
+  database: goodbrews_test
+  pool: 16
+  username: postgres
+  password:
+
+production:
+  <<: *defaults
+  database: <%= ENV.fetch('DATABASE', 'goodbrews_production') %>
+  host:     <%= ENV.fetch('DATABASE_HOST', 'localhost') %>
+  pool:     <%= ENV.fetch('DATABASE_POOL', 25) %>
+  username: <%= ENV.fetch('DATABASE_USERNAME', 'postgres') %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD', '') %>

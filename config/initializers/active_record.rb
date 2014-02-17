@@ -1,3 +1,3 @@
-database_spec = YAML.load_file('config/database.yml')[Crepe.env]
-ActiveRecord::Base.establish_connection(database_spec)
+database = YAML.load(ERB.new(File.read('config/database.yml')).result)[Crepe.env]
+ActiveRecord::Base.establish_connection(database)
 ActiveRecord::Base.default_timezone = :utc
