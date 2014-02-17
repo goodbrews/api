@@ -20,7 +20,7 @@ module Goodbrews
       when :json
         {
           _links: {
-            authorization: { href: '/authorize', method: 'POST' },
+            authorization: { href: '/authorization', methods: %w[POST DELETE] },
             beers:         { href: '/beers' },
             breweries:     { href: '/breweries' },
             events:        { href: '/events' },

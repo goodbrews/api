@@ -11,7 +11,7 @@ describe Goodbrews::API do
       it 'returns a hash of explorable links' do
         links = {
           _links: {
-            authorization: { href: '/authorize', method: 'POST' },
+            authorization: { href: '/authorization', methods: %w[POST DELETE] },
             beers:         { href: '/beers' },
             breweries:     { href: '/breweries' },
             events:        { href: '/events' },
