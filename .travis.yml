@@ -2,8 +2,6 @@ language: ruby
 rvm:
   - 2.1.0
 before_script:
-  - mv config/database.yml.sample config/database.yml
-  - mv config/redis.yml.sample config/redis.yml
   - psql -c 'create database goodbrews_test;' -U postgres
   - bundle exec rake db:migrate
 script: bundle exec rspec
