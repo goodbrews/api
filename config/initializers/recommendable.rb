@@ -5,7 +5,7 @@ Recommendable.configure do |config|
   config.redis = Redis.new(
     host: redis['host'],
     port: redis['port'],
-    db: redis['db']
+    db:   redis['db']
   )
 
   # A prefix for all keys Recommendable uses.

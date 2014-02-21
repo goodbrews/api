@@ -9,7 +9,7 @@ gem 'rake'
 # Background processing.
 gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
-gem 'sinatra', '1.3.0', require: nil, group: [:sidekiq]
+gem 'sinatra', '1.3.0', require: nil, group: :production
 
 # Data storage.
 gem 'activerecord', '~> 4.0.0', require: 'active_record'

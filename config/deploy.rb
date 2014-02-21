@@ -13,9 +13,6 @@ set :deploy_to, '/home/goodbrews/api'
 # Set a Ruby for chruby to use
 set :chruby_ruby, 'ruby-2.1.0'
 
-# Default value for sidekiq_pidfile is tmp/sidekiq.pid
-set :sidekiq_pid, 'tmp/pids/sidekiq.pid'
-
 # Default value for linked_files is []
 set :linked_files, %w[.env]
 

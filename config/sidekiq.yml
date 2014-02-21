@@ -3,6 +3,7 @@
 #   sidekiq -C config/sidekiq.yml
 ---
 :require: ./config/application.rb
+:pidfile: ./tmp/pids/sidekiq.pid
 :verbose: false
 :concurrency: 25
 :queues:
