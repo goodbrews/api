@@ -24,3 +24,15 @@ require_dependency pathname.to_s
 
 # Load initializers.
 Dir['config/initializers/**/*.rb'].each { |f| require f }
+
+module Goodbrews
+  class Application
+    class << self
+      def load_tasks
+        require 'rake'
+
+        Dir['lib/tasks/**/*.rake'].sort.each { |tasks| load tasks }
+      end
+    end
+  end
+end

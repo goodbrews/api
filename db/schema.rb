@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 20140217134212) do
 
   create_table "beers", force: true do |t|
     t.string   "name"
-    t.float    "abv"
-    t.integer  "ibu"
     t.text     "description"
     t.string   "availability"
     t.string   "glassware"
     t.boolean  "organic"
+    t.float    "abv"
+    t.integer  "ibu"
     t.float    "original_gravity"
     t.float    "serving_temperature"
     t.string   "slug"
@@ -197,10 +197,10 @@ ActiveRecord::Schema.define(version: 20140217134212) do
     t.float    "max_abv"
     t.integer  "min_ibu"
     t.integer  "max_ibu"
-    t.integer  "min_original_gravity"
-    t.integer  "max_original_gravity"
-    t.integer  "min_final_gravity"
-    t.integer  "max_final_gravity"
+    t.float    "min_original_gravity"
+    t.float    "max_original_gravity"
+    t.float    "min_final_gravity"
+    t.float    "max_final_gravity"
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -221,10 +221,10 @@ ActiveRecord::Schema.define(version: 20140217134212) do
     t.string   "city"
     t.string   "region"
     t.string   "country"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
