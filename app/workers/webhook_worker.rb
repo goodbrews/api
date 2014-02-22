@@ -16,7 +16,9 @@ class WebhookWorker
       id:         params['attributeId']
     }
 
-    options[:sub_action] = params['sub_action'] unless params['sub_action'] == 'none'
+    unless params['subAction'].nil? || params['subAction'] == 'none'
+      options[:sub_action] = params['subAction'].underscore
+    end
 
     webhook_klass = BreweryDB::Webhooks::const_get(type.classify)
     ::NewRelic::Agent.add_custom_parameters(options.merge(type: type))
