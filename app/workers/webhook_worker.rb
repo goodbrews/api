@@ -9,13 +9,14 @@ class WebhookWorker
   sidekiq_options queue: 'webhooks'
 
   def perform(params)
-    type = params.delete(:type)
+    type = params['type']
 
     options = {
-      action:     params[:action],
-      id:         params[:attributeId],
-      sub_action: params[:subAction] == 'none' ? nil : params[:subAction].underscore
+      action:     params['action'],
+      id:         params['attributeId']
     }
+
+    options[:sub_action] = params['sub_action'] unless params['sub_action'] == 'none'
 
     webhook_klass = BreweryDB::Webhooks::const_get(type.classify)
     ::NewRelic::Agent.add_custom_parameters(options.merge(type: type))
