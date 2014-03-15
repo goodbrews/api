@@ -1,4 +1,4 @@
-# Load the Grape application.
+# Load the Crepe application.
 require File.expand_path('../config/application', __FILE__)
 require 'new_relic/rack/agent_hooks'
 require 'new_relic/rack/error_collector'
