@@ -120,6 +120,10 @@ GEM
     net-ssh (2.8.0)
     newrelic_rpm (3.7.3.204)
     pg (0.17.1)
+    pg_search (0.7.3)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     polyglot (0.3.4)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -213,6 +217,7 @@ DEPENDENCIES
   miniskirt
   new_relic-crepe!
   pg
+  pg_search
   pry
   puma
   rack-test

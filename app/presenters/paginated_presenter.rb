@@ -14,25 +14,24 @@ class PaginatedPresenter < Jsonite
   link :first do |context|
     throw :ignore if first_page?
 
-    "#{context.url}?#{context.query_params.merge(page: 1).to_query}"
+    "#{context.url}?#{context.query_params.merge('page' => 1).to_query}"
   end
 
   link :prev do |context|
     throw :ignore if first_page?
 
-    "#{context.url}?#{context.query_params.merge(page: current_page - 1).to_query}"
+    "#{context.url}?#{context.query_params.merge('page' => current_page - 1).to_query}"
   end
 
   link :next do |context|
     throw :ignore if last_page?
 
-    "#{context.url}?#{context.query_params.merge(page: current_page + 1).to_query}"
+    "#{context.url}?#{context.query_params.merge('page' => current_page + 1).to_query}"
   end
 
   link :last do |context|
     throw :ignore if last_page?
 
-    "#{context.url}?#{context.query_params.merge(page: total_pages).to_query}"
+    "#{context.url}?#{context.query_params.merge('page' => total_pages).to_query}"
   end
 end
-

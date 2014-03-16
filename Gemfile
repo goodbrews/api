@@ -15,6 +15,7 @@ gem 'sinatra', '1.3.0', require: nil, group: :production
 gem 'activerecord', '~> 4.0.0', require: 'active_record'
 gem 'recommendable', github: 'davidcelis/recommendable'
 gem 'pg'
+gem 'pg_search'
 
 # Presentation.
 gem 'jsonite', github: 'barrelage/jsonite'

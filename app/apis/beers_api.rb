@@ -12,6 +12,12 @@ class BeersAPI < BaseAPI
     TopBeersPresenter.new(Beer.top(count: 10), context: self, root: nil).present
   end
 
+  get :search do
+    params.require(:q)
+
+    BeersPresenter.new(Beer.search(params[:q]), context: self, root: nil).present
+  end
+
   param :slug do
     let(:beer) { Beer.from_param(params[:slug]) }
 

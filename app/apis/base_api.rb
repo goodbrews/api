@@ -10,7 +10,7 @@ class BaseAPI < Crepe::API
     end
 
     def url
-      @url ||= URI(request.url)
+      @url ||= URI(request.url).to_s.gsub(/\?.*/, '')
     end
   end
 end

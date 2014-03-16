@@ -11,10 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315152532) do
+ActiveRecord::Schema.define(version: 20140316122708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
+  enable_extension "fuzzystrmatch"
+  enable_extension "unaccent"
 
   create_table "auth_tokens", force: true do |t|
     t.integer  "user_id",    null: false

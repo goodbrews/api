@@ -52,6 +52,27 @@ describe BeersAPI do
     end
   end
 
+  context '/search' do
+    let!(:beer)  { Factory(:beer) }
+    let(:query) { beer.name }
+
+    it 'returns an empty array' do
+      get '/beers/search', q: SecureRandom.hex
+
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq('{"count":0,"beers":[]}')
+    end
+
+    it 'returns a list of beers as JSON' do
+      body = BeersPresenter.new(Beer.all, context: context, root: nil).present
+
+      get '/beers/search', q: beer.name
+
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to   eq(body.to_json)
+    end
+  end
+
   context '/beers/:slug' do
     context 'without an existing beer' do
       it 'returns a 404' do
