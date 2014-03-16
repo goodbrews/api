@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 
 # Infrastructure.
-gem 'crepe', github: 'stephencelis/crepe'
+gem 'crepe', github: 'crepe/crepe'
 gem 'puma'
 gem 'rake'
 
@@ -28,7 +28,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'dotenv'
 
 # Monitoring.
-gem 'new_relic-crepe', github: 'davidcelis/new_relic-crepe'
+gem 'new_relic-crepe', github: 'crepe/new_relic-crepe'
 
 gem 'foreman', group: :development
 
