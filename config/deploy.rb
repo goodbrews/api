@@ -5,7 +5,7 @@ set :application, 'api'
 set :repo_url, 'https://github.com/goodbrews/api.git'
 
 # Default branch is :master
-set :branch, :deployment
+set :branch, :master
 
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, '/home/goodbrews/api'
