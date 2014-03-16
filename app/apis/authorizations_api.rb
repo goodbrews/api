@@ -1,23 +1,23 @@
 require 'app/apis/base_api'
 require 'app/models/user'
 
-class AuthorizationAPI < BaseAPI
-  post :authorization do
+class AuthorizationsAPI < BaseAPI
+  post do
     params.require(:login) and params.require(:password)
 
     user = User.from_login(params[:login])
 
-    if user && user.authenticate(params[:password]) && user.authorize!
-      { auth_token: user.auth_token }
+    if user && user.authenticate(params[:password])
+      user.generate_auth_token
     else
       unauthorized! 'Invalid credentials.'
     end
   end
 
-  delete :authorization do
+  delete do
     unauthorized! unless authorized?
 
-    current_user.update_attributes!(auth_token: nil)
+    AuthToken.find_by(token: auth_token).destroy
     head :no_content
   end
 end

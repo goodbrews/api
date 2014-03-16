@@ -62,7 +62,7 @@ describe UsersAPI do
 
         expect(last_response.status).to eq(201)
         expect(User.count).to eq(1)
-        expect(last_response.body).to eq(%({"auth_token":"#{User.first.auth_token}"}))
+        expect(last_response.body).to eq(User.first.auth_tokens.last.to_json)
       end
     end
 
@@ -162,22 +162,23 @@ describe UsersAPI do
         end
 
         context 'on PUT' do
+          let(:auth_token) { user.auth_tokens.last }
           it 'returns 401 if the user is unauthorized' do
-            put "/users/#{user.to_param}", { username: user.username }, 'HTTP_AUTHORIZATION' => "token #{user.auth_token * 2}"
+            put "/users/#{user.to_param}", { username: user.username }, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN nope"
 
             expect(last_response.status).to eq(401)
             expect(last_response.body).to eq('{"error":{"message":"Unauthorized"}}')
           end
 
           it 'requires parameters to be wrapped in a `user` key' do
-            put "/users/#{user.to_param}", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+            put "/users/#{user.to_param}", {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
             expect(last_response.status).to eq(400)
             expect(last_response.body).to eq(%({"error":{"message":"Missing parameter: user","missing":"user"}}))
           end
 
           it 'requires a current_password' do
-            put "/users/#{user.to_param}", { user: { username: 'fantastic-user' } }, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+            put "/users/#{user.to_param}", { user: { username: 'fantastic-user' } }, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
             expect(last_response.status).to eq(422)
             expect(last_response.body).to eq(%({"error":{"message":["Current password can't be blank"]}}))
@@ -194,7 +195,7 @@ describe UsersAPI do
               }
             }
 
-            put "/users/#{user.to_param}", params, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+            put "/users/#{user.to_param}", params, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
             expect(last_response.status).to eq(204)
           end
@@ -265,13 +266,14 @@ describe UsersAPI do
           end
 
           context 'when authorized' do
+            let(:auth_token) { user.auth_tokens.last }
             before do
               allow(context).to receive(:authorized?).and_return(true)
               allow(context).to receive(:current_user).and_return(user)
             end
 
             it 'returns an empty array' do
-              get "/users/#{user.to_param}/hidden", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+              get "/users/#{user.to_param}/hidden", {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
               expect(last_response.body).to eq('{"count":0,"beers":[]}')
             end
@@ -282,7 +284,7 @@ describe UsersAPI do
 
               body = BeersPresenter.new(user.hidden_beers, context: context, root: nil).present
 
-              get "/users/#{user.to_param}/hidden", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+              get "/users/#{user.to_param}/hidden", {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
               expect(last_response.body).to eq(body.to_json)
             end
           end
@@ -299,13 +301,14 @@ describe UsersAPI do
           end
 
           context 'when authorized' do
+            let(:auth_token) { user.auth_tokens.last }
             before do
               allow(context).to receive(:authorized?).and_return(true)
               allow(context).to receive(:current_user).and_return(user)
             end
 
             it 'returns an empty array' do
-              get "/users/#{user.to_param}/recommendations", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+              get "/users/#{user.to_param}/recommendations", {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
               expect(last_response.body).to eq('{"count":0,"beers":[]}')
             end
@@ -320,7 +323,7 @@ describe UsersAPI do
 
               body = BeersPresenter.new(beers, context: context, root: nil).present
 
-              get "/users/#{user.to_param}/recommendations", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+              get "/users/#{user.to_param}/recommendations", {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
               expect(last_response.body).to eq(body.to_json)
             end
           end

@@ -164,9 +164,9 @@ describe User do
     end
   end
 
-  describe 'auth_token' do
+  describe 'auth_tokens' do
     let(:user) { Factory(:user) }
-    subject(:it) { user.auth_token }
+    subject(:it) { user.auth_tokens }
 
     it 'is present' do
       expect(it).to be_present

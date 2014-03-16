@@ -11,13 +11,13 @@ describe Goodbrews::API do
       it 'returns a hash of explorable links' do
         links = {
           _links: {
-            authorization: { href: '/authorization', methods: %w[POST DELETE] },
-            beers:         { href: '/beers' },
-            breweries:     { href: '/breweries' },
-            events:        { href: '/events' },
-            guilds:        { href: '/guilds' },
-            ingredients:   { href: '/ingredients' },
-            styles:        { href: '/styles' }
+            authorizations: { href: '/authorizations', methods: %w[POST DELETE] },
+            beers:          { href: '/beers' },
+            breweries:      { href: '/breweries' },
+            events:         { href: '/events' },
+            guilds:         { href: '/guilds' },
+            ingredients:    { href: '/ingredients' },
+            styles:         { href: '/styles' }
           }
         }
 
@@ -35,15 +35,6 @@ describe Goodbrews::API do
         expect(last_response.status).to eq(303)
         expect(last_response.headers['Location']).to eq(url)
       end
-    end
-  end
-
-  context '/*catchall' do
-    it 'should return a 404 for matches' do
-      get '/nothing-here'
-
-      expect(last_response.status).to eq(404)
-      expect(last_response.body).to eq '{"error":{"message":"Not Found"}}'
     end
   end
 end

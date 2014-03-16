@@ -15,7 +15,6 @@ class User < ActiveRecord::Base
     :country
   ]
 
-  before_create { generate_token(:auth_token) }
   after_create :send_welcome_email
   recommends :beers
 
@@ -63,41 +62,11 @@ class User < ActiveRecord::Base
     name.presence || username
   end
 
-  def authorize!
-    generate_token(:auth_token)
-    save!
-  end
-
-  def send_password_reset
-    generate_token :password_reset_token
-    self.password_reset_sent_at = Time.zone.now
-    save!
-
-    erb = ERB.new(File.read('app/templates/reset_password.html.erb'))
-
-    mail = Mail.new do
-      content_type 'text/html; charset=UTF-8'
-      from    'brewmaster@goodbre.ws'
-      subject 'Reset your goodbre.ws password'
-    end
-
-    mail[:to]   = self.email
-    mail[:body] = erb.result(self.instance_eval { binding })
-
-    mail.deliver!
-  end
-
   def self.from_login(login)
     find_by('lower(username) = lower(?) OR lower(email) = lower(?)', login, login)
   end
 
   private
-
-    def generate_token(column)
-      begin
-        self[column] = SecureRandom.urlsafe_base64(32, true)
-      end while User.exists?(column => self[column])
-    end
 
     def send_welcome_email
       erb = ERB.new(File.read('app/templates/welcome.html.erb'))

@@ -10,7 +10,8 @@ class UsersAPI < BaseAPI
 
     if user.save
       status :created
-      { auth_token: user.auth_token }
+
+      user.auth_tokens.last
     else
       error! :unprocessable_entity, user.errors.full_messages
     end

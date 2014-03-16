@@ -25,11 +25,11 @@ describe AuthorizationHelper do
 
   context 'with proper credentials' do
     let(:user)  { Factory(:user) }
-    let(:token) { user.auth_token }
+    let(:token) { user.auth_tokens.last }
     let(:body)  { { authorized: true, current_user: user } }
 
     it 'should find a current user' do
-      get :current_user, {}, 'HTTP_AUTHORIZATION' => "token #{token}"
+      get :current_user, {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{token}"
 
       expect(last_response.body).to eq(body.to_json)
     end

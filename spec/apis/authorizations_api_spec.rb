@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'app/apis/api'
 
-describe AuthorizationAPI do
+describe AuthorizationsAPI do
   def app
     Goodbrews::API
   end
@@ -12,69 +12,69 @@ describe AuthorizationAPI do
     end
   end
 
-  context 'POST /authorization' do
-    let(:user) { Factory(:user, auth_token: nil) }
+  context 'POST /authorizations' do
+    let(:user) { Factory(:user) }
+    let(:auth_token) { user.auth_tokens.last }
 
     it 'requires a login' do
-      post '/authorization'
+      post '/authorizations'
 
       expect(last_response.status).to eq(400)
       expect(last_response.body).to eq('{"error":{"message":"Missing parameter: login","missing":"login"}}')
     end
 
     it 'requires a password' do
-      post '/authorization', login: user.username
+      post '/authorizations', login: user.username
 
       expect(last_response.status).to eq(400)
       expect(last_response.body).to eq('{"error":{"message":"Missing parameter: password","missing":"password"}}')
     end
 
     it 'returns a 401 with bad credentials' do
-      post '/authorization', login: user.username, password: user.username
+      post '/authorizations', login: user.username, password: user.username
 
       expect(last_response.status).to eq(401)
       expect(last_response.body).to eq('{"error":{"message":"Invalid credentials."}}')
     end
 
     it 'accepts a username as login' do
-      post '/authorization', login: user.username, password: 'supersecret'
+      post '/authorizations', login: user.username, password: 'supersecret'
 
       expect(last_response.status).to eq(201)
-      expect(last_response.body).to eq(%({"auth_token":"#{user.reload.auth_token}"}))
+      expect(last_response.body).to eq(auth_token.to_json)
     end
 
     it 'accepts an email address as login' do
-      post '/authorization', login: user.email, password: 'supersecret'
+      post '/authorizations', login: user.email, password: 'supersecret'
 
       expect(last_response.status).to eq(201)
-      expect(last_response.body).to eq(%({"auth_token":"#{user.reload.auth_token}"}))
+      expect(last_response.body).to eq(auth_token.to_json)
     end
 
     it 'generates a new auth token for the user' do
-      post '/authorization', login: user.email, password: 'supersecret'
-      old_auth_token = user.auth_token
+      post '/authorizations', login: user.email, password: 'supersecret'
       user.reload
 
-      expect(user.auth_token).to be_present
-      expect(user.auth_token).not_to eq(old_auth_token)
+      expect(user.auth_tokens.count).to eq(2)
     end
   end
 
-  context 'DELETE /authorization' do
+  context 'DELETE /authorizations' do
     let(:user) { Factory(:user) }
+    let(:auth_token) { user.auth_tokens.last }
 
     it 'requires authorization' do
-      delete '/authorization'
+      delete '/authorizations'
 
       expect(last_response.status).to eq(401)
       expect(last_response.body).to eq(%({"error":{"message":"Unauthorized"}}))
     end
 
     it 'removes the auth_token' do
-      delete '/authorization', {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+      delete '/authorizations', {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
       expect(last_response.status).to eq(204)
-      expect(user.reload.auth_token).to be_nil
+      expect(user.reload.auth_tokens).to be_empty
     end
   end
 end

@@ -85,6 +85,7 @@ describe BeersAPI do
 
           context 'when authorized' do
             let(:user) { Factory(:user) }
+            let(:auth_token) { user.auth_tokens.last }
             let(:past_action) do
               case action
                 when 'like', 'dislike' then "#{action}d"
@@ -94,7 +95,7 @@ describe BeersAPI do
             end
 
             it 'rates the beer' do
-              post "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+              post "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
               expect(last_response.status).to eq(201)
               expect(user.send("#{past_action}_beers")).to include(beer)
@@ -102,7 +103,7 @@ describe BeersAPI do
 
             it 'returns a 400 if the beer was already rated' do
               user.send(action, beer)
-              post "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+              post "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
               expect(last_response.status).to eq(400)
               expect(last_response.body).to eq('{"error":{"message":"User has already submitted this rating."}}')
@@ -121,6 +122,7 @@ describe BeersAPI do
 
           context 'when authorized' do
             let(:user) { Factory(:user) }
+            let(:auth_token) { user.auth_tokens.last }
             let(:past_action) do
               case action
                 when 'like', 'dislike' then "#{action}d"
@@ -131,14 +133,14 @@ describe BeersAPI do
 
             it 'removes a rating for the beer' do
               user.send(action, beer)
-              delete "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+              delete "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
               expect(last_response.status).to eq(204)
               expect(user.send("#{past_action}_beers")).not_to include(beer)
             end
 
             it 'returns a 400 if the beer was not already rated' do
-              delete "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "token #{user.auth_token}"
+              delete "/beers/#{beer.slug}/#{action}", {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
               expect(last_response.status).to eq(400)
               expect(last_response.body).to eq('{"error":{"message":"Nothing to delete."}}')
