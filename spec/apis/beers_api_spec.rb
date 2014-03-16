@@ -54,7 +54,6 @@ describe BeersAPI do
 
   context '/search' do
     let!(:beer)  { Factory(:beer) }
-    let(:query) { beer.name }
 
     it 'returns an empty array' do
       get '/beers/search', q: SecureRandom.hex

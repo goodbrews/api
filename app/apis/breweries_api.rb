@@ -8,6 +8,12 @@ require 'app/presenters/guild_presenter'
 class BreweriesAPI < BaseAPI
   get { BreweriesPresenter.new(Brewery.all, context: self, root: nil).present }
 
+  get :search do
+    params.require(:q)
+
+    BreweriesPresenter.new(Brewery.search(params[:q]), context: self, root: nil).present
+  end
+
   param :slug do
     let(:brewery) { Brewery.from_param(params[:slug]) }
 

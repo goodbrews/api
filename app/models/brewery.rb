@@ -9,6 +9,23 @@ require 'app/models/location'
 class Brewery < ActiveRecord::Base
   include Socialable
   include Sluggable
+  include PgSearch
+
+  pg_search_scope :search, against: {
+                             name:        'A',
+                             description: 'B'
+                           },
+                           using: {
+                             tsearch: {
+                               prefix:     true,
+                               any_word:   true,
+                               dictionary: 'english'
+                             },
+                             trigram: {
+                               threshold: 0.5
+                             }
+                           },
+                           ignoring: :accents
 
   has_many :beer_breweries, dependent: :destroy
   has_many :beers, through: :beer_breweries

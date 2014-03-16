@@ -32,6 +32,26 @@ describe BreweriesAPI do
     end
   end
 
+  context '/search' do
+    let!(:brewery)  { Factory(:brewery) }
+
+    it 'returns an empty array' do
+      get '/breweries/search', q: SecureRandom.hex
+
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq('{"count":0,"breweries":[]}')
+    end
+
+    it 'returns a list of breweries as JSON' do
+      body = BreweriesPresenter.new(Brewery.all, context: context, root: nil).present
+
+      get '/breweries/search', q: brewery.name
+
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to   eq(body.to_json)
+    end
+  end
+
   context '/breweries/:slug' do
     context 'without an existing brewery' do
       it 'returns a 404' do
