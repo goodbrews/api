@@ -47,6 +47,27 @@ describe UsersAPI do
       end
     end
 
+    context '/search' do
+      before { allow(context).to receive(:current_user).and_return(nil) }
+      let!(:user) { Factory(:user) }
+
+      it 'returns an empty array' do
+        get '/users/search', q: SecureRandom.hex
+
+        expect(last_response.status).to eq(200)
+        expect(last_response.body).to eq('{"count":0,"users":[]}')
+      end
+
+      it 'returns a list of users as JSON' do
+        body = UsersPresenter.new(User.all, context: context, root: nil).present
+
+        get '/users/search', q: user.username
+
+        expect(last_response.status).to eq(200)
+        expect(last_response.body).to   eq(body.to_json)
+      end
+    end
+
     context 'POST with valid params' do
       it 'creates a user, returning its auth_token as JSON' do
         params = {
@@ -341,7 +362,7 @@ describe UsersAPI do
             expect(user).to receive(:similar_raters).twice.and_return([friend])
             expect(User).to receive(:from_param).with(user.username).and_return(user)
 
-            body = UsersPresenter.new(user.similar_raters, context: context, root: nil)
+            body = SimilarUsersPresenter.new(user.similar_raters, context: context, root: nil)
 
             get "/users/#{user.to_param}/similar"
             expect(last_response.body).to eq(body.to_json)

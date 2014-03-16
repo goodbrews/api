@@ -36,6 +36,10 @@ class UserPresenter < Jsonite
   end
 end
 
-class UsersPresenter < Jsonite
+class UsersPresenter < PaginatedPresenter
+  property(:users, with: UserPresenter) { to_a }
+end
+
+class SimilarUsersPresenter < Jsonite
   property(:users, with: UserPresenter) { to_a }
 end

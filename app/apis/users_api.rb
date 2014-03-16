@@ -17,6 +17,12 @@ class UsersAPI < BaseAPI
     end
   end
 
+  get :search do
+    params.require(:q)
+
+    UsersPresenter.new(User.search(params[:q]), context: self, root: nil).present
+  end
+
   scope :reset_password do
     post do
       params.require(:email)
@@ -88,6 +94,8 @@ class UsersAPI < BaseAPI
       BeersPresenter.new(user.recommended_beers, context: self, root: nil).present
     end
 
-    get(:similar) { UsersPresenter.new(user.similar_raters, context: self, root: nil).present }
+    get(:similar) do
+      SimilarUsersPresenter.new(user.similar_raters, context: self, root: nil).present
+    end
   end
 end

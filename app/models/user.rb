@@ -3,6 +3,7 @@ require 'app/models/beer'
 
 class User < ActiveRecord::Base
   include Authenticatable
+  include PgSearch
 
   PERMISSIBLE_PARAMS = [
     :username,
@@ -17,6 +18,19 @@ class User < ActiveRecord::Base
 
   after_create :send_welcome_email
   recommends :beers
+
+  pg_search_scope :search, against: :username,
+                           using: {
+                             tsearch: {
+                               prefix:     true,
+                               any_word:   true,
+                               dictionary: 'english'
+                             },
+                             trigram: {
+                               threshold: 0.5
+                             }
+                           },
+                           ignoring: :accents
 
   # Alias the `bookmark` actions to `cellar` for recommendable
   alias_method :cellar,   :bookmark
@@ -35,7 +49,7 @@ class User < ActiveRecord::Base
                        },
                        format: {
                          with: /\A[\w\-]+\z/,
-                         message: "can only contain letters, numbers, or '_'.",
+                         message: "can only contain letters, numbers, '-', or '_'.",
                          allow_blank: true
                        },
                        length: {
