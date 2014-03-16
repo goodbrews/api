@@ -1,12 +1,14 @@
-# api.goodbre.ws [![build status](https://travis-ci.org/goodbrews/api.png)][travis] [![Coverage Status](https://coveralls.io/repos/goodbrews/api/badge.png?branch=master)][coveralls]
+# api.goodbre.ws
+
+[![Build status][travis-badge]][travis] [![Coverage][coveralls-badge]][coveralls] [![Code Climate][code-climate-badge]][code-climate] [![Dependency Status][gemnasium-badge]][gemnasium] [![Tips][gittip-badge]][gittip]
 
 This is the code that powers the API of the upcoming goodbre.ws rewrite.
 
 ## Requirements
 
-* Ruby 2.1.0 with bundler installed
-* PostgreSQL
-* Redis
+ * Ruby 2.1.0 with bundler installed
+ * PostgreSQL
+ * Redis
 
 ## Getting started
 
@@ -38,4 +40,12 @@ rspec # Optionally specify a path: spec/models/
 ```
 
 [travis]: https://travis-ci.org/goodbrews/api
-[coveralls]: https://coveralls.io/r/goodbrews/api?branch=master
+[travis-badge]: http://img.shields.io/travis/goodbrews/api/master.svg
+[coveralls]: https://coveralls.io/r/goodbrews/api
+[coveralls-badge]: http://img.shields.io/coveralls/goodbrews/api/master.svg
+[code-climate]: https://codeclimate.com/github/goodbrews/api
+[code-climate-badge]: http://img.shields.io/codeclimate/github/goodbrews/api.svg
+[gemnasium]: http://gemnasium.com/goodbrews/api
+[gemnasium-badge]: http://img.shields.io/gemnasium/goodbrews/api.svg
+[gittip]: https://gittip.com/davidcelis
+[gittip-badge]: http://img.shields.io/gittip/davidcelis.svg
