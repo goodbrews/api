@@ -1,4 +1,5 @@
 require 'app/models/event'
+require 'app/presenters/paginated_presenter'
 require 'app/presenters/social_media_account_presenter'
 
 class EventPresenter < Jsonite

@@ -1,4 +1,5 @@
 require 'app/models/ingredient'
+require 'app/presenters/paginated_presenter'
 
 class IngredientPresenter < Jsonite
   properties :name, :category

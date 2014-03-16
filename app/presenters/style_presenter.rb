@@ -1,4 +1,5 @@
 require 'app/models/style'
+require 'app/presenters/paginated_presenter'
 
 class StylePresenter < Jsonite
   properties :name, :category, :description, :min_abv, :max_abv, :min_ibu,

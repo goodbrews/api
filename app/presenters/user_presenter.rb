@@ -1,4 +1,5 @@
 require 'app/models/user'
+require 'app/presenters/paginated_presenter'
 require 'digest/md5'
 
 class UserPresenter < Jsonite

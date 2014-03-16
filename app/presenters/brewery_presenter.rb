@@ -1,4 +1,5 @@
 require 'app/models/brewery'
+require 'app/presenters/paginated_presenter'
 require 'app/presenters/location_presenter'
 require 'app/presenters/social_media_account_presenter'
 

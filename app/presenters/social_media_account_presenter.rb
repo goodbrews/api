@@ -1,4 +1,5 @@
 require 'app/models/social_media_account'
+require 'app/presenters/paginated_presenter'
 
 class SocialMediaAccountPresenter < Jsonite
   properties :website, :handle

@@ -1,4 +1,5 @@
 require 'app/models/location'
+require 'app/presenters/paginated_presenter'
 
 class LocationPresenter < Jsonite
   properties :name, :category, :primary, :in_planning, :public, :closed,
