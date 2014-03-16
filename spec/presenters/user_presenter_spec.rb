@@ -110,6 +110,7 @@ describe UsersPresenter do
   it 'presents a collection of users' do
     users = User.all
     expected = {
+      'count' => 2,
       'users' => [
         UserPresenter.new(users.first, context: context, root: nil).present,
         UserPresenter.new(users.last,  context: context, root: nil).present
@@ -117,6 +118,31 @@ describe UsersPresenter do
     }
 
     presented = UsersPresenter.new(users, context: context, root: nil).present
+
+    expect(presented).to eq(expected)
+  end
+end
+
+describe SimilarUsersPresenter do
+  let(:context) do
+    double.tap do |d|
+      allow(d).to receive(:params).and_return({})
+      allow(d).to receive(:current_user).and_return(nil)
+    end
+  end
+
+  before { 2.times { Factory(:user) } }
+
+  it 'presents a collection of users' do
+    users = User.all
+    expected = {
+      'users' => [
+        UserPresenter.new(users.first, context: context, root: nil).present,
+        UserPresenter.new(users.last,  context: context, root: nil).present
+      ]
+    }
+
+    presented = SimilarUsersPresenter.new(users, context: context, root: nil).present
 
     expect(presented).to eq(expected)
   end

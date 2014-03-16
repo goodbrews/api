@@ -26,9 +26,9 @@ describe User do
     it 'must only contain letters, numbers, and underscores' do
       user.username = 'i-am-special!'
       expect(user).not_to be_valid
-      expect(user.errors[:username]).to include("can only contain letters, numbers, or '_'.")
+      expect(user.errors[:username]).to include("can only contain letters, numbers, '-', or '_'.")
 
-      user.username = 'i_am_special123'
+      user.username = 'i_am-special123'
       expect(user).to be_valid
     end
 
