@@ -1,3 +1,4 @@
+require 'app/models/ingredient'
 require 'miniskirt'
 
 Factory.define :ingredient do |f|

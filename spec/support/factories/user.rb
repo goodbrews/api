@@ -1,3 +1,4 @@
+require 'app/models/user'
 require 'miniskirt'
 require 'ffaker'
 

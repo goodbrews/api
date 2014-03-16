@@ -1,3 +1,4 @@
+require 'app/models/social_media_account'
 require 'miniskirt'
 
 Factory.define :social_media_account do |f|

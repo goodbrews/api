@@ -33,6 +33,10 @@ module Goodbrews
 
         Dir['lib/tasks/**/*.rake'].sort.each { |tasks| load tasks }
       end
+
+      def load_seed
+        load 'db/seeds.rb'
+      end
     end
   end
 end

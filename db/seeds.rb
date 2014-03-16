@@ -36,9 +36,8 @@ styles = %w[
 ]
 
 styles.map! do |name|
-  style = Style.find_or_initialize_by(name: name)
-  style.category = %w[Ale Lager].sample
-  style.save!
+  style = Style.find_by(name: name)
+  style ||= Factory(:style, name: name)
   style
 end
 
@@ -100,8 +99,29 @@ guild = Factory(:guild, breweries: [brewery])
 # Social Media Accounts
 ##
 
-social_accounts = [Factory(:social_account, socialable: brewery)]
+social_accounts = [Factory(:social_media_account, socialable: brewery)]
 
 beers.sample(25).each do |beer|
   social_accounts << Factory(:social_media_account, socialable: beer)
 end
+
+##
+# User
+##
+
+puts 'Creating a user...'
+print 'Username: '
+username = STDIN.gets.chomp
+
+print 'Email: '
+email = STDIN.gets.chomp
+
+print 'Password: '
+password = STDIN.noecho(&:gets).chomp
+
+Factory(:user, {
+  username: username,
+  email: email,
+  password: password,
+  password_confirmation: password
+})

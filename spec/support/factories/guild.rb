@@ -1,3 +1,4 @@
+require 'app/models/guild'
 require 'miniskirt'
 require 'ffaker'
 

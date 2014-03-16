@@ -1,3 +1,4 @@
+require 'app/models/brewery'
 require 'miniskirt'
 require 'ffaker'
 

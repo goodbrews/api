@@ -4,6 +4,7 @@ ActiveRecord::Tasks::DatabaseTasks.env = Crepe.env
 ActiveRecord::Tasks::DatabaseTasks.database_configuration = databases
 ActiveRecord::Tasks::DatabaseTasks.db_dir = Crepe.root.join('db')
 ActiveRecord::Tasks::DatabaseTasks.root   = Crepe.root
+ActiveRecord::Tasks::DatabaseTasks.seed_loader = Goodbrews::Application
 
 # Loads the environment for rake tasks that need it.
 task :environment do

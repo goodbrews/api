@@ -1,3 +1,4 @@
+require 'app/models/style'
 require 'miniskirt'
 require 'ffaker'
 

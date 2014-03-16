@@ -1,3 +1,4 @@
+require 'app/models/event'
 require 'miniskirt'
 require 'ffaker'
 

@@ -1,3 +1,4 @@
+require 'app/models/location'
 require 'active_support/core_ext/string/strip'
 require 'miniskirt'
 require 'ffaker'
