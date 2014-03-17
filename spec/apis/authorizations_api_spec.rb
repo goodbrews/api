@@ -59,19 +59,19 @@ describe AuthorizationsAPI do
     end
   end
 
-  context 'DELETE /authorizations' do
+  context 'DELETE /authorizations/:token' do
     let(:user) { Factory(:user) }
     let(:auth_token) { user.auth_tokens.last }
 
     it 'requires authorization' do
-      delete '/authorizations'
+      delete "/authorizations/#{auth_token}"
 
       expect(last_response.status).to eq(401)
       expect(last_response.body).to eq(%({"error":{"message":"Unauthorized"}}))
     end
 
     it 'removes the auth_token' do
-      delete '/authorizations', {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
+      delete "/authorizations/#{auth_token}", {}, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN #{auth_token}"
 
       expect(last_response.status).to eq(204)
       expect(user.reload.auth_tokens).to be_empty

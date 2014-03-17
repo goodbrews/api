@@ -184,6 +184,7 @@ describe UsersAPI do
 
         context 'on PUT' do
           let(:auth_token) { user.auth_tokens.last }
+
           it 'returns 401 if the user is unauthorized' do
             put "/users/#{user.to_param}", { username: user.username }, 'HTTP_AUTHORIZATION' => "AUTH-TOKEN nope"
 

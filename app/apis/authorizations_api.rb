@@ -14,10 +14,15 @@ class AuthorizationsAPI < BaseAPI
     end
   end
 
-  delete do
-    unauthorized! unless authorized?
+  param :token do
+    let(:token) { current_user.auth_tokens.find_by!(token: params[:token]) }
 
-    AuthToken.find_by(token: auth_token).destroy
-    head :no_content
+    delete do
+      unauthorized! unless authorized?
+
+      token.destroy
+
+      head :no_content
+    end
   end
 end
