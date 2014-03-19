@@ -57,6 +57,7 @@ describe GuildsPresenter do
 
     presented = GuildsPresenter.new(guilds, context: context, root: nil).present
 
-    expect(presented).to eq(expected)
+    expect(presented['count']).to eq(expected['count'])
+    expect(presented['guilds']).to match_array(expected['guilds'])
   end
 end

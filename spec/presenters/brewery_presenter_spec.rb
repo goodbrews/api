@@ -65,6 +65,7 @@ describe BreweriesPresenter do
 
     presented = BreweriesPresenter.new(breweries, context: context, root: nil).present
 
-    expect(presented).to eq(expected)
+    expect(presented['count']).to eq(expected['count'])
+    expect(presented['breweries']).to match_array(expected['breweries'])
   end
 end

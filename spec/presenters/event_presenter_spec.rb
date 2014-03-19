@@ -76,6 +76,7 @@ describe EventsPresenter do
 
     presented = EventsPresenter.new(events, context: context, root: nil).present
 
-    expect(presented).to eq(expected)
+    expect(presented['count']).to eq(expected['count'])
+    expect(presented['events']).to match_array(expected['events'])
   end
 end

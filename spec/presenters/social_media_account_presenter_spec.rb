@@ -49,7 +49,7 @@ describe SocialMediaAccountsPresenter do
 
     presented = SocialMediaAccountsPresenter.new(social_media_accounts, context: context, root: nil).present
 
-    expect(presented).to eq(expected)
+    expect(presented['count']).to eq(expected['count'])
+    expect(presented['social_media_accounts']).to match_array(expected['social_media_accounts'])
   end
 end
-

@@ -57,6 +57,7 @@ describe LocationsPresenter do
 
     presented = LocationsPresenter.new(locations, context: context, root: nil).present
 
-    expect(presented).to eq(expected)
+    expect(presented['count']).to eq(expected['count'])
+    expect(presented['locations']).to match_array(expected['locations'])
   end
 end

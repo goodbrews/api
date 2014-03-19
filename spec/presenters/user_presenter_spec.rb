@@ -119,7 +119,8 @@ describe UsersPresenter do
 
     presented = UsersPresenter.new(users, context: context, root: nil).present
 
-    expect(presented).to eq(expected)
+    expect(presented['count']).to eq(expected['count'])
+    expect(presented['users']).to match_array(expected['users'])
   end
 end
 
@@ -144,6 +145,6 @@ describe SimilarUsersPresenter do
 
     presented = SimilarUsersPresenter.new(users, context: context, root: nil).present
 
-    expect(presented).to eq(expected)
+    expect(presented['users']).to match_array(expected['users'])
   end
 end

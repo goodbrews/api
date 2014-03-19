@@ -40,6 +40,7 @@ describe IngredientsPresenter do
 
     presented = IngredientsPresenter.new(ingredients, context: context, root: nil).present
 
-    expect(presented).to eq(expected)
+    expect(presented['count']).to eq(expected['count'])
+    expect(presented['ingredients']).to match_array(expected['ingredients'])
   end
 end

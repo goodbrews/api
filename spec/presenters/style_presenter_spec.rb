@@ -58,7 +58,7 @@ describe StylesPresenter do
 
     presented = StylesPresenter.new(styles, context: context, root: nil).present
 
-    expect(presented).to eq(expected)
+    expect(presented['count']).to eq(expected['count'])
+    expect(presented['styles']).to match_array(expected['styles'])
   end
 end
-
