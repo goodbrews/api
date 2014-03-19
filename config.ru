@@ -8,7 +8,6 @@ use NewRelic::Rack::AgentHooks
 use NewRelic::Rack::ErrorCollector
 
 use ActiveRecord::ConnectionAdapters::ConnectionManagement
-use ActiveRecord::QueryCache
 
 if Crepe.env.development?
   require 'new_relic/rack/developer_mode'
